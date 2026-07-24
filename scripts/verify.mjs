@@ -15,6 +15,10 @@ const expected = [
   'dist/.well-known/assetlinks.json',
   'dist/manifest.webmanifest',
   'dist/assets/icons/icon-512.png',
+  'dist/fonts/jetbrains-mono-latin.woff2',
+  'dist/fonts/OFL.txt',
+  'dist/projects/celestial-archive-home.jpg',
+  'dist/projects/portfolio-home.jpg',
   'dist/sitemap-index.xml',
 ];
 
@@ -37,13 +41,37 @@ for (const file of expected) {
 }
 
 const assetLinks = JSON.parse(await readFile(path.join(root, 'dist/.well-known/assetlinks.json'), 'utf8'));
-if (assetLinks[0]?.target?.package_name !== 'io.github.ted0103.twa') {
+const association = assetLinks[0];
+if (
+  association?.relation?.[0] !== 'delegate_permission/common.handle_all_urls'
+  || association?.target?.package_name !== 'io.github.ted0103.twa'
+  || association?.target?.sha256_cert_fingerprints?.[0] !== '50:37:8C:91:FF:83:20:68:A8:DF:C8:1A:93:62:FE:76:4E:48:A3:B8:28:C0:93:57:EF:90:A2:E4:D5:88:BC:C2'
+) {
   throw new Error('Digital Asset Links package mismatch');
 }
 
 const legacyManifest = JSON.parse(await readFile(path.join(root, 'dist/manifest.webmanifest'), 'utf8'));
-if (legacyManifest.start_url !== '/celestial-archive/' || legacyManifest.scope !== '/celestial-archive/') {
+if (
+  legacyManifest.id !== '/celestial-archive/'
+  || legacyManifest.start_url !== '/celestial-archive/'
+  || legacyManifest.scope !== '/celestial-archive/'
+  || legacyManifest.icons?.[1]?.src !== '/assets/icons/icon-512.png'
+) {
   throw new Error('Legacy Celestial Archive manifest does not point to the migrated path');
+}
+
+const downloadPage = await readFile(path.join(root, 'dist/download/index.html'), 'utf8');
+if (!downloadPage.includes('/celestial-archive/download.html')) {
+  throw new Error('Legacy download route does not point to Celestial Archive');
+}
+
+const astroAssets = path.join(root, 'dist/_astro');
+const css = (await readdir(astroAssets))
+  .filter((file) => file.endsWith('.css'))
+  .map((file) => readFile(path.join(astroAssets, file), 'utf8'));
+const productionCss = (await Promise.all(css)).join('\n');
+if (productionCss.includes('fonts.googleapis.com') || productionCss.includes('fonts.gstatic.com')) {
+  throw new Error('Production CSS must not request third-party fonts');
 }
 
 async function htmlFiles(directory) {
@@ -69,4 +97,4 @@ for (const file of await htmlFiles(path.join(root, 'dist'))) {
   }
 }
 
-console.log(`Verified ${expected.length} required outputs, internal routes, snapshot fallback, and Digital Asset Links.`);
+console.log(`Verified ${expected.length} required outputs, internal routes, snapshot fallback, local fonts, and Android compatibility.`);

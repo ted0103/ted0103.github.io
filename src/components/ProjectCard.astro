@@ -10,9 +10,17 @@ interface Props {
     year: number;
     status: string;
     accent: 'cyan' | 'violet';
+    media: {
+      src: string;
+      alt: string;
+      caption?: string;
+      position: 'center' | 'top';
+    };
     github: {
       language: string;
       updatedAt: string;
+      source: 'live' | 'snapshot';
+      snapshotGeneratedAt: string;
     };
   };
   featured?: boolean;
@@ -24,7 +32,7 @@ const updated = new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' 
 
 <article class:list={['project-card', { featured }]}>
   <a class="project-card-link" href={`/projects/${project.slug}/`} aria-label={`View ${project.title} case study`}>
-    <ProjectVisual accent={project.accent} />
+    <ProjectVisual accent={project.accent} media={project.media} />
     <div class="project-card-copy">
       <div class="project-card-meta">
         <span>{project.eyebrow}</span>
@@ -34,7 +42,7 @@ const updated = new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' 
       <p>{project.summary}</p>
       <div class="project-card-foot">
         <span>{project.status}</span>
-        <span>{project.github.language || 'Multi-disciplinary'} · Updated {updated}</span>
+        <span>{project.github.language || 'Multi-disciplinary'} · Repository activity {updated}</span>
         <span class="arrow" aria-hidden="true">↗</span>
       </div>
     </div>

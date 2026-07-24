@@ -4,13 +4,13 @@ import { site } from '../config/site';
 const current = Astro.url.pathname;
 ---
 
-<header class="site-header">
-  <a class="brand" href="/" aria-label="Tan Ted Hang, home">
-    <span class="brand-mark" aria-hidden="true">T</span>
-    <span>Ted</span>
+<header class="site-header" data-site-header>
+  <a class="brand" href="/">
+    <span class="brand-mark" aria-hidden="true">TH</span>
+    <span class="brand-name">Tan Ted Hang</span>
   </a>
 
-  <nav aria-label="Primary navigation">
+  <nav class="desktop-nav" aria-label="Primary navigation">
     {
       site.navigation.map((item) => (
         <a
@@ -23,5 +23,23 @@ const current = Astro.url.pathname;
     }
   </nav>
 
-  <a class="header-action" href={`mailto:${site.email}`}>Let’s Talk</a>
+  <a class="header-action" href={`mailto:${site.email}`}>Start a Conversation</a>
+
+  <details class="mobile-nav">
+    <summary aria-label="Open Navigation">
+      <span></span><span></span>
+    </summary>
+    <nav aria-label="Mobile navigation">
+      {
+        site.navigation.map((item) => (
+          <a
+            href={item.href}
+            aria-current={current === item.href || (item.href !== '/' && current.startsWith(item.href)) ? 'page' : undefined}
+          >
+            {item.label}<span aria-hidden="true">↗</span>
+          </a>
+        ))
+      }
+    </nav>
+  </details>
 </header>

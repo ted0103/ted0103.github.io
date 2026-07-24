@@ -19,7 +19,7 @@ const updated = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' }
 
 <BaseLayout title={project.title} description={project.summary}>
   <header class="project-detail-hero">
-    <div class="panel project-detail-copy">
+    <div class="panel project-detail-copy" data-reveal>
       <div>
         <p class="eyebrow">{project.eyebrow} · {project.year}</p>
         <h1>{project.title}</h1>
@@ -35,18 +35,20 @@ const updated = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' }
         <div><dt>Role</dt><dd>{project.role}</dd></div>
         <div><dt>Status</dt><dd>{project.status}</dd></div>
         <div><dt>Primary Language</dt><dd>{project.github.language || 'Multi-disciplinary'}</dd></div>
-        <div><dt>Repository Updated</dt><dd>{updated}</dd></div>
+        <div><dt>Repository Activity</dt><dd>{updated}{project.github.source === 'snapshot' ? ' · Snapshot' : ''}</dd></div>
       </dl>
     </div>
-    <ProjectVisual accent={project.accent} />
+    <div class="project-detail-visual" data-reveal>
+      <ProjectVisual accent={project.accent} media={project.media} />
+    </div>
   </header>
 
-  <div class="highlight-row" aria-label="Project highlights">
+  <div class="highlight-row" aria-label="Project highlights" data-reveal>
     {project.highlights.map((highlight) => <div class="highlight">{highlight}</div>)}
   </div>
 
   <section class="section">
-    <article class="panel content-prose">
+    <article class="panel content-prose" data-reveal>
       <Content />
     </article>
   </section>

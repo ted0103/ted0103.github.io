@@ -8,5 +8,8 @@
 - `project.celestial.001` — Public repository: <https://github.com/ted0103/celestial-archive>
 - `project.celestial.002` — Public live system: <https://ted0103.github.io/celestial-archive/>
 - `project.portfolio.001` — Ted approved the title “Ted’s Personal Portfolio” in the portfolio planning conversation.
+- `project.portfolio.002` — `/projects/teds-personal-portfolio/`: Astro, static output, curated repository metadata, snapshot fallback, and private source visibility are verified by this repository.
+- `project.celestial.003` — `/projects/celestial-archive/`: bilingual, local-first, 78-card, web, Android, and offline claims are verified by the public repository and v0.2.0 release.
+- `profile.route.001` — `/` and `/about/`: identity, chairperson role, approved achievements, capabilities, and forecast map to the `profile.*` approvals above.
 
 This checklist intentionally contains no private evidence or correspondence.

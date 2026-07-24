@@ -1,18 +1,20 @@
 ---
 interface Props {
   accent: 'cyan' | 'violet';
+  media: {
+    src: string;
+    alt: string;
+    caption?: string;
+    position: 'center' | 'top';
+  };
   compact?: boolean;
 }
 
-const { accent, compact = false } = Astro.props;
+const { accent, media, compact = false } = Astro.props;
 ---
 
-<div class:list={['project-visual', accent, { compact }]} aria-hidden="true">
-  <div class="visual-grid"></div>
-  <div class="visual-orbit orbit-one"></div>
-  <div class="visual-orbit orbit-two"></div>
-  <div class="visual-core">
-    <span>{accent === 'violet' ? '✦' : 'T'}</span>
-  </div>
-  <span class="visual-label">{accent === 'violet' ? 'ARCHIVE / 78' : 'PORTFOLIO / 01'}</span>
-</div>
+<figure class:list={['project-visual', accent, { compact }]}>
+  <img src={media.src} alt={media.alt} width="1470" height="890" loading="lazy" style={`object-position:${media.position}`} />
+  <span class="visual-sheen" aria-hidden="true"></span>
+  {media.caption && <figcaption>{media.caption}</figcaption>}
+</figure>
