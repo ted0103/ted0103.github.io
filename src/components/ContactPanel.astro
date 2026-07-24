@@ -1,0 +1,52 @@
+---
+import { site } from '../config/site';
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<section class:list={['contact-finale', { compact }]} aria-labelledby={compact ? 'footer-contact-title' : 'contact-finale-title'} data-reveal>
+  <p class="eyebrow">Open Channel · Malaysia</p>
+  <h2 id={compact ? 'footer-contact-title' : 'contact-finale-title'}>Have an idea worth making real?</h2>
+  <p class="contact-lede">Tell me what you’re trying to change, build, or understand. I’ll meet you with curiosity and a clear next step.</p>
+  <div class="contact-actions">
+    <a class="contact-action primary" href={`mailto:${site.email}`}>
+      <span>01 · Email</span>
+      <strong>{site.email}</strong>
+      <span>Start a conversation ↗</span>
+    </a>
+    <a class="contact-action" href={site.github}>
+      <span>02 · GitHub</span>
+      <strong>ted0103</strong>
+      <span>Explore the work ↗</span>
+    </a>
+    <a class="contact-action" href={site.instagram}>
+      <span>03 · Instagram</span>
+      <strong>@_hwalker_1</strong>
+      <span>See the visual side ↗</span>
+    </a>
+  </div>
+  <div class="copy-row">
+    <span>Prefer to save it for later?</span>
+    <button type="button" data-copy-email={site.email}>Copy email</button>
+    <span class="copy-status" role="status" aria-live="polite"></span>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-email]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const status = button.parentElement?.querySelector<HTMLElement>('.copy-status');
+      try {
+        await navigator.clipboard.writeText(button.dataset.copyEmail || '');
+        button.textContent = 'Copied';
+        if (status) status.textContent = 'Email copied to clipboard.';
+      } catch {
+        if (status) status.textContent = 'Copy failed. Select the visible email address instead.';
+      }
+    });
+  });
+</script>

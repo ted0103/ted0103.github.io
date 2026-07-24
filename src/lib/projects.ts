@@ -10,6 +10,12 @@ type GitHubMetadata = {
   repository: string;
 };
 
+type MetadataResult = {
+  metadata: GitHubMetadata;
+  source: 'live' | 'snapshot';
+  snapshotGeneratedAt: string;
+};
+
 const allowedHosts = new Set(['github.com', 'ted0103.github.io']);
 
 function safeUrl(value: unknown, hosts = allowedHosts) {
@@ -33,11 +39,11 @@ function validateMetadata(value: unknown): GitHubMetadata | null {
   return updatedAt && repository ? { description, language, updatedAt, homepage, repository } : null;
 }
 
-async function metadataFor(config: (typeof site.featuredRepositories)[number]): Promise<GitHubMetadata> {
+async function metadataFor(config: (typeof site.featuredRepositories)[number]): Promise<MetadataResult> {
   const fallback = snapshot.projects[config.snapshotKey];
   if (import.meta.env.GITHUB_OFFLINE === '1') {
     console.warn(`[portfolio] GitHub offline; using snapshot from ${snapshot.generatedAt} for ${config.repo}`);
-    return fallback;
+    return { metadata: fallback, source: 'snapshot', snapshotGeneratedAt: snapshot.generatedAt };
   }
 
   try {
@@ -47,10 +53,10 @@ async function metadataFor(config: (typeof site.featuredRepositories)[number]): 
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const validated = validateMetadata(await response.json());
     if (!validated) throw new Error('metadata failed validation');
-    return validated;
+    return { metadata: validated, source: 'live', snapshotGeneratedAt: snapshot.generatedAt };
   } catch (error) {
     console.warn(`[portfolio] ${String(error)}; using snapshot from ${snapshot.generatedAt} for ${config.repo}`);
-    return fallback;
+    return { metadata: fallback, source: 'snapshot', snapshotGeneratedAt: snapshot.generatedAt };
   }
 }
 
@@ -61,13 +67,15 @@ export async function getProjects() {
   const projects = await Promise.all(site.featuredRepositories.map(async (config) => {
     const entry = bySlug.get(config.slug);
     if (!entry) throw new Error(`Missing project content for ${config.slug}`);
-    const github = await metadataFor(config);
+    const githubResult = await metadataFor(config);
     return {
       ...entry.data,
       entry,
       github: {
-        ...github,
-        description: entry.data.summary || github.description,
+        ...githubResult.metadata,
+        description: entry.data.summary || githubResult.metadata.description,
+        source: githubResult.source,
+        snapshotGeneratedAt: githubResult.snapshotGeneratedAt,
       },
       showSource: config.showSource && entry.data.sourceVisibility === 'public',
     };

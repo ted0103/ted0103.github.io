@@ -7,15 +7,15 @@ const { Content } = await render(profile);
 ---
 
 <BaseLayout title="About" description="The person, perspective, and experience behind Tan Ted Hang’s work.">
-  <header class="page-hero">
-    <p class="eyebrow">About · The Human Layer</p>
-    <h1>Technical thinking. Human direction.</h1>
-    <p class="page-intro">I care about making difficult ideas easier to understand—and helping people move through them together.</p>
+  <header class="page-hero" data-reveal>
+    <p class="section-index">About / The Human Layer</p>
+    <h1>I’m learning how to make complexity feel human.</h1>
+    <p class="page-intro">Technology is one part of the story. The rest is curiosity, leadership, visual judgment, and the patience to make an idea understandable.</p>
   </header>
 
   <section class="about-layout">
-    <aside class="panel about-aside" aria-label="Profile summary">
-      <p class="eyebrow">Profile Card</p>
+    <aside class="panel about-aside" aria-label="Profile summary" data-reveal>
+      <p class="eyebrow">At a glance</p>
       <h2>{profile.data.name}</h2>
       <dl>
         <div><dt>Based In</dt><dd>{profile.data.location}</dd></div>
@@ -24,7 +24,7 @@ const { Content } = await render(profile);
         <div><dt>Practice</dt><dd>Development + Creative Technology</dd></div>
       </dl>
     </aside>
-    <article class="panel content-prose">
+    <article class="content-prose" data-reveal>
       <Content />
       <h2>What I Bring</h2>
       <ul class="signal-list">

@@ -34,6 +34,14 @@ jobs:
         run: npm run check
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload review artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: portfolio-preview-${{ github.event.pull_request.number }}
+          path: dist
+          retention-days: 7
+          if-no-files-found: error
       - name: Package Pages artifact
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: tar --dereference --hard-dereference --directory dist -cvf "$RUNNER_TEMP/artifact.tar" --exclude=.git --exclude=.github .

@@ -36,6 +36,12 @@ const projects = defineCollection({
     accent: z.enum(['cyan', 'violet']),
     order: z.number().int().min(1),
     highlights: z.array(z.string().max(100)).min(1).max(8),
+    media: z.object({
+      src: z.string().regex(/^\/projects\/[a-z0-9-]+\.(jpg|png|webp)$/),
+      alt: z.string().min(1).max(180),
+      caption: z.string().max(180).optional(),
+      position: z.enum(['center', 'top']).default('center'),
+    }),
   }),
 });
 
