@@ -347,8 +347,9 @@ main { display: block; }
   margin: 20px 0 26px;
   font-size: clamp(4rem, 8.2vw, 7.4rem);
   font-weight: 560;
-  line-height: .88;
-  letter-spacing: -.07em;
+  line-height: .92;
+  letter-spacing: -.055em;
+  word-spacing: .025em;
   text-wrap: balance;
 }
 .hero-signature {
