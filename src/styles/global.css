@@ -835,12 +835,12 @@ main { display: block; }
 
 .js [data-reveal] > * {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 720ms var(--ease-reveal), transform 720ms var(--ease-reveal);
+  transform: translateY(26px) scale(.992);
+  transition: opacity 820ms var(--ease-reveal), transform 820ms var(--ease-reveal);
 }
 .js [data-reveal][data-visible="true"] > * {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 .js [data-reveal] > :nth-child(2) { transition-delay: 80ms; }
 .js [data-reveal] > :nth-child(3) { transition-delay: 160ms; }
@@ -851,8 +851,8 @@ main { display: block; }
 .js [data-reveal] .contact-action,
 .js [data-reveal] .highlight {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 680ms var(--ease-reveal), transform 680ms var(--ease-reveal);
+  transform: translateY(22px) scale(.994);
+  transition: opacity 760ms var(--ease-reveal), transform 760ms var(--ease-reveal);
 }
 .js [data-reveal][data-visible="true"] .project-card,
 .js [data-reveal][data-visible="true"] .signal-list li,
@@ -860,7 +860,7 @@ main { display: block; }
 .js [data-reveal][data-visible="true"] .contact-action,
 .js [data-reveal][data-visible="true"] .highlight {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 .js [data-reveal] .project-card:nth-child(2),
 .js [data-reveal] .signal-list li:nth-child(2),
