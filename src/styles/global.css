@@ -26,6 +26,7 @@
   --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --ease-out: cubic-bezier(.23, 1, .32, 1);
   --ease-in-out: cubic-bezier(.77, 0, .175, 1);
+  --ease-reveal: cubic-bezier(.22, .61, .36, 1);
 }
 
 * { box-sizing: border-box; }
@@ -328,7 +329,7 @@ main { display: block; }
   font-weight: 620;
   letter-spacing: -.07em;
 }
-.js .hero-prelude { animation: prelude-exit 900ms var(--ease-out) both; }
+.js .hero-prelude { animation: prelude-exit 1.55s var(--ease-reveal) both; }
 
 .hero-copy {
   position: relative;
@@ -834,15 +835,15 @@ main { display: block; }
 .js [data-reveal] > * {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 480ms var(--ease-out), transform 480ms var(--ease-out);
+  transition: opacity 720ms var(--ease-reveal), transform 720ms var(--ease-reveal);
 }
 .js [data-reveal][data-visible="true"] > * {
   opacity: 1;
   transform: translateY(0);
 }
-.js [data-reveal] > :nth-child(2) { transition-delay: 55ms; }
-.js [data-reveal] > :nth-child(3) { transition-delay: 110ms; }
-.js [data-reveal] > :nth-child(4) { transition-delay: 165ms; }
+.js [data-reveal] > :nth-child(2) { transition-delay: 80ms; }
+.js [data-reveal] > :nth-child(3) { transition-delay: 160ms; }
+.js [data-reveal] > :nth-child(4) { transition-delay: 240ms; }
 .js [data-reveal] .project-card,
 .js [data-reveal] .signal-list li,
 .js [data-reveal] .stack-group,
@@ -850,7 +851,7 @@ main { display: block; }
 .js [data-reveal] .highlight {
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 440ms var(--ease-out), transform 440ms var(--ease-out);
+  transition: opacity 680ms var(--ease-reveal), transform 680ms var(--ease-reveal);
 }
 .js [data-reveal][data-visible="true"] .project-card,
 .js [data-reveal][data-visible="true"] .signal-list li,
@@ -864,26 +865,26 @@ main { display: block; }
 .js [data-reveal] .signal-list li:nth-child(2),
 .js [data-reveal] .stack-group:nth-child(2),
 .js [data-reveal] .contact-action:nth-child(2),
-.js [data-reveal] .highlight:nth-child(2) { transition-delay: 55ms; }
+.js [data-reveal] .highlight:nth-child(2) { transition-delay: 80ms; }
 .js [data-reveal] .signal-list li:nth-child(3),
 .js [data-reveal] .stack-group:nth-child(3),
 .js [data-reveal] .contact-action:nth-child(3),
-.js [data-reveal] .highlight:nth-child(3) { transition-delay: 110ms; }
+.js [data-reveal] .highlight:nth-child(3) { transition-delay: 160ms; }
 .js [data-reveal] .signal-list li:nth-child(4),
-.js [data-reveal] .highlight:nth-child(4) { transition-delay: 165ms; }
+.js [data-reveal] .highlight:nth-child(4) { transition-delay: 240ms; }
 
 .js .hero-heading > *,
 .js .hero-context > *,
 .js .hero-foot > * {
-  animation: hero-arrive 620ms var(--ease-out) both;
+  animation: hero-arrive 820ms var(--ease-reveal) both;
 }
-.js .hero-heading > :nth-child(1) { animation-delay: 940ms; }
-.js .hero-heading > :nth-child(2) { animation-delay: 995ms; }
-.js .hero-heading > :nth-child(3) { animation-delay: 1050ms; }
-.js .hero-context > :nth-child(1) { animation-delay: 1105ms; }
-.js .hero-context > :nth-child(2) { animation-delay: 1160ms; }
-.js .hero-foot > :nth-child(1) { animation-delay: 1215ms; }
-.js .hero-foot > :nth-child(2) { animation-delay: 1270ms; }
+.js .hero-heading > :nth-child(1) { animation-delay: 1.62s; }
+.js .hero-heading > :nth-child(2) { animation-delay: 1.69s; }
+.js .hero-heading > :nth-child(3) { animation-delay: 1.76s; }
+.js .hero-context > :nth-child(1) { animation-delay: 1.83s; }
+.js .hero-context > :nth-child(2) { animation-delay: 1.9s; }
+.js .hero-foot > :nth-child(1) { animation-delay: 1.97s; }
+.js .hero-foot > :nth-child(2) { animation-delay: 2.04s; }
 
 @media (hover: hover) and (pointer: fine) {
   .desktop-nav a:hover { color: white; background: rgba(255,255,255,.065); }
@@ -1060,7 +1061,7 @@ main { display: block; }
   38%, 100% { transform: translate3d(480%, 0, 0) skewX(-18deg); }
 }
 @keyframes prelude-exit {
-  0%, 42% { opacity: 1; }
+  0%, 58% { opacity: 1; }
   100% { opacity: 0; transform: translate(-50%, -54%) scale(.98); visibility: hidden; }
 }
 @keyframes hero-arrive {
