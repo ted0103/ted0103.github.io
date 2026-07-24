@@ -1,0 +1,32 @@
+export const site = {
+  name: 'Tan Ted Hang',
+  shortName: 'Ted',
+  description: 'Information Systems & AI student, independent developer, and creative technologist building clear, human-centered systems.',
+  url: 'https://ted0103.github.io',
+  email: 'tedhangtan@gmail.com',
+  instagram: 'https://www.instagram.com/_hwalker_1/',
+  github: 'https://github.com/ted0103',
+  availability: 'Open to meaningful collaborations',
+  navigation: [
+    { label: 'Home', href: '/' },
+    { label: 'Projects', href: '/projects/' },
+    { label: 'About', href: '/about/' },
+    { label: 'Contact', href: '/contact/' },
+  ],
+  featuredRepositories: [
+    {
+      slug: 'celestial-archive',
+      owner: 'ted0103',
+      repo: 'celestial-archive',
+      snapshotKey: 'celestial-archive',
+      showSource: true,
+    },
+    {
+      slug: 'teds-personal-portfolio',
+      owner: 'ted0103',
+      repo: 'ted0103.github.io',
+      snapshotKey: 'teds-personal-portfolio',
+      showSource: false,
+    },
+  ],
+} as const;

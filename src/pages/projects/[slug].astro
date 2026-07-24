@@ -1,0 +1,53 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectVisual from '../../components/ProjectVisual.astro';
+import { getProjects } from '../../lib/projects';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project.entry);
+const updated = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' }).format(new Date(project.github.updatedAt));
+---
+
+<BaseLayout title={project.title} description={project.summary}>
+  <header class="project-detail-hero">
+    <div class="panel project-detail-copy">
+      <div>
+        <p class="eyebrow">{project.eyebrow} · {project.year}</p>
+        <h1>{project.title}</h1>
+        <p class="page-intro">{project.summary}</p>
+        <div class="page-actions">
+          <a class="button" href={project.liveUrl}>Open Live <span aria-hidden="true">↗</span></a>
+          {project.showSource && project.sourceUrl && (
+            <a class="button secondary" href={project.sourceUrl}>View Source <span aria-hidden="true">↗</span></a>
+          )}
+        </div>
+      </div>
+      <dl class="project-detail-meta">
+        <div><dt>Role</dt><dd>{project.role}</dd></div>
+        <div><dt>Status</dt><dd>{project.status}</dd></div>
+        <div><dt>Primary Language</dt><dd>{project.github.language || 'Multi-disciplinary'}</dd></div>
+        <div><dt>Repository Updated</dt><dd>{updated}</dd></div>
+      </dl>
+    </div>
+    <ProjectVisual accent={project.accent} />
+  </header>
+
+  <div class="highlight-row" aria-label="Project highlights">
+    {project.highlights.map((highlight) => <div class="highlight">{highlight}</div>)}
+  </div>
+
+  <section class="section">
+    <article class="panel content-prose">
+      <Content />
+    </article>
+  </section>
+</BaseLayout>
