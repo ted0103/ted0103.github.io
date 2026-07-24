@@ -92,9 +92,9 @@ button { font: inherit; }
 .lava {
   position: absolute;
   border-radius: 42% 58% 62% 38% / 55% 46% 54% 45%;
-  filter: blur(86px);
+  filter: blur(78px);
   mix-blend-mode: screen;
-  opacity: .4;
+  opacity: .48;
   will-change: transform;
 }
 
@@ -104,7 +104,7 @@ button { font: inherit; }
   width: 42vmax;
   height: 33vmax;
   background: rgba(226, 248, 255, .72);
-  animation: lava-a 24s var(--ease-in-out) infinite alternate;
+  animation: lava-a 17s var(--ease-in-out) infinite alternate;
 }
 .lava-two {
   top: 11%;
@@ -112,7 +112,7 @@ button { font: inherit; }
   width: 45vmax;
   height: 42vmax;
   background: rgba(49, 151, 255, .62);
-  animation: lava-b 29s var(--ease-in-out) infinite alternate;
+  animation: lava-b 21s var(--ease-in-out) infinite alternate;
 }
 .lava-three {
   bottom: -22%;
@@ -120,7 +120,7 @@ button { font: inherit; }
   width: 50vmax;
   height: 34vmax;
   background: rgba(106, 220, 255, .46);
-  animation: lava-c 32s var(--ease-in-out) infinite alternate;
+  animation: lava-c 24s var(--ease-in-out) infinite alternate;
 }
 .lava-four {
   top: 47%;
@@ -128,8 +128,8 @@ button { font: inherit; }
   width: 26vmax;
   height: 26vmax;
   background: rgba(238, 251, 255, .3);
-  opacity: .22;
-  animation: lava-d 27s var(--ease-in-out) infinite alternate;
+  opacity: .3;
+  animation: lava-d 19s var(--ease-in-out) infinite alternate;
 }
 
 .grain {
@@ -835,24 +835,26 @@ main { display: block; }
 
 .js [data-reveal] > * {
   opacity: 0;
-  transform: translateY(26px) scale(.992);
-  transition: opacity 820ms var(--ease-reveal), transform 820ms var(--ease-reveal);
+  transform: translateY(44px) scale(.975);
+  transform-origin: 50% 100%;
+  transition: opacity 920ms var(--ease-reveal), transform 920ms var(--ease-reveal);
 }
 .js [data-reveal][data-visible="true"] > * {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-.js [data-reveal] > :nth-child(2) { transition-delay: 80ms; }
-.js [data-reveal] > :nth-child(3) { transition-delay: 160ms; }
-.js [data-reveal] > :nth-child(4) { transition-delay: 240ms; }
+.js [data-reveal] > :nth-child(2) { transition-delay: 110ms; }
+.js [data-reveal] > :nth-child(3) { transition-delay: 220ms; }
+.js [data-reveal] > :nth-child(4) { transition-delay: 330ms; }
 .js [data-reveal] .project-card,
 .js [data-reveal] .signal-list li,
 .js [data-reveal] .stack-group,
 .js [data-reveal] .contact-action,
 .js [data-reveal] .highlight {
   opacity: 0;
-  transform: translateY(22px) scale(.994);
-  transition: opacity 760ms var(--ease-reveal), transform 760ms var(--ease-reveal);
+  transform: translateY(34px) scale(.982);
+  transform-origin: 50% 100%;
+  transition: opacity 860ms var(--ease-reveal), transform 860ms var(--ease-reveal);
 }
 .js [data-reveal][data-visible="true"] .project-card,
 .js [data-reveal][data-visible="true"] .signal-list li,
@@ -866,13 +868,13 @@ main { display: block; }
 .js [data-reveal] .signal-list li:nth-child(2),
 .js [data-reveal] .stack-group:nth-child(2),
 .js [data-reveal] .contact-action:nth-child(2),
-.js [data-reveal] .highlight:nth-child(2) { transition-delay: 80ms; }
+.js [data-reveal] .highlight:nth-child(2) { transition-delay: 110ms; }
 .js [data-reveal] .signal-list li:nth-child(3),
 .js [data-reveal] .stack-group:nth-child(3),
 .js [data-reveal] .contact-action:nth-child(3),
-.js [data-reveal] .highlight:nth-child(3) { transition-delay: 160ms; }
+.js [data-reveal] .highlight:nth-child(3) { transition-delay: 220ms; }
 .js [data-reveal] .signal-list li:nth-child(4),
-.js [data-reveal] .highlight:nth-child(4) { transition-delay: 240ms; }
+.js [data-reveal] .highlight:nth-child(4) { transition-delay: 330ms; }
 
 .js .hero-heading > *,
 .js .hero-context > *,
@@ -1046,16 +1048,24 @@ main { display: block; }
 }
 
 @keyframes lava-a {
-  to { transform: translate3d(22vw, 12vh, 0) scale(.84) rotate(18deg); }
+  35% { transform: translate3d(12vw, 9vh, 0) scale(1.08) rotate(8deg); }
+  70% { transform: translate3d(25vw, 16vh, 0) scale(.9) rotate(20deg); }
+  100% { transform: translate3d(34vw, 6vh, 0) scale(1.02) rotate(32deg); }
 }
 @keyframes lava-b {
-  to { transform: translate3d(-19vw, 20vh, 0) scale(1.16) rotate(-24deg); }
+  32% { transform: translate3d(-10vw, 14vh, 0) scale(.92) rotate(-10deg); }
+  68% { transform: translate3d(-24vw, 23vh, 0) scale(1.14) rotate(-24deg); }
+  100% { transform: translate3d(-31vw, 8vh, 0) scale(1.04) rotate(-36deg); }
 }
 @keyframes lava-c {
-  to { transform: translate3d(24vw, -18vh, 0) scale(.92) rotate(21deg); }
+  36% { transform: translate3d(10vw, -13vh, 0) scale(1.12) rotate(7deg); }
+  72% { transform: translate3d(26vw, -22vh, 0) scale(.9) rotate(22deg); }
+  100% { transform: translate3d(36vw, -10vh, 0) scale(1.06) rotate(34deg); }
 }
 @keyframes lava-d {
-  to { transform: translate3d(-13vw, -21vh, 0) scale(1.18) rotate(-15deg); }
+  34% { transform: translate3d(-9vw, -12vh, 0) scale(.88) rotate(-8deg); }
+  70% { transform: translate3d(-19vw, -25vh, 0) scale(1.2) rotate(-19deg); }
+  100% { transform: translate3d(-28vw, -11vh, 0) scale(1.02) rotate(-31deg); }
 }
 @keyframes glass-shimmer {
   0%, 12% { transform: translate3d(-120%, 0, 0) skewX(-18deg); }
