@@ -328,7 +328,7 @@ main { display: block; }
   font-weight: 620;
   letter-spacing: -.07em;
 }
-.js .hero-prelude { animation: prelude-exit 1.15s var(--ease-out) both; }
+.js .hero-prelude { animation: prelude-exit 900ms var(--ease-out) both; }
 
 .hero-copy {
   position: relative;
@@ -877,13 +877,13 @@ main { display: block; }
 .js .hero-foot > * {
   animation: hero-arrive 620ms var(--ease-out) both;
 }
-.js .hero-heading > :nth-child(1) { animation-delay: 260ms; }
-.js .hero-heading > :nth-child(2) { animation-delay: 310ms; }
-.js .hero-heading > :nth-child(3) { animation-delay: 360ms; }
-.js .hero-context > :nth-child(1) { animation-delay: 410ms; }
-.js .hero-context > :nth-child(2) { animation-delay: 465ms; }
-.js .hero-foot > :nth-child(1) { animation-delay: 520ms; }
-.js .hero-foot > :nth-child(2) { animation-delay: 575ms; }
+.js .hero-heading > :nth-child(1) { animation-delay: 940ms; }
+.js .hero-heading > :nth-child(2) { animation-delay: 995ms; }
+.js .hero-heading > :nth-child(3) { animation-delay: 1050ms; }
+.js .hero-context > :nth-child(1) { animation-delay: 1105ms; }
+.js .hero-context > :nth-child(2) { animation-delay: 1160ms; }
+.js .hero-foot > :nth-child(1) { animation-delay: 1215ms; }
+.js .hero-foot > :nth-child(2) { animation-delay: 1270ms; }
 
 @media (hover: hover) and (pointer: fine) {
   .desktop-nav a:hover { color: white; background: rgba(255,255,255,.065); }
