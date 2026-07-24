@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-07-24T00:00:00.000Z",
+  "projects": {
+    "celestial-archive": {
+      "description": "Local-first bilingual 78-card tarot reflection app",
+      "language": "HTML",
+      "updatedAt": "2026-07-22T09:03:12Z",
+      "homepage": "https://ted0103.github.io/celestial-archive/",
+      "repository": "https://github.com/ted0103/celestial-archive"
+    },
+    "teds-personal-portfolio": {
+      "description": "Ted's personal portfolio",
+      "language": "Astro",
+      "updatedAt": "2026-07-24T09:28:01Z",
+      "homepage": "https://ted0103.github.io/",
+      "repository": "https://github.com/ted0103/ted0103.github.io"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+---
+interface Props {
+  accent: 'cyan' | 'violet';
+  compact?: boolean;
+}
+
+const { accent, compact = false } = Astro.props;
+---
+
+<div class:list={['project-visual', accent, { compact }]} aria-hidden="true">
+  <div class="visual-grid"></div>
+  <div class="visual-orbit orbit-one"></div>
+  <div class="visual-orbit orbit-two"></div>
+  <div class="visual-core">
+    <span>{accent === 'violet' ? '✦' : 'T'}</span>
+  </div>
+  <span class="visual-label">{accent === 'violet' ? 'ARCHIVE / 78' : 'PORTFOLIO / 01'}</span>
+</div>

@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { site } from '../config/site';
+import { getProjects } from '../lib/projects';
+
+const [profile] = await getCollection('profile');
+const projects = await getProjects();
+---
+
+<BaseLayout title={site.name}>
+  <section class="hero">
+    <p class="eyebrow">Portfolio Signal · 2026</p>
+    <div class="hero-copy">
+      <h1><span>Tan Ted Hang</span></h1>
+      <p class="hero-intro">{profile.data.intro}</p>
+    </div>
+    <div class="hero-foot">
+      <div class="chips" aria-label="Roles">
+        <span class="chip">Information Systems + AI</span>
+        <span class="chip">Independent Developer</span>
+        <span class="chip">Creative Technologist</span>
+      </div>
+      <p class="availability">{site.availability}</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="projects-title" data-reveal>
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">01 · Selected Work</p>
+        <h2 id="projects-title">Systems with a point of view.</h2>
+      </div>
+      <p>Projects shaped by usefulness, atmosphere, and the belief that complex technology can still feel human.</p>
+    </div>
+    <div class="project-grid">
+      {projects.map((project, index) => <ProjectCard project={project} featured={index === 0} />)}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="profile-title" data-reveal>
+    <div class="profile-grid">
+      <div class="panel">
+        <p class="eyebrow">02 · Profile</p>
+        <h2 id="profile-title">Ideas become useful when people can follow them.</h2>
+        <p>I study Information Systems and AI, lead as a society chairperson, and build across code, product thinking, and visual storytelling.</p>
+        <ul class="signal-list">
+          {profile.data.achievements.map((achievement, index) => (
+            <li><span>{String(index + 1).padStart(2, '0')}</span>{achievement}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="panel forecast">
+        <div>
+          <p class="eyebrow">Next Experiment · Forecast</p>
+          <h2>Start with the human problem.</h2>
+          <p>{profile.data.forecast}</p>
+          <a class="button secondary" href="/about/">Read My Story <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="forecast-mark" aria-hidden="true">⌁</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="stack-title" data-reveal>
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">03 · Capabilities</p>
+        <h2 id="stack-title">Tools chosen for the idea.</h2>
+      </div>
+      <p>The toolkit changes as I learn. The goal stays the same: make the work function clearly and communicate honestly.</p>
+    </div>
+    <div class="stack-grid">
+      {Object.entries(profile.data.tools).map(([label, tools]) => (
+        <div class="stack-group">
+          <h3>{label[0].toUpperCase() + label.slice(1)}</h3>
+          <div class="chips">
+            {tools.map((tool) => <span class="chip">{tool}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="signal-title" data-reveal>
+    <div class="panel signal-panel">
+      <div>
+        <p class="eyebrow">04 · Signal</p>
+        <h2 id="signal-title">Consistent motion, quiet momentum.</h2>
+        <p>A calm record of building and learning—enough movement to feel alive, never enough to compete with the work.</p>
+      </div>
+      <div class="bars" role="img" aria-label="Stylized contribution activity">
+        <span class="bar" style="--height:36%;--delay:40ms"></span>
+        <span class="bar" style="--height:62%;--delay:80ms"></span>
+        <span class="bar" style="--height:48%;--delay:120ms"></span>
+        <span class="bar" style="--height:82%;--delay:160ms"></span>
+        <span class="bar" style="--height:57%;--delay:200ms"></span>
+        <span class="bar" style="--height:94%;--delay:240ms"></span>
+        <span class="bar" style="--height:70%;--delay:280ms"></span>
+        <span class="bar" style="--height:88%;--delay:320ms"></span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

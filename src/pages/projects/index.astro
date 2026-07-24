@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getProjects } from '../../lib/projects';
+
+const projects = await getProjects();
+---
+
+<BaseLayout title="Projects" description="Selected systems and experiments by Tan Ted Hang.">
+  <header class="page-hero">
+    <p class="eyebrow">Projects · Curated from GitHub</p>
+    <h1>Work that makes the idea clearer.</h1>
+    <p class="page-intro">A growing collection of systems, visual experiments, and products. Only work ready to represent me appears here.</p>
+  </header>
+
+  <section class="project-index" aria-label="Project collection">
+    <div class="project-grid">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+</BaseLayout>
