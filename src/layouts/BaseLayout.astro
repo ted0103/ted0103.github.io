@@ -53,10 +53,12 @@ const socialImage = new URL(image, site.url);
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to Content</a>
-    <div class="ambient-scene" aria-hidden="true">
-      <span class="ambient-glow ambient-glow-one"></span>
-      <span class="ambient-glow ambient-glow-two"></span>
-      <span class="ambient-glow ambient-glow-three"></span>
+    <div class="lava-scene" data-lava-scene aria-hidden="true">
+      <span class="lava lava-one"></span>
+      <span class="lava lava-two"></span>
+      <span class="lava lava-three"></span>
+      <span class="lava lava-four"></span>
+      <span class="lava lava-five"></span>
     </div>
     <div class="grain" aria-hidden="true"></div>
     <div class="site-shell">
@@ -68,6 +70,7 @@ const socialImage = new URL(image, site.url);
     </div>
     <script>
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
       const elements = document.querySelectorAll('[data-reveal]');
 
       if (reduceMotion.matches) {
@@ -81,12 +84,6 @@ const socialImage = new URL(image, site.url);
           });
         }, { rootMargin: '0px 0px -14% 0px', threshold: .12 });
         elements.forEach((element) => observer.observe(element));
-        document.addEventListener('focusin', (event) => {
-          if (event.target instanceof Element) {
-            event.target.closest('[data-reveal]')?.setAttribute('data-visible', 'true');
-          }
-        });
-        if (location.hash) document.querySelector(location.hash)?.closest('[data-reveal]')?.setAttribute('data-visible', 'true');
       }
 
       const header = document.querySelector('[data-site-header]');
@@ -106,6 +103,36 @@ const socialImage = new URL(image, site.url);
         });
       });
 
+      const scene = document.querySelector('[data-lava-scene]');
+      if (scene instanceof HTMLElement && finePointer.matches && !reduceMotion.matches) {
+        let x = 0, y = 0, velocityX = 0, velocityY = 0, targetX = 0, targetY = 0, frame = 0;
+        const stop = () => {
+          cancelAnimationFrame(frame);
+          frame = 0;
+          targetX = targetY = 0;
+        };
+        const tick = () => {
+          velocityX = (velocityX + (targetX - x) * .055) * .82;
+          velocityY = (velocityY + (targetY - y) * .055) * .82;
+          x += velocityX;
+          y += velocityY;
+          scene.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
+          if (Math.abs(targetX - x) + Math.abs(targetY - y) + Math.abs(velocityX) + Math.abs(velocityY) > .08) {
+            frame = requestAnimationFrame(tick);
+          } else {
+            frame = 0;
+          }
+        };
+        addEventListener('pointermove', (event) => {
+          targetX = ((event.clientX / innerWidth) - .5) * 12;
+          targetY = ((event.clientY / innerHeight) - .5) * 10;
+          if (!frame) frame = requestAnimationFrame(tick);
+        }, { passive: true });
+        addEventListener('blur', stop);
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) stop();
+        });
+      }
     </script>
   </body>
 </html>
