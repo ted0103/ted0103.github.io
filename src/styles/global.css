@@ -370,7 +370,7 @@ main { display: block; }
   font-weight: 620;
   letter-spacing: -.07em;
 }
-.js .hero-prelude { animation: prelude-exit 1.55s var(--ease-reveal) both; }
+.js .hero-prelude { animation: prelude-sequence 4.2s var(--ease-reveal) both; }
 
 .hero-copy {
   position: relative;
@@ -1006,13 +1006,13 @@ main { display: block; }
 .js .hero-foot > * {
   animation: hero-arrive 820ms var(--ease-reveal) both;
 }
-.js .hero-heading > :nth-child(1) { animation-delay: 1.62s; }
-.js .hero-heading > :nth-child(2) { animation-delay: 1.69s; }
-.js .hero-heading > :nth-child(3) { animation-delay: 1.76s; }
-.js .hero-context > :nth-child(1) { animation-delay: 1.83s; }
-.js .hero-context > :nth-child(2) { animation-delay: 1.9s; }
-.js .hero-foot > :nth-child(1) { animation-delay: 1.97s; }
-.js .hero-foot > :nth-child(2) { animation-delay: 2.04s; }
+.js .hero-heading > :nth-child(1) { animation-delay: 3.78s; }
+.js .hero-heading > :nth-child(2) { animation-delay: 3.86s; }
+.js .hero-heading > :nth-child(3) { animation-delay: 3.94s; }
+.js .hero-context > :nth-child(1) { animation-delay: 4.02s; }
+.js .hero-context > :nth-child(2) { animation-delay: 4.1s; }
+.js .hero-foot > :nth-child(1) { animation-delay: 4.18s; }
+.js .hero-foot > :nth-child(2) { animation-delay: 4.26s; }
 
 @media (hover: hover) and (pointer: fine) {
   .desktop-nav a:hover { color: white; background: rgba(255,255,255,.065); }
@@ -1200,8 +1200,9 @@ main { display: block; }
   0%, 12% { transform: translate3d(-120%, 0, 0) skewX(-18deg); }
   38%, 100% { transform: translate3d(480%, 0, 0) skewX(-18deg); }
 }
-@keyframes prelude-exit {
-  0%, 58% { opacity: 1; }
+@keyframes prelude-sequence {
+  0% { opacity: 0; transform: translate(-50%, -47%) scale(.98); }
+  18%, 74% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   100% { opacity: 0; transform: translate(-50%, -54%) scale(.98); visibility: hidden; }
 }
 @keyframes hero-arrive {
