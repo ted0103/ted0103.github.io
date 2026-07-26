@@ -370,7 +370,12 @@ main { display: block; }
   font-weight: 620;
   letter-spacing: -.07em;
 }
-.js .hero-prelude { animation: prelude-sequence 4.2s var(--ease-reveal) both; }
+.js .hero-prelude { animation: prelude-sequence 4s var(--ease-reveal) both; }
+.js .hero-prelude span {
+  animation: prelude-line-in 720ms var(--ease-reveal) both;
+  will-change: opacity, transform;
+}
+.js .hero-prelude span:last-child { animation-delay: 110ms; }
 
 .hero-copy {
   position: relative;
@@ -1006,13 +1011,13 @@ main { display: block; }
 .js .hero-foot > * {
   animation: hero-arrive 820ms var(--ease-reveal) both;
 }
-.js .hero-heading > :nth-child(1) { animation-delay: 3.78s; }
-.js .hero-heading > :nth-child(2) { animation-delay: 3.86s; }
-.js .hero-heading > :nth-child(3) { animation-delay: 3.94s; }
-.js .hero-context > :nth-child(1) { animation-delay: 4.02s; }
-.js .hero-context > :nth-child(2) { animation-delay: 4.1s; }
-.js .hero-foot > :nth-child(1) { animation-delay: 4.18s; }
-.js .hero-foot > :nth-child(2) { animation-delay: 4.26s; }
+.js .hero-heading > :nth-child(1) { animation-delay: 3.58s; }
+.js .hero-heading > :nth-child(2) { animation-delay: 3.66s; }
+.js .hero-heading > :nth-child(3) { animation-delay: 3.74s; }
+.js .hero-context > :nth-child(1) { animation-delay: 3.82s; }
+.js .hero-context > :nth-child(2) { animation-delay: 3.9s; }
+.js .hero-foot > :nth-child(1) { animation-delay: 3.98s; }
+.js .hero-foot > :nth-child(2) { animation-delay: 4.06s; }
 
 @media (hover: hover) and (pointer: fine) {
   .desktop-nav a:hover { color: white; background: rgba(255,255,255,.065); }
@@ -1201,9 +1206,12 @@ main { display: block; }
   38%, 100% { transform: translate3d(480%, 0, 0) skewX(-18deg); }
 }
 @keyframes prelude-sequence {
-  0% { opacity: 0; transform: translate(-50%, -47%) scale(.98); }
-  18%, 74% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  0%, 72% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   100% { opacity: 0; transform: translate(-50%, -54%) scale(.98); visibility: hidden; }
+}
+@keyframes prelude-line-in {
+  from { opacity: 0; transform: translateY(16px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 @keyframes hero-arrive {
   from { opacity: 0; transform: translateY(16px); }
