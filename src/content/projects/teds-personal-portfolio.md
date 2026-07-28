@@ -9,19 +9,19 @@ status: Current
 liveUrl: https://ted0103.github.io/
 sourceVisibility: private
 accent: cyan
-order: 2
+order: 3
 highlights:
   - Multi-page Astro architecture
   - Curated GitHub metadata
   - Accessible liquid-glass system
   - Static, resilient deployment
 media:
-  src: /projects/portfolio-home.jpg
-  alt: Previous version of Ted’s portfolio with a large name headline inside a dark blue glass panel
-  width: 1470
-  height: 867
-  caption: The first portfolio established the blue glass identity; this redesign makes the story more editorial.
-  position: top
+  src: /projects/portfolio-thumbnail-2026.webp
+  alt: TED’S WORK editorial wordmark beside a floating presentation of Ted’s portfolio interface
+  width: 1600
+  height: 900
+  caption: The editorial identity and interface appear together as one clear presentation of the work.
+  position: center
 ---
 
 ## The Problem
