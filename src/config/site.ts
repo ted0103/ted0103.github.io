@@ -15,6 +15,13 @@ export const site = {
   ],
   featuredRepositories: [
     {
+      slug: 'questmark',
+      owner: 'ted0103',
+      repo: 'questmark',
+      snapshotKey: 'questmark',
+      showSource: true,
+    },
+    {
       slug: 'celestial-archive',
       owner: 'ted0103',
       repo: 'celestial-archive',

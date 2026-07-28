@@ -1,6 +1,13 @@
 {
   "generatedAt": "2026-07-24T00:00:00.000Z",
   "projects": {
+    "questmark": {
+      "description": "Evidence-backed real-world skill quests for students",
+      "language": "CSS",
+      "updatedAt": "2026-07-28T05:41:43Z",
+      "homepage": "https://questmark-ted.my-setia-mot-9282.chatgpt.site",
+      "repository": "https://github.com/ted0103/questmark"
+    },
     "celestial-archive": {
       "description": "Local-first bilingual 78-card tarot reflection app",
       "language": "HTML",
