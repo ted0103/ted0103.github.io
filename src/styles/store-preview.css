@@ -354,8 +354,11 @@ html.store-theme body {
   box-shadow: none;
   color: var(--store-text);
 }
-.store-home .contact-action span { color: var(--store-muted); }
-.store-home .contact-action span:last-child { color: var(--store-blue); }
+.store-home .contact-channel,
+.store-home .contact-identifier { color: var(--store-text); }
+.store-home .contact-channel b,
+.store-home .contact-cta { color: var(--store-blue); }
+.store-home .contact-action-icon { border-color: #dedee2; background: white; color: var(--store-text); box-shadow: 0 6px 16px rgba(0, 0, 0, .06), inset 0 1px white; }
 .store-home .copy-row { color: var(--store-muted); }
 .store-home .copy-row button { border-color: #d2d2d7; background: white; color: var(--store-text); }
 
@@ -626,18 +629,21 @@ html.store-theme body {
 
 .store-contact .store-route-hero { padding-bottom: 34px; }
 .store-contact .store-route-hero h1 { max-width: 820px; font-size: clamp(2.4rem, 4.6vw, 3.5rem); }
-.store-contact .contact-finale { margin-top: 0; padding: 0; border: 0; border-radius: 0; background: transparent; }
+.store-contact .contact-finale { margin-top: 0; padding: clamp(30px, 4vw, 48px); border: 0; border-radius: 32px; background: rgba(255, 255, 255, .58); box-shadow: 0 18px 56px rgba(0, 0, 0, .06); }
 .store-contact .contact-finale::before,
 .store-contact .contact-finale::after { display: none; }
 .store-contact .contact-finale > .eyebrow,
 .store-contact .contact-finale > h2,
 .store-contact .contact-lede { display: none; }
-.store-contact .contact-actions { grid-template-columns: repeat(3, 1fr); }
+.store-contact .contact-actions { grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 0; }
 .store-contact .contact-action,
-.store-contact .contact-action.primary { min-height: 220px; border: 0; border-radius: var(--store-radius); background: white; box-shadow: 0 8px 24px rgba(0, 0, 0, .07); color: var(--store-text); }
-.store-contact .contact-action span { color: var(--store-muted); font-family: inherit; }
-.store-contact .contact-action span:last-child { color: var(--store-blue); }
-.store-contact .copy-row { color: var(--store-muted); border-color: #d2d2d7; }
+.store-contact .contact-action.primary { min-height: 300px; display: grid; grid-template-rows: auto 1fr auto; padding: 28px 30px 30px; border: 0; border-radius: var(--store-radius); background: white; box-shadow: 0 8px 24px rgba(0, 0, 0, .07); color: var(--store-text); }
+.store-contact .contact-channel { align-self: center; color: var(--store-text); font-family: inherit; font-size: clamp(1.35rem, 1.8vw, 1.65rem); font-weight: 700; line-height: 1.05; letter-spacing: -.025em; }
+.store-contact .contact-channel b { color: var(--store-blue); }
+.store-contact .contact-action-icon { border-color: #e7e7eb; background: #fbfbfd; color: var(--store-text); box-shadow: 0 6px 16px rgba(0, 0, 0, .06), inset 0 1px white; }
+.store-contact .contact-identifier { align-self: start; margin-top: 46px; color: #515154; font-family: inherit; font-size: clamp(1.05rem, 1.4vw, 1.35rem); font-weight: 480; line-height: 1.25; letter-spacing: -.012em; }
+.store-contact .contact-cta { align-self: end; color: var(--store-blue); font-family: inherit; font-size: 13px; font-weight: 500; letter-spacing: 0; text-transform: uppercase; }
+.store-contact .copy-row { margin-top: 40px; padding-top: 24px; color: var(--store-muted); border-top: 1px solid #e5e5e7; }
 .store-contact .copy-row button { border-color: #d2d2d7; background: white; color: var(--store-blue); }
 
 .store-not-found { min-height: min(620px, calc(100svh - 140px)); display: grid; align-content: center; justify-items: start; padding-block: 90px; }
@@ -654,6 +660,8 @@ html.store-theme body {
 @media (hover: hover) and (pointer: fine) {
   .store-route-actions a:hover { transform: translateY(-2px); filter: brightness(.97); }
   .store-project-detail .button:hover { transform: translateY(-2px); filter: brightness(.94); }
+  .store-contact .contact-action:hover { transform: translateY(-3px); background: white; box-shadow: 0 14px 34px rgba(0, 0, 0, .1); }
+  .store-contact .contact-action:hover .contact-action-icon { transform: translateY(-1px) scale(1.03); }
   .store-home .project-card:hover,
   .store-story-card:hover,
   .store-capability-card:hover { transform: translateY(-4px); }
@@ -690,6 +698,10 @@ html.store-theme body {
   .store-summary-tiles { grid-template-columns: repeat(2, 1fr); }
   .store-capability-shelf ul { grid-template-columns: repeat(2, 1fr); }
   .store-contact .contact-actions { grid-template-columns: 1fr; }
+  .store-contact .contact-finale { padding: 32px; }
+  .store-contact .contact-action,
+  .store-contact .contact-action.primary { min-height: 250px; }
+  .store-contact .contact-identifier { margin-top: 38px; }
 }
 
 @media (max-width: 520px) {
@@ -755,8 +767,15 @@ html.store-theme body {
   .store-capability-shelf li { min-height: 0; }
   .store-capability-shelf li span { margin-bottom: 16px; }
   .store-contact .store-route-hero h1 { font-size: clamp(2.35rem, 11vw, 3.3rem); }
+  .store-contact .contact-finale { padding: 18px; border-radius: 26px; }
   .store-contact .contact-action,
-  .store-contact .contact-action.primary { min-height: 170px; }
+  .store-contact .contact-action.primary { min-height: 220px; padding: 22px; }
+  .store-contact .contact-channel { font-size: 1.25rem; }
+  .store-contact .contact-action-icon { width: 46px; height: 46px; border-radius: 14px; }
+  .store-contact .contact-action-icon svg { width: 23px; height: 23px; }
+  .store-contact .contact-identifier { margin-top: 32px; font-size: 1.05rem; }
+  .store-contact .contact-cta { font-size: 12px; }
+  .store-contact .copy-row { margin-top: 28px; padding-top: 20px; }
   .store-not-found { min-height: calc(100svh - 110px); padding-block: 58px; }
   .store-404-tile { width: 104px; height: 104px; margin-bottom: 24px; border-radius: 28px; font-size: 2rem; }
   .store-route-actions { align-items: stretch; flex-direction: column; width: 100%; }
