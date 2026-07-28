@@ -9,7 +9,7 @@ status: Current
 liveUrl: https://ted0103.github.io/
 sourceVisibility: private
 accent: cyan
-order: 2
+order: 3
 highlights:
   - Multi-page Astro architecture
   - Curated GitHub metadata
