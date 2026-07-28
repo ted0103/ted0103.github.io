@@ -71,6 +71,32 @@ const socialImage = new URL(image, site.url);
     <script>
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+      document.querySelectorAll('[data-project-story]').forEach((story) => {
+        const originalChildren = Array.from(story.childNodes);
+
+        try {
+          const fragment = document.createDocumentFragment();
+          let section: HTMLElement | null = null;
+
+          originalChildren.forEach((node) => {
+            if (node instanceof HTMLHeadingElement && node.tagName === 'H2') {
+              section = document.createElement('section');
+              section.className = 'project-story-section';
+              section.setAttribute('data-reveal', '');
+              fragment.append(section);
+            }
+
+            (section ?? fragment).append(node);
+          });
+
+          story.replaceChildren(fragment);
+        } catch {
+          story.replaceChildren(...originalChildren);
+          story.querySelectorAll('[data-reveal]').forEach((section) => section.setAttribute('data-visible', 'true'));
+        }
+      });
+
       const elements = document.querySelectorAll('[data-reveal]');
 
       if (reduceMotion.matches) {
