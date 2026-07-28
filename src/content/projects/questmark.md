@@ -17,12 +17,12 @@ highlights:
   - Interactive skill growth map
   - Private-by-default sharing
 media:
-  src: /projects/questmark-banner.webp
-  alt: QuestMark liquid-glass globe surrounded by communication, courage, and observation skill signals
+  src: /projects/questmark-thumbnail-2026.webp
+  alt: QuestMark liquid-glass globe launching from an orbital portal with communication, leadership, and growth signals
   width: 1600
   height: 900
-  caption: The daily quest surface connects one nearby mission to evidence, skill signals, and visible progress.
-  position: top
+  caption: The orbital world turns real-life missions into visible movement, evidence, and skill growth.
+  position: center
 ---
 
 ## The Problem

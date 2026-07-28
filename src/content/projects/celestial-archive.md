@@ -17,11 +17,11 @@ highlights:
   - Local-first privacy
   - Web, Android, and offline access
 media:
-  src: /projects/celestial-archive-home.jpg
-  alt: Celestial Archive opening sequence with a gold crescent and star field on a dark background
-  width: 1470
-  height: 923
-  caption: The opening sequence establishes a quiet threshold before the archive begins.
+  src: /projects/celestial-archive-thumbnail-2026.webp
+  alt: Celestial Archive title beside three ceremonial cards, an eclipse, a paper fan, and a gold compass star
+  width: 1600
+  height: 900
+  caption: A tactile ceremonial still life introduces the archive as a quiet space for reflection.
   position: center
 ---
 

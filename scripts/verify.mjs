@@ -1,6 +1,7 @@
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
+import sharp from 'sharp';
 
 const root = process.cwd();
 const expected = [
@@ -18,10 +19,10 @@ const expected = [
   'dist/assets/icons/icon-512.png',
   'dist/fonts/jetbrains-mono-latin.woff2',
   'dist/fonts/OFL.txt',
-  'dist/projects/celestial-archive-home.jpg',
-  'dist/projects/questmark-banner.webp',
+  'dist/projects/celestial-archive-thumbnail-2026.webp',
+  'dist/projects/questmark-thumbnail-2026.webp',
   'dist/projects/questmark-poster.webp',
-  'dist/projects/portfolio-home.jpg',
+  'dist/projects/portfolio-thumbnail-2026.webp',
   'dist/sitemap-index.xml',
 ];
 
@@ -44,13 +45,30 @@ for (const file of expected) {
 }
 
 const questmarkPage = await readFile(path.join(root, 'dist/projects/questmark/index.html'), 'utf8');
-for (const image of ['/projects/questmark-banner.webp', '/projects/questmark-poster.webp']) {
+for (const image of ['/projects/questmark-thumbnail-2026.webp', '/projects/questmark-poster.webp']) {
   if (![...questmarkPage.matchAll(/<img\b[^>]*\bsrc="(\/[^"?#]+)"/g)].some(([, src]) => src === image)) {
     throw new Error(`QuestMark page does not reference ${image}`);
   }
   if (!(await stat(path.join(root, 'dist', image.slice(1)))).isFile()) {
     throw new Error(`Missing referenced QuestMark image ${image}`);
   }
+}
+
+const projectThumbnails = [
+  ['src/content/projects/teds-personal-portfolio.md', '/projects/portfolio-thumbnail-2026.webp'],
+  ['src/content/projects/celestial-archive.md', '/projects/celestial-archive-thumbnail-2026.webp'],
+  ['src/content/projects/questmark.md', '/projects/questmark-thumbnail-2026.webp'],
+];
+for (const [contentFile, image] of projectThumbnails) {
+  const content = await readFile(path.join(root, contentFile), 'utf8');
+  if (!content.includes(`  src: ${image}`)) throw new Error(`${contentFile} does not select ${image}`);
+
+  const file = path.join(root, 'dist', image.slice(1));
+  const metadata = await sharp(file).metadata();
+  if (metadata.format !== 'webp' || metadata.width !== 1600 || metadata.height !== 900) {
+    throw new Error(`${image} must be a 1600×900 WebP`);
+  }
+  if ((await stat(file)).size > 500 * 1024) throw new Error(`${image} exceeds 500 KB`);
 }
 
 const assetLinks = JSON.parse(await readFile(path.join(root, 'dist/.well-known/assetlinks.json'), 'utf8'));
