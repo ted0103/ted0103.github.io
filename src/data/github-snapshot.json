@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-07-24T00:00:00.000Z",
+  "generatedAt": "2026-07-28T06:56:14Z",
   "projects": {
     "questmark": {
       "description": "Evidence-backed real-world skill quests for students",
-      "language": "CSS",
-      "updatedAt": "2026-07-28T05:41:43Z",
-      "homepage": "https://questmark-ted.my-setia-mot-9282.chatgpt.site",
+      "language": "TypeScript",
+      "updatedAt": "2026-07-28T06:52:39Z",
+      "homepage": "https://ted0103.github.io/questmark/",
       "repository": "https://github.com/ted0103/questmark"
     },
     "celestial-archive": {
