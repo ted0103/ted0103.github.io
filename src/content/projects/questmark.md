@@ -19,6 +19,8 @@ highlights:
 media:
   src: /projects/questmark-banner.webp
   alt: QuestMark liquid-glass globe surrounded by communication, courage, and observation skill signals
+  width: 1600
+  height: 900
   caption: The daily quest surface connects one nearby mission to evidence, skill signals, and visible progress.
   position: top
 ---

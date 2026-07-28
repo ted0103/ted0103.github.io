@@ -4,6 +4,8 @@ interface Props {
   media: {
     src: string;
     alt: string;
+    width: number;
+    height: number;
     caption?: string;
     position: 'center' | 'top';
   };
@@ -13,8 +15,8 @@ interface Props {
 const { accent, media, compact = false } = Astro.props;
 ---
 
-<figure class:list={['project-visual', accent, { compact }]}>
-  <img src={media.src} alt={media.alt} width="1470" height="890" loading="lazy" style={`object-position:${media.position}`} />
+<figure class:list={['project-visual', accent, { compact }]} style={`--media-ratio:${media.width}/${media.height}`}>
+  <img src={media.src} alt={media.alt} width={media.width} height={media.height} loading="lazy" style={`object-position:${media.position}`} />
   <span class="visual-sheen" aria-hidden="true"></span>
   {media.caption && <figcaption>{media.caption}</figcaption>}
 </figure>

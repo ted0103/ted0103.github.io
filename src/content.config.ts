@@ -39,6 +39,8 @@ const projects = defineCollection({
     media: z.object({
       src: z.string().regex(/^\/projects\/[a-z0-9-]+\.(jpg|png|webp)$/),
       alt: z.string().min(1).max(180),
+      width: z.number().int().positive(),
+      height: z.number().int().positive(),
       caption: z.string().max(180).optional(),
       position: z.enum(['center', 'top']).default('center'),
     }),

@@ -19,6 +19,8 @@ highlights:
 media:
   src: /projects/celestial-archive-home.jpg
   alt: Celestial Archive opening sequence with a gold crescent and star field on a dark background
+  width: 1470
+  height: 923
   caption: The opening sequence establishes a quiet threshold before the archive begins.
   position: center
 ---

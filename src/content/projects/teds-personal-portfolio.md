@@ -18,6 +18,8 @@ highlights:
 media:
   src: /projects/portfolio-home.jpg
   alt: Previous version of Ted’s portfolio with a large name headline inside a dark blue glass panel
+  width: 1470
+  height: 867
   caption: The first portfolio established the blue glass identity; this redesign makes the story more editorial.
   position: top
 ---
