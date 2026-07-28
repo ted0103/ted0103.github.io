@@ -3,17 +3,20 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { site } from '../config/site';
 import '../styles/global.css';
+import '../styles/store-preview.css';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  themeColor?: string;
 }
 
 const {
   title,
   description = site.description,
   image = '/social/portfolio-card.png',
+  themeColor = '#030817',
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url);
 const fullTitle = title === site.name ? title : `${title} · ${site.name}`;
@@ -21,11 +24,11 @@ const socialImage = new URL(image, site.url);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class={themeColor === '#f5f5f7' ? 'store-theme' : undefined}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#030817" />
+    <meta name="theme-color" content={themeColor} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -40,19 +43,50 @@ const socialImage = new URL(image, site.url);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
     <title>{fullTitle}</title>
-    <script is:inline>document.documentElement.classList.add('js');</script>
     {
       Astro.url.pathname === '/' && (
         <script is:inline>
           if (window.matchMedia('(display-mode: standalone)').matches) {
             window.location.replace('/celestial-archive/');
+          } else {
+            document.documentElement.dataset.homePage = 'true';
           }
         </script>
       )
     }
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const failOpen = () => {
+          root.classList.remove('intro-pending', 'page-entry-pending');
+          root.classList.add('page-entry-ready');
+          document.querySelectorAll('[data-reveal]').forEach((element) => element.setAttribute('data-visible', 'true'));
+        };
+        root.dataset.entryFailsafe = String(window.setTimeout(failOpen, 2400));
+        root.classList.add('js', 'page-entry-pending');
+
+        if (root.dataset.homePage === 'true' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          try {
+            if (!sessionStorage.getItem('just-ted-intro-seen')) {
+              sessionStorage.setItem('just-ted-intro-seen', 'true');
+              root.classList.add('intro-pending');
+            }
+          } catch {
+            root.classList.remove('intro-pending');
+          }
+        }
+      })();
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to Content</a>
+    {
+      Astro.url.pathname === '/' && (
+        <div class="brand-intro" aria-hidden="true">
+          <p class="brand-intro-wordmark"><span>Just_</span><strong>Ted</strong></p>
+        </div>
+      )
+    }
     <div class="lava-scene" data-lava-scene aria-hidden="true">
       <span class="lava lava-one"></span>
       <span class="lava lava-two"></span>
@@ -97,20 +131,78 @@ const socialImage = new URL(image, site.url);
         }
       });
 
-      const elements = document.querySelectorAll('[data-reveal]');
+      const root = document.documentElement;
+      const revealElements = () => document.querySelectorAll('[data-reveal]');
+      const showAllReveals = () => revealElements().forEach((element) => element.setAttribute('data-visible', 'true'));
+      const clearEntryFailsafe = () => {
+        const timer = Number(root.dataset.entryFailsafe);
+        if (timer) clearTimeout(timer);
+        delete root.dataset.entryFailsafe;
+      };
 
-      if (reduceMotion.matches) {
-        elements.forEach((element) => element.setAttribute('data-visible', 'true'));
+      let revealsStarted = false;
+      const startReveals = () => {
+        if (revealsStarted) return;
+        revealsStarted = true;
+
+        if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+          showAllReveals();
+          clearEntryFailsafe();
+          return;
+        }
+
+        try {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.setAttribute('data-visible', 'true');
+              observer.unobserve(entry.target);
+            });
+          }, { rootMargin: '0px 0px -14% 0px', threshold: .12 });
+          revealElements().forEach((element) => observer.observe(element));
+        } catch {
+          showAllReveals();
+        }
+        clearEntryFailsafe();
+      };
+
+      let entryStarted = false;
+      const startPageEntry = () => {
+        if (entryStarted) return;
+        entryStarted = true;
+        root.classList.add('page-entry-ready');
+        root.classList.remove('page-entry-pending');
+        window.setTimeout(startReveals, reduceMotion.matches ? 180 : 460);
+      };
+
+      const intro = document.querySelector('.brand-intro');
+      const wordmark = document.querySelector('.brand-intro-wordmark');
+      let introFinished = false;
+      let introFallback = 0;
+      const finishIntro = () => {
+        if (introFinished) return;
+        introFinished = true;
+        if (introFallback) clearTimeout(introFallback);
+        root.classList.remove('intro-pending');
+        startPageEntry();
+      };
+
+      if (root.classList.contains('intro-pending') && intro && wordmark) {
+        introFallback = window.setTimeout(finishIntro, 1800);
+        const finishFromAnimation = (event: Event) => {
+          if (!(event instanceof AnimationEvent) || event.target !== wordmark || event.animationName !== 'brand-intro-wordmark') return;
+          finishIntro();
+        };
+        intro.addEventListener('animationend', finishFromAnimation);
+        intro.addEventListener('animationcancel', finishIntro);
       } else {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.setAttribute('data-visible', 'true');
-            observer.unobserve(entry.target);
-          });
-        }, { rootMargin: '0px 0px -14% 0px', threshold: .12 });
-        elements.forEach((element) => observer.observe(element));
+        startPageEntry();
       }
+
+      addEventListener('pagehide', finishIntro);
+      addEventListener('pageshow', (event) => {
+        if (event.persisted) finishIntro();
+      });
 
       const header = document.querySelector('[data-site-header]');
       const compactHeader = () => header?.toggleAttribute('data-compact', window.scrollY > 56);
@@ -127,6 +219,13 @@ const socialImage = new URL(image, site.url);
             menu.removeAttribute('open');
           }
         });
+      });
+      addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        const menu = document.querySelector('details.mobile-nav[open]');
+        if (!(menu instanceof HTMLDetailsElement)) return;
+        menu.removeAttribute('open');
+        menu.querySelector<HTMLElement>('summary')?.focus();
       });
 
       const scene = document.querySelector('[data-lava-scene]');

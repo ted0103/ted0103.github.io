@@ -83,6 +83,16 @@ button { font: inherit; }
 }
 .skip-link:focus { transform: translateY(0); }
 
+.js.page-entry-pending .site-shell {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.js.page-entry-ready .site-shell {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 420ms var(--ease-reveal), transform 420ms var(--ease-reveal);
+}
+
 .lava-scene {
   position: fixed;
   z-index: 0;
@@ -1038,7 +1048,11 @@ main { display: block; }
 .js [data-reveal] .signal-list li,
 .js [data-reveal] .stack-group,
 .js [data-reveal] .contact-action,
-.js [data-reveal] .highlight {
+.js [data-reveal] .highlight,
+.js [data-reveal] .store-summary-tiles article,
+.js [data-reveal] .store-capability-shelf li,
+.js [data-reveal] .store-project-supporting .project-card,
+.js [data-reveal] .store-404-tile {
   opacity: 0;
   transform: translateY(34px) scale(.982);
   transform-origin: 50% 100%;
@@ -1048,7 +1062,11 @@ main { display: block; }
 .js [data-reveal][data-visible="true"] .signal-list li,
 .js [data-reveal][data-visible="true"] .stack-group,
 .js [data-reveal][data-visible="true"] .contact-action,
-.js [data-reveal][data-visible="true"] .highlight {
+.js [data-reveal][data-visible="true"] .highlight,
+.js [data-reveal][data-visible="true"] .store-summary-tiles article,
+.js [data-reveal][data-visible="true"] .store-capability-shelf li,
+.js [data-reveal][data-visible="true"] .store-project-supporting .project-card,
+.js [data-reveal][data-visible="true"] .store-404-tile {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
@@ -1056,13 +1074,20 @@ main { display: block; }
 .js [data-reveal] .signal-list li:nth-child(2),
 .js [data-reveal] .stack-group:nth-child(2),
 .js [data-reveal] .contact-action:nth-child(2),
-.js [data-reveal] .highlight:nth-child(2) { transition-delay: 110ms; }
+.js [data-reveal] .highlight:nth-child(2),
+.js [data-reveal] .store-summary-tiles article:nth-child(2),
+.js [data-reveal] .store-capability-shelf li:nth-child(2),
+.js [data-reveal] .store-project-supporting .project-card:nth-child(2) { transition-delay: 110ms; }
 .js [data-reveal] .signal-list li:nth-child(3),
 .js [data-reveal] .stack-group:nth-child(3),
 .js [data-reveal] .contact-action:nth-child(3),
-.js [data-reveal] .highlight:nth-child(3) { transition-delay: 220ms; }
+.js [data-reveal] .highlight:nth-child(3),
+.js [data-reveal] .store-summary-tiles article:nth-child(3),
+.js [data-reveal] .store-capability-shelf li:nth-child(3) { transition-delay: 220ms; }
 .js [data-reveal] .signal-list li:nth-child(4),
-.js [data-reveal] .highlight:nth-child(4) { transition-delay: 330ms; }
+.js [data-reveal] .highlight:nth-child(4),
+.js [data-reveal] .store-summary-tiles article:nth-child(4),
+.js [data-reveal] .store-capability-shelf li:nth-child(4) { transition-delay: 330ms; }
 
 .js .project-story-section > * {
   opacity: 0;
@@ -1102,6 +1127,8 @@ main { display: block; }
 @media (max-width: 860px) {
   .site-shell { width: min(100% - 22px, var(--max)); padding-top: 10px; }
   .site-header { top: 10px; grid-template-columns: 1fr auto; }
+  .site-header { overflow: visible; }
+  .site-header::before { display: none; }
   .desktop-nav, .header-action { display: none; }
   .mobile-nav { position: relative; display: block; }
   .mobile-nav summary {
@@ -1225,13 +1252,19 @@ main { display: block; }
   .copy-row button::before,
   .mobile-nav summary::before { animation: none; }
   .hero-prelude { display: none; }
+  .js.page-entry-pending .site-shell { opacity: 0; transform: none; }
+  .js.page-entry-ready .site-shell { opacity: 1; transform: none; transition: opacity 160ms ease; }
   .js .hero-copy,
   .js [data-reveal] > *,
   .js [data-reveal] .project-card,
   .js [data-reveal] .signal-list li,
   .js [data-reveal] .stack-group,
   .js [data-reveal] .contact-action,
-  .js [data-reveal] .highlight {
+  .js [data-reveal] .highlight,
+  .js [data-reveal] .store-summary-tiles article,
+  .js [data-reveal] .store-capability-shelf li,
+  .js [data-reveal] .store-project-supporting .project-card,
+  .js [data-reveal] .store-404-tile {
     opacity: 1;
     transform: none;
     transition: opacity 160ms ease;

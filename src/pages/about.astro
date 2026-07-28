@@ -6,34 +6,30 @@ const [profile] = await getCollection('profile');
 const { Content } = await render(profile);
 ---
 
-<BaseLayout title="About" description="The person, perspective, and experience behind Tan Ted Hang’s work.">
-  <header class="page-hero" data-reveal>
-    <p class="section-index">About / The Human Layer</p>
-    <h1>I’m learning how to make complexity feel human.</h1>
-    <p class="page-intro">Technology is one part of the story. The rest is curiosity, leadership, visual judgment, and the patience to make an idea understandable.</p>
-  </header>
+<BaseLayout title="About" description="The person, perspective, and experience behind Tan Ted Hang’s work." themeColor="#f5f5f7">
+  <div class="store-about">
+    <header class="store-route-hero" data-reveal>
+      <p class="store-kicker">About · The Human Layer</p>
+      <h1><span>I’m learning</span> how to make complexity feel human.</h1>
+      <p>Technology is one part of the story. The rest is curiosity, leadership, visual judgment, and the patience to make an idea understandable.</p>
+    </header>
 
-  <section class="about-layout">
-    <aside class="panel about-aside" aria-label="Profile summary" data-reveal>
-      <p class="eyebrow">At a glance</p>
-      <h2>{profile.data.name}</h2>
-      <dl>
-        <div><dt>Based In</dt><dd>{profile.data.location}</dd></div>
-        <div><dt>Studying</dt><dd>Information Systems + AI</dd></div>
-        <div><dt>Leadership</dt><dd>Society Chairperson</dd></div>
-        <div><dt>Practice</dt><dd>Development + Creative Technology</dd></div>
-      </dl>
-    </aside>
-    <article class="content-prose" data-reveal>
+    <section class="store-summary-tiles" aria-label="At a glance" data-reveal>
+      <article><p>Based in</p><strong>{profile.data.location}</strong></article>
+      <article><p>Studying</p><strong>Information Systems + AI</strong></article>
+      <article><p>Leadership</p><strong>Society Chairperson</strong></article>
+      <article><p>Practice</p><strong>Development + Creative Technology</strong></article>
+    </section>
+
+    <article class="content-prose store-about-story" data-reveal>
       <Content />
-      <h2>What I Bring</h2>
-      <ul class="signal-list">
-        {profile.data.capabilities.map((capability, index) => (
-          <li><span>{String(index + 1).padStart(2, '0')}</span>{capability}</li>
-        ))}
-      </ul>
       <h2>What Comes Next</h2>
       <p>{profile.data.forecast}</p>
     </article>
-  </section>
+
+    <section class="store-capability-shelf" aria-labelledby="capabilities-title" data-reveal>
+      <header><p class="store-kicker">What I bring</p><h2 id="capabilities-title">Capabilities that keep the work human.</h2></header>
+      <ul>{profile.data.capabilities.map((capability, index) => <li><span>{String(index + 1).padStart(2, '0')}</span>{capability}</li>)}</ul>
+    </section>
+  </div>
 </BaseLayout>

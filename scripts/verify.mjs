@@ -9,6 +9,7 @@ const expected = [
   'dist/contact/index.html',
   'dist/projects/index.html',
   'dist/projects/celestial-archive/index.html',
+  'dist/projects/questmark/index.html',
   'dist/projects/teds-personal-portfolio/index.html',
   'dist/download/index.html',
   'dist/404.html',
@@ -18,6 +19,8 @@ const expected = [
   'dist/fonts/jetbrains-mono-latin.woff2',
   'dist/fonts/OFL.txt',
   'dist/projects/celestial-archive-home.jpg',
+  'dist/projects/questmark-banner.webp',
+  'dist/projects/questmark-poster.webp',
   'dist/projects/portfolio-home.jpg',
   'dist/sitemap-index.xml',
 ];
@@ -38,6 +41,16 @@ if (!`${offline.stdout}${offline.stderr}`.includes('using snapshot')) {
 
 for (const file of expected) {
   if (!(await stat(path.join(root, file))).isFile()) throw new Error(`Missing ${file}`);
+}
+
+const questmarkPage = await readFile(path.join(root, 'dist/projects/questmark/index.html'), 'utf8');
+for (const image of ['/projects/questmark-banner.webp', '/projects/questmark-poster.webp']) {
+  if (![...questmarkPage.matchAll(/<img\b[^>]*\bsrc="(\/[^"?#]+)"/g)].some(([, src]) => src === image)) {
+    throw new Error(`QuestMark page does not reference ${image}`);
+  }
+  if (!(await stat(path.join(root, 'dist', image.slice(1)))).isFile()) {
+    throw new Error(`Missing referenced QuestMark image ${image}`);
+  }
 }
 
 const assetLinks = JSON.parse(await readFile(path.join(root, 'dist/.well-known/assetlinks.json'), 'utf8'));
