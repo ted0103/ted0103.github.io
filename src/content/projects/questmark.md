@@ -5,8 +5,8 @@ eyebrow: Real-World Skill Quest
 summary: A private-by-default student app that turns nearby real-life missions into evidence-backed Proof Cards, XP, achievements, and a visible skill map.
 year: 2026
 role: Product strategy, development, and visual direction
-status: Live prototype
-liveUrl: https://questmark-ted.my-setia-mot-9282.chatgpt.site
+status: Installable PWA
+liveUrl: https://ted0103.github.io/questmark/
 sourceUrl: https://github.com/ted0103/questmark
 sourceVisibility: public
 accent: cyan
@@ -17,8 +17,8 @@ highlights:
   - Interactive skill growth map
   - Private-by-default sharing
 media:
-  src: /projects/questmark-home.png
-  alt: QuestMark dashboard showing a glass globe, a nearby real-world mission, skill signals, and XP
+  src: /projects/questmark-banner.webp
+  alt: QuestMark liquid-glass globe surrounded by communication, courage, and observation skill signals
   caption: The daily quest surface connects one nearby mission to evidence, skill signals, and visible progress.
   position: top
 ---
@@ -35,9 +35,11 @@ QuestMark turns ordinary life into small, unusual missions. A student might inte
 
 The interface uses a luminous liquid-glass world as the centre of the daily quest experience. Mission details stay direct and practical around it: location, time, evidence, skills, safety, and XP. Motion makes progress feel alive while reduced-motion support keeps the core experience calm and accessible.
 
+![QuestMark poster with a liquid-glass globe and three skill signals](/projects/questmark-poster.webp)
+
 ## The Technical System
 
-The prototype is built with Next.js, React, TypeScript, and CSS. Its local recommendation model ranks a small set of Kuala Lumpur quests on-device. Proof Cards, achievements, level progression, and the interactive skill map demonstrate how evidence can become a useful personal portfolio.
+The installable PWA is built with Next.js, React, TypeScript, and CSS. Its local recommendation model ranks a small set of Kuala Lumpur quests on-device. Evidence photos stay in IndexedDB, progress metadata stays local, and the exported app works offline after the first visit.
 
 ## The Trust Model
 
