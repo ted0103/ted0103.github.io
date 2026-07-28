@@ -4,18 +4,30 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { getProjects } from '../../lib/projects';
 
 const projects = await getProjects();
+const projectBySlug = new Map(projects.map((project) => [project.slug, project]));
+const selectedProjects = ['questmark', 'celestial-archive', 'teds-personal-portfolio'].map((slug) => {
+  const project = projectBySlug.get(slug);
+  if (!project) throw new Error(`Missing featured project: ${slug}`);
+  return project;
+});
 ---
 
-<BaseLayout title="Projects" description="Selected systems and experiments by Tan Ted Hang.">
-  <header class="page-hero" data-reveal>
-    <p class="section-index">Projects / Curated Work</p>
-    <h1>Built to be useful. Designed to be felt.</h1>
-    <p class="page-intro">A deliberately small collection of systems and visual experiments. Each case study explains the decisions, tradeoffs, and lessons behind the finished surface.</p>
-  </header>
+<BaseLayout title="Projects" description="Selected systems and experiments by Tan Ted Hang." themeColor="#f5f5f7">
+  <div class="store-projects">
+    <header class="store-route-hero" data-reveal>
+      <p class="store-kicker">Projects · Curated Work</p>
+      <h1><span>Built to be useful.</span> Designed to be felt.</h1>
+      <p>A deliberately small collection of systems and visual experiments. Each case study explains the decisions, tradeoffs, and lessons behind the finished surface.</p>
+    </header>
 
-  <section class="project-index" aria-label="Project collection" data-reveal>
-    <div class="project-grid">
-      {projects.map((project) => <ProjectCard project={project} />)}
-    </div>
-  </section>
+    <section class="store-project-feature" aria-labelledby="featured-project-title" data-reveal>
+      <p class="store-kicker">Featured product</p>
+      <h2 id="featured-project-title">{selectedProjects[0].title}</h2>
+      <ProjectCard project={selectedProjects[0]} featured />
+    </section>
+
+    <section class="store-project-supporting" aria-label="More selected projects" data-reveal>
+      {selectedProjects.slice(1).map((project) => <ProjectCard project={project} />)}
+    </section>
+  </div>
 </BaseLayout>

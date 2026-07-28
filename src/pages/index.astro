@@ -5,7 +5,6 @@ import ContactPanel from '../components/ContactPanel.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { site } from '../config/site';
 import { getProjects } from '../lib/projects';
-import '../styles/store-preview.css';
 
 const [profile] = await getCollection('profile');
 const projects = await getProjects();

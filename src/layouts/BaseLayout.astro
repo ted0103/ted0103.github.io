@@ -3,6 +3,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { site } from '../config/site';
 import '../styles/global.css';
+import '../styles/store-preview.css';
 
 interface Props {
   title: string;
@@ -218,6 +219,13 @@ const socialImage = new URL(image, site.url);
             menu.removeAttribute('open');
           }
         });
+      });
+      addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        const menu = document.querySelector('details.mobile-nav[open]');
+        if (!(menu instanceof HTMLDetailsElement)) return;
+        menu.removeAttribute('open');
+        menu.querySelector<HTMLElement>('summary')?.focus();
       });
 
       const scene = document.querySelector('[data-lava-scene]');

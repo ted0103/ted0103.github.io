@@ -2,14 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Page Not Found" description="The requested page could not be found.">
-  <section class="page-hero" data-reveal>
-    <p class="eyebrow">404 · Signal Lost</p>
+<BaseLayout title="Page Not Found" description="The requested page could not be found." themeColor="#f5f5f7">
+  <section class="store-not-found" data-reveal>
+    <div class="store-404-tile" aria-hidden="true">404</div>
+    <p class="store-kicker">Signal Lost</p>
     <h1>This path drifted out of view.</h1>
-    <p class="page-intro">The page may have moved, or the link may be incomplete.</p>
-    <div class="page-actions">
-      <a class="button" href="/">Return Home</a>
-      <a class="button secondary" href="/projects/">View Projects</a>
+    <p>The page may have moved, or the link may be incomplete.</p>
+    <div class="store-route-actions">
+      <a href="/">Return Home</a>
+      <a href="/projects/">View Projects</a>
     </div>
   </section>
 </BaseLayout>

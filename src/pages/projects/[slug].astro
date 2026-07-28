@@ -3,7 +3,6 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectVisual from '../../components/ProjectVisual.astro';
 import { getProjects } from '../../lib/projects';
-import '../../styles/store-preview.css';
 
 export async function getStaticPaths() {
   const projects = await getProjects();

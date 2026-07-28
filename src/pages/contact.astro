@@ -3,12 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactPanel from '../components/ContactPanel.astro';
 ---
 
-<BaseLayout title="Contact" description="Contact Tan Ted Hang by email, GitHub, or Instagram.">
-  <header class="page-hero" data-reveal>
-    <p class="section-index">Contact / Direct Lines</p>
-    <h1>A good conversation is a useful place to begin.</h1>
-    <p class="page-intro">For a thoughtful collaboration, a project conversation, or a simple hello—choose the channel that feels natural.</p>
-  </header>
+<BaseLayout title="Contact" description="Contact Tan Ted Hang by email, GitHub, or Instagram." themeColor="#f5f5f7">
+  <div class="store-contact">
+    <header class="store-route-hero" data-reveal>
+      <p class="store-kicker">Contact · Direct Lines</p>
+      <h1><span>A good conversation</span> is a useful place to begin.</h1>
+      <p>For a thoughtful collaboration, a project conversation, or a simple hello—choose the channel that feels natural.</p>
+    </header>
 
-  <ContactPanel compact />
+    <ContactPanel compact />
+  </div>
 </BaseLayout>
