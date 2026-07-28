@@ -10,13 +10,22 @@ interface Props {
     position: 'center' | 'top';
   };
   compact?: boolean;
+  priority?: boolean;
 }
 
-const { accent, media, compact = false } = Astro.props;
+const { accent, media, compact = false, priority = false } = Astro.props;
 ---
 
 <figure class:list={['project-visual', accent, { compact }]} style={`--media-ratio:${media.width}/${media.height}`}>
-  <img src={media.src} alt={media.alt} width={media.width} height={media.height} loading="lazy" style={`object-position:${media.position}`} />
+  <img
+    src={media.src}
+    alt={media.alt}
+    width={media.width}
+    height={media.height}
+    loading={priority ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : undefined}
+    style={`object-position:${media.position}`}
+  />
   <span class="visual-sheen" aria-hidden="true"></span>
   {media.caption && <figcaption>{media.caption}</figcaption>}
 </figure>

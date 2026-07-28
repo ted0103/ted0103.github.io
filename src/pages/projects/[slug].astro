@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectVisual from '../../components/ProjectVisual.astro';
 import { getProjects } from '../../lib/projects';
+import '../../styles/store-preview.css';
 
 export async function getStaticPaths() {
   const projects = await getProjects();
@@ -17,10 +18,10 @@ const { Content } = await render(project.entry);
 const updated = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' }).format(new Date(project.github.updatedAt));
 ---
 
-<BaseLayout title={project.title} description={project.summary}>
-  <header class="project-detail-hero">
-    <div class="panel project-detail-copy" data-reveal>
-      <div>
+<BaseLayout title={project.title} description={project.summary} themeColor="#f5f5f7">
+  <div class:list={['store-project-detail', `project-${project.slug}`]}>
+    <header class="store-project-hero" data-reveal>
+      <div class="store-project-heading">
         <p class="eyebrow">{project.eyebrow} · {project.year}</p>
         <h1>{project.title}</h1>
         <p class="page-intro">{project.summary}</p>
@@ -31,25 +32,33 @@ const updated = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' }
           )}
         </div>
       </div>
-      <dl class="project-detail-meta">
-        <div><dt>Role</dt><dd>{project.role}</dd></div>
-        <div><dt>Status</dt><dd>{project.status}</dd></div>
-        <div><dt>Primary Language</dt><dd>{project.github.language || 'Multi-disciplinary'}</dd></div>
-        <div><dt>Repository Activity</dt><dd>{updated}{project.github.source === 'snapshot' ? ' · Snapshot' : ''}</dd></div>
-      </dl>
-    </div>
-    <div class="project-detail-visual" data-reveal>
-      <ProjectVisual accent={project.accent} media={project.media} />
-    </div>
-  </header>
 
-  <div class="highlight-row" aria-label="Project highlights" data-reveal>
-    {project.highlights.map((highlight) => <div class="highlight">{highlight}</div>)}
+      <div class="store-project-visual">
+        <ProjectVisual accent={project.accent} media={project.media} priority />
+      </div>
+    </header>
+
+    <dl class="store-project-meta" data-reveal>
+      <div><dt>Role</dt><dd>{project.role}</dd></div>
+      <div><dt>Status</dt><dd>{project.status}</dd></div>
+      <div><dt>Primary Language</dt><dd>{project.github.language || 'Multi-disciplinary'}</dd></div>
+      <div><dt>Repository Activity</dt><dd>{updated}{project.github.source === 'snapshot' ? ' · Snapshot' : ''}</dd></div>
+    </dl>
+
+    <section class="store-project-highlights" aria-labelledby="project-highlights-title" data-reveal>
+      <header>
+        <p class="eyebrow">At a glance</p>
+        <h2 id="project-highlights-title">What the system makes possible.</h2>
+      </header>
+      <div class="highlight-row" aria-label="Project highlights">
+        {project.highlights.map((highlight) => <div class="highlight">{highlight}</div>)}
+      </div>
+    </section>
+
+    <section class="store-project-story" aria-label={`${project.title} project story`}>
+      <article class="content-prose project-story" data-project-story>
+        <Content />
+      </article>
+    </section>
   </div>
-
-  <section class="section">
-    <article class="panel content-prose project-story" data-project-story>
-      <Content />
-    </article>
-  </section>
 </BaseLayout>

@@ -83,6 +83,16 @@ button { font: inherit; }
 }
 .skip-link:focus { transform: translateY(0); }
 
+.js.page-entry-pending .site-shell {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.js.page-entry-ready .site-shell {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 420ms var(--ease-reveal), transform 420ms var(--ease-reveal);
+}
+
 .lava-scene {
   position: fixed;
   z-index: 0;
@@ -1225,6 +1235,8 @@ main { display: block; }
   .copy-row button::before,
   .mobile-nav summary::before { animation: none; }
   .hero-prelude { display: none; }
+  .js.page-entry-pending .site-shell { opacity: 0; transform: none; }
+  .js.page-entry-ready .site-shell { opacity: 1; transform: none; transition: opacity 160ms ease; }
   .js .hero-copy,
   .js [data-reveal] > *,
   .js [data-reveal] .project-card,
