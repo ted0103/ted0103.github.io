@@ -14,19 +14,34 @@ const { compact = false } = Astro.props;
   <p class="contact-lede">Tell me what you’re trying to change, build, or understand. I’ll meet you with curiosity and a clear next step.</p>
   <div class="contact-actions">
     <a class="contact-action primary" href={`mailto:${site.email}`}>
-      <span>01 · Email</span>
-      <strong>{site.email}</strong>
-      <span>Start a conversation ↗</span>
+      <span class="contact-action-head">
+        <span class="contact-channel"><b>01</b> · Email</span>
+        <span class="contact-action-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3.75 5.75h16.5v12.5H3.75zM4.5 6.5l7.5 6 7.5-6" /></svg>
+        </span>
+      </span>
+      <strong class="contact-identifier">{site.email}</strong>
+      <span class="contact-cta">Start a conversation ↗</span>
     </a>
     <a class="contact-action" href={site.github}>
-      <span>02 · GitHub</span>
-      <strong>ted0103</strong>
-      <span>Explore the work ↗</span>
+      <span class="contact-action-head">
+        <span class="contact-channel"><b>02</b> · GitHub</span>
+        <span class="contact-action-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 2.35a9.9 9.9 0 0 0-3.13 19.3c.5.09.68-.22.68-.48v-1.73c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.72 1.02A9.5 9.5 0 0 1 12 7.08a9.5 9.5 0 0 1 2.48.34c1.89-1.29 2.72-1.02 2.72-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.56 4.94.36.31.68.92.68 1.86v2.65c0 .27.18.58.69.48A9.9 9.9 0 0 0 12 2.35Z" /></svg>
+        </span>
+      </span>
+      <strong class="contact-identifier">ted0103</strong>
+      <span class="contact-cta">Explore the work ↗</span>
     </a>
     <a class="contact-action" href={site.instagram}>
-      <span>03 · Instagram</span>
-      <strong>@_hwalker_1</strong>
-      <span>See the visual side ↗</span>
+      <span class="contact-action-head">
+        <span class="contact-channel"><b>03</b> · Instagram</span>
+        <span class="contact-action-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.4" cy="6.7" r=".8" fill="currentColor" stroke="none" /></svg>
+        </span>
+      </span>
+      <strong class="contact-identifier">@_hwalker_1</strong>
+      <span class="contact-cta">See the visual side ↗</span>
     </a>
   </div>
   <div class="copy-row">
