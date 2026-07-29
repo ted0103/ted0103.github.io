@@ -43,7 +43,10 @@ const categories = [
 
     <section class="store-section" id="selected-work" aria-labelledby="projects-title" data-reveal>
       <header class="store-section-heading">
-        <h2 id="projects-title"><span>The latest.</span> Take a look at what I’m building now.</h2>
+        <div>
+          <h2 id="projects-title">The latest</h2>
+          <p class="store-section-headline">Take a look at what I’m building now.</p>
+        </div>
         <a href="/projects/">View all projects <span aria-hidden="true">↗</span></a>
       </header>
       <div class="project-grid store-project-rail">
@@ -66,7 +69,10 @@ const categories = [
 
     <section class="store-section" id="leadership" aria-labelledby="leadership-title" data-reveal>
       <header class="store-section-heading">
-        <h2 id="leadership-title"><span>People first.</span> Direction matters most when everyone can move together.</h2>
+        <div>
+          <h2 id="leadership-title">People first</h2>
+          <p class="store-section-headline">Direction matters most when everyone can move together.</p>
+        </div>
       </header>
       <div class="store-story-rail">
         <article class="store-story-card store-story-featured">
@@ -88,7 +94,10 @@ const categories = [
 
     <section class="store-section" id="capabilities" aria-labelledby="capabilities-title" data-reveal>
       <header class="store-section-heading">
-        <h2 id="capabilities-title"><span>The toolkit.</span> Several ways to make one idea understandable.</h2>
+        <div>
+          <h2 id="capabilities-title">The toolkit</h2>
+          <p class="store-section-headline">Several ways to make one idea understandable.</p>
+        </div>
       </header>
       <div class="store-capability-grid">
         {Object.entries(profile.data.tools).map(([label, tools], index) => (
