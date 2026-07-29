@@ -133,18 +133,18 @@ html.store-theme body {
   color: var(--store-text);
   font-size: clamp(3.4rem, 6.6vw, 6.2rem);
   font-weight: 650;
-  line-height: .95;
-  letter-spacing: -.065em;
+  line-height: 1;
+  letter-spacing: -.055em;
   text-wrap: balance;
 }
 .store-headline {
   max-width: 760px;
-  margin: 18px 0 0;
+  margin: 22px 0 0;
   color: var(--store-muted);
   font-size: clamp(1.55rem, 3vw, 2.7rem);
   font-weight: 550;
-  line-height: 1.08;
-  letter-spacing: -.045em;
+  line-height: 1.18;
+  letter-spacing: -.035em;
   text-wrap: balance;
 }
 .store-hero aside { display: grid; gap: 10px; padding-bottom: 8px; }
@@ -207,14 +207,23 @@ html.store-theme body {
 .store-section-heading h2 {
   max-width: 900px;
   margin: 0;
-  color: var(--store-muted);
-  font-size: clamp(2rem, 3.6vw, 3.25rem);
+  color: var(--store-text);
+  font-size: clamp(2.65rem, 4.8vw, 4.35rem);
   font-weight: 650;
-  line-height: 1.08;
+  line-height: 1.02;
   letter-spacing: -.045em;
   text-wrap: balance;
 }
-.store-section-heading h2 span { color: var(--store-text); }
+.store-section-headline {
+  max-width: 900px;
+  margin: 14px 0 0;
+  color: var(--store-muted);
+  font-size: clamp(1.5rem, 2.8vw, 2.45rem);
+  font-weight: 550;
+  line-height: 1.22;
+  letter-spacing: -.03em;
+  text-wrap: balance;
+}
 .store-section-heading > a { white-space: nowrap; }
 
 .store-home .project-grid,
@@ -577,6 +586,7 @@ html.store-theme body {
 
 .store-theme .site-footer {
   width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
   color: var(--store-muted);
   border-color: #d2d2d7;
 }
@@ -603,8 +613,8 @@ html.store-theme body {
   color: var(--store-text);
   font-size: clamp(3rem, 6.2vw, 5.8rem);
   font-weight: 650;
-  line-height: .98;
-  letter-spacing: -.065em;
+  line-height: 1.02;
+  letter-spacing: -.055em;
   text-wrap: balance;
 }
 .store-route-hero .store-headline,
