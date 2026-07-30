@@ -10,6 +10,7 @@ const [profile] = await getCollection('profile');
 const projects = await getProjects();
 const categories = [
   { label: 'Selected work', mark: '✦', href: '#selected-work' },
+  { label: 'Open source', mark: 'OS', href: '#open-source' },
   { label: 'About Ted', mark: 'TH', href: '/about/' },
   { label: 'Leadership', mark: '↗', href: '#leadership' },
   { label: 'Capabilities', mark: '⌘', href: '#capabilities' },
@@ -54,17 +55,49 @@ const categories = [
       </div>
     </section>
 
-    <section class="store-section" aria-labelledby="checkpoint-title" data-reveal>
-      <article class="store-skill-banner">
+    <section class="store-section store-open-source" id="open-source" aria-labelledby="open-source-title" data-reveal>
+      <header class="store-section-heading">
         <div>
-          <p>Open-source agent skill</p>
-          <h2 id="checkpoint-title"><span>github/</span><span>ai-project-checkpoint</span></h2>
+          <h2 id="open-source-title">Tools for careful work.</h2>
+          <p class="store-section-headline">Small agent skills for continuity and financial-code review.</p>
         </div>
-        <div>
-          <p>A portable Git-based handoff that helps AI coding tasks resume from a compact, integrity-checked Markdown file.</p>
-          <a href="https://github.com/ted0103/ai-project-checkpoint">View repository <span aria-hidden="true">↗</span></a>
-        </div>
-      </article>
+      </header>
+      <div class="store-open-source-grid">
+        <article class="store-open-source-card">
+          <img
+            src="/projects/ai-project-checkpoint-logo.png"
+            width="512"
+            height="512"
+            loading="lazy"
+            alt=""
+          />
+          <div>
+            <p>Project continuity</p>
+            <h3>Project Checkpoint</h3>
+            <p>Portable, integrity-checked Git handoffs that preserve the working source and the next action.</p>
+            <a href="https://github.com/ted0103/ai-project-checkpoint" aria-label="View the Project Checkpoint repository">
+              View repository <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+        <article class="store-open-source-card">
+          <img
+            src="/projects/review-money-movement-logo.png"
+            width="512"
+            height="512"
+            loading="lazy"
+            alt=""
+          />
+          <div>
+            <p>Financial code review</p>
+            <h3>Review Money Movement</h3>
+            <p>Evidence-first review for transfers, balances, refunds, settlement, and reconciliation.</p>
+            <a href="https://github.com/ted0103/review-money-movement" aria-label="View the Review Money Movement repository">
+              View repository <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section class="store-section" id="leadership" aria-labelledby="leadership-title" data-reveal>

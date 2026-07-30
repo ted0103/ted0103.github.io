@@ -284,22 +284,52 @@ html.store-theme body {
 }
 .store-home .project-card-foot .arrow { color: var(--store-blue); }
 
-.store-skill-banner {
+.store-open-source-grid {
   display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: clamp(32px, 6vw, 84px);
-  padding: clamp(30px, 5vw, 54px);
-  border-radius: var(--store-radius);
-  background: white;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .07);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
 }
-.store-skill-banner p { margin: 0; color: var(--store-muted); line-height: 1.55; }
-.store-skill-banner > div:first-child p { font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
-.store-skill-banner h2 { margin: 12px 0 0; font-size: clamp(1.85rem, 3.2vw, 2.75rem); line-height: .98; letter-spacing: -.05em; }
-.store-skill-banner h2 span { display: block; white-space: nowrap; }
-.store-skill-banner h2 span:first-child { color: var(--store-muted); }
-.store-skill-banner > div:last-child { align-self: end; }
-.store-skill-banner a { display: inline-block; margin-top: 22px; color: var(--store-blue); font-size: 14px; font-weight: 600; text-decoration: none; }
+.store-open-source-card {
+  min-height: 350px;
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  padding: 30px;
+  border-radius: var(--store-radius);
+  background: #10131b;
+  box-shadow: 0 8px 24px rgba(20, 25, 38, .12);
+}
+.store-open-source-card img {
+  width: 132px;
+  height: 132px;
+  border-radius: 28px;
+}
+.store-open-source-card p { margin: 0; color: #a8adb9; line-height: 1.55; }
+.store-open-source-card > div > p:first-child {
+  margin-bottom: 10px;
+  color: #8fd8ff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.store-open-source-card h3 {
+  margin: 0 0 14px;
+  color: #f5f7fb;
+  font-size: clamp(1.7rem, 2.5vw, 2.35rem);
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+.store-open-source-card a {
+  display: inline-block;
+  margin-top: 22px;
+  color: #8fd8ff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.store-open-source-card:active { transform: scale(.99); }
 
 .store-story-rail {
   display: grid;
@@ -722,11 +752,14 @@ html.store-theme body {
   .store-contact .contact-action:hover .contact-action-icon { transform: translateY(-1px) scale(1.03); }
   .store-home .project-card:hover,
   .store-story-card:hover,
-  .store-capability-card:hover { transform: translateY(-4px); }
+  .store-capability-card:hover,
+  .store-open-source-card:hover { transform: translateY(-4px); }
   .store-story-card,
-  .store-capability-card { transition: transform 240ms cubic-bezier(.23, 1, .32, 1), box-shadow 240ms ease; }
+  .store-capability-card,
+  .store-open-source-card { transition: transform 220ms var(--ease-out), box-shadow 220ms ease; }
   .store-story-card:hover,
-  .store-capability-card:hover { box-shadow: 0 14px 34px rgba(0, 0, 0, .11); }
+  .store-capability-card:hover,
+  .store-open-source-card:hover { box-shadow: 0 14px 34px rgba(0, 0, 0, .14); }
 }
 
 @media (max-width: 860px) {
@@ -741,7 +774,7 @@ html.store-theme body {
   .store-hero aside { max-width: 430px; }
   .store-capability-grid { grid-template-columns: 1fr; }
   .store-capability-card { min-height: 230px; }
-  .store-skill-banner { grid-template-columns: 1fr; }
+  .store-open-source-grid { grid-template-columns: 1fr; }
   .store-story-featured { width: min(640px, calc(100vw - 48px)); }
   .store-project-detail { padding-top: 72px; }
   .store-project-heading h1 { font-size: clamp(4rem, 15vw, 7rem); }
@@ -779,6 +812,8 @@ html.store-theme body {
   .store-home .project-card { min-height: 0; }
   .store-story-rail { grid-auto-columns: min(290px, calc(100vw - 42px)); }
   .store-story-featured { grid-column: auto; width: auto; }
+  .store-open-source-card { min-height: 0; grid-template-columns: 92px minmax(0, 1fr); gap: 20px; padding: 22px; }
+  .store-open-source-card img { width: 92px; height: 92px; border-radius: 22px; }
   .store-next { min-height: 380px; margin-top: 70px; border-radius: 28px; }
   .store-home .contact-finale { padding: 28px 20px; }
   .store-project-detail { width: min(100% - 28px, 1120px); padding-top: 58px; }
