@@ -23,6 +23,8 @@ const expected = [
   'dist/projects/questmark-thumbnail-2026.webp',
   'dist/projects/questmark-poster.webp',
   'dist/projects/portfolio-thumbnail-2026.webp',
+  'dist/projects/ai-project-checkpoint-logo.png',
+  'dist/projects/review-money-movement-logo.png',
   'dist/sitemap-index.xml',
 ];
 
