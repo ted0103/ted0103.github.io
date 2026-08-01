@@ -1,13 +1,6 @@
 {
   "generatedAt": "2026-08-01T09:41:03Z",
   "projects": {
-    "callneuron": {
-      "description": "Consent-first CALL-E scholarship outreach operator",
-      "language": "Python",
-      "updatedAt": "2026-08-01T09:41:03Z",
-      "homepage": "",
-      "repository": "https://github.com/ted0103/awesome-phone-call-agents"
-    },
     "questmark": {
       "description": "Evidence-backed real-world skill quests for students",
       "language": "TypeScript",

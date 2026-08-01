@@ -10,7 +10,7 @@ liveUrl: https://ted0103.github.io/celestial-archive/
 sourceUrl: https://github.com/ted0103/celestial-archive
 sourceVisibility: public
 accent: violet
-order: 2
+order: 1
 highlights:
   - Complete 78-card system
   - Bilingual experience

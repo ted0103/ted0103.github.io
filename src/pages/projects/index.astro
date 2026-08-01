@@ -5,7 +5,7 @@ import { getProjects } from '../../lib/projects';
 
 const projects = await getProjects();
 const projectBySlug = new Map(projects.map((project) => [project.slug, project]));
-const selectedProjects = ['callneuron', 'celestial-archive', 'questmark'].map((slug) => {
+const selectedProjects = ['celestial-archive', 'questmark', 'teds-personal-portfolio'].map((slug) => {
   const project = projectBySlug.get(slug);
   if (!project) throw new Error(`Missing featured project: ${slug}`);
   return project;
