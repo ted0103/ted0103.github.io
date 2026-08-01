@@ -10,7 +10,7 @@ liveUrl: https://ted0103.github.io/questmark/
 sourceUrl: https://github.com/ted0103/questmark
 sourceVisibility: public
 accent: cyan
-order: 2
+order: 3
 highlights:
   - Location-aware daily missions
   - Evidence-backed Proof Cards
