@@ -13,9 +13,9 @@
 - `project.questmark.001` — Public repository: <https://github.com/ted0103/questmark>
 - `project.questmark.002` — Public installable PWA: <https://ted0103.github.io/questmark/>
 - `project.questmark.003` — `/projects/questmark/`: mission, Proof Card, progression, privacy, accessibility, local storage, offline, and local recommendation claims are verified by the public repository and deployed PWA.
-- `project.callneuron.001` — Public contribution source: <https://github.com/ted0103/awesome-phone-call-agents/tree/feat/call-neuron/apps/typescript/call-neuron>
-- `project.callneuron.002` — Public live operator prototype: <https://call-neuron-preview.pages.dev/>
-- `project.callneuron.003` — `/projects/callneuron/`: document intake, per-recipient consent, CALL-E plan/confirm/run separation, provider monitoring, voicemail policy, local persistence, and human disposition claims are verified by the contribution source, tests, and deployed application.
+- `opensource.callneuron.001` — Public contribution source: <https://github.com/ted0103/awesome-phone-call-agents/tree/feat/call-neuron/apps/typescript/call-neuron>
+- `opensource.callneuron.002` — Public live operator prototype: <https://call-neuron-preview.pages.dev/>
+- `opensource.callneuron.003` — The home-page Open Source entry is verified by the contribution source, tests, and deployed application; CallNeuron is intentionally not part of the portfolio project collection.
 - `profile.route.001` — `/` and `/about/`: identity, chairperson role, approved achievements, capabilities, and forecast map to the `profile.*` approvals above.
 
 This checklist intentionally contains no private evidence or correspondence.

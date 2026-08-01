@@ -15,13 +15,6 @@ export const site = {
   ],
   featuredRepositories: [
     {
-      slug: 'callneuron',
-      owner: 'ted0103',
-      repo: 'awesome-phone-call-agents',
-      snapshotKey: 'callneuron',
-      showSource: true,
-    },
-    {
       slug: 'questmark',
       owner: 'ted0103',
       repo: 'questmark',
