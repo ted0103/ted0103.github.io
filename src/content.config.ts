@@ -30,6 +30,7 @@ const projects = defineCollection({
     year: z.number().int().min(2020).max(2100),
     role: z.string().max(120),
     status: z.string().max(60),
+    language: z.string().max(40).optional(),
     liveUrl: z.url(),
     sourceUrl: z.url().optional(),
     sourceVisibility: z.enum(['public', 'private']),

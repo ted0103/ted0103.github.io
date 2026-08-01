@@ -74,6 +74,7 @@ export async function getProjects() {
       github: {
         ...githubResult.metadata,
         description: entry.data.summary || githubResult.metadata.description,
+        language: entry.data.language || githubResult.metadata.language,
         source: githubResult.source,
         snapshotGeneratedAt: githubResult.snapshotGeneratedAt,
       },

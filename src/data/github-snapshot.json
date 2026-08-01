@@ -1,25 +1,32 @@
 {
-  "generatedAt": "2026-07-28T06:56:14Z",
+  "generatedAt": "2026-08-01T09:41:03Z",
   "projects": {
+    "callneuron": {
+      "description": "Consent-first CALL-E scholarship outreach operator",
+      "language": "Python",
+      "updatedAt": "2026-08-01T09:41:03Z",
+      "homepage": "",
+      "repository": "https://github.com/ted0103/awesome-phone-call-agents"
+    },
     "questmark": {
       "description": "Evidence-backed real-world skill quests for students",
       "language": "TypeScript",
-      "updatedAt": "2026-07-28T06:52:39Z",
+      "updatedAt": "2026-07-29T08:41:18Z",
       "homepage": "https://ted0103.github.io/questmark/",
       "repository": "https://github.com/ted0103/questmark"
     },
     "celestial-archive": {
       "description": "Local-first bilingual 78-card tarot reflection app",
       "language": "HTML",
-      "updatedAt": "2026-07-22T09:03:12Z",
+      "updatedAt": "2026-07-30T14:06:02Z",
       "homepage": "https://ted0103.github.io/celestial-archive/",
       "repository": "https://github.com/ted0103/celestial-archive"
     },
     "teds-personal-portfolio": {
-      "description": "Ted's personal portfolio",
-      "language": "Astro",
-      "updatedAt": "2026-07-24T09:28:01Z",
-      "homepage": "https://ted0103.github.io/",
+      "description": "portfolio",
+      "language": "CSS",
+      "updatedAt": "2026-07-30T03:40:05Z",
+      "homepage": "",
       "repository": "https://github.com/ted0103/ted0103.github.io"
     }
   }
