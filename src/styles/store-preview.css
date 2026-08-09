@@ -305,6 +305,7 @@ html.store-theme body {
   height: 132px;
   border-radius: 28px;
 }
+.store-open-source-card img.store-open-source-logo--find-files { transform: scale(1.45); }
 .store-open-source-card p { margin: 0; color: #a8adb9; line-height: 1.55; }
 .store-open-source-card > div > p:first-child {
   margin-bottom: 10px;
