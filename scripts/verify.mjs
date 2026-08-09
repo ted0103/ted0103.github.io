@@ -25,6 +25,7 @@ const expected = [
   'dist/projects/portfolio-thumbnail-2026.webp',
   'dist/projects/ai-project-checkpoint-logo.png',
   'dist/projects/review-money-movement-logo.png',
+  'dist/projects/find-my-files-logo.png',
   'dist/sitemap-index.xml',
 ];
 

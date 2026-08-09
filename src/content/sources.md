@@ -16,6 +16,7 @@
 - `opensource.callneuron.001` — Public contribution source: <https://github.com/ted0103/awesome-phone-call-agents/tree/feat/call-neuron/apps/typescript/call-neuron>
 - `opensource.callneuron.002` — Public live operator prototype: <https://call-neuron-preview.pages.dev/>
 - `opensource.callneuron.003` — The home-page Open Source entry is verified by the contribution source, tests, and deployed application; CallNeuron is intentionally not part of the portfolio project collection.
+- `opensource.find-my-files.001` — The approved local source at `/Users/_ted/Documents/Self/find-my-files` verifies the home-page Open Source description and 21-test suite. Publish the card only after <https://github.com/ted0103/find-my-files> is live.
 - `profile.route.001` — `/` and `/about/`: identity, chairperson role, approved achievements, capabilities, and forecast map to the `profile.*` approvals above.
 
 This checklist intentionally contains no private evidence or correspondence.
