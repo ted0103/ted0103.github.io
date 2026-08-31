@@ -32,10 +32,10 @@ html.store-theme body {
   padding: 0 max(24px, calc((100vw - 1040px) / 2));
   border: 0;
   border-radius: 0;
-  background: rgba(250, 250, 252, .82);
+  background: rgba(250, 250, 252, .96);
   box-shadow: none;
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 .store-theme .site-header::before { display: none; }
 .store-theme .brand { gap: 8px; color: var(--store-text); }
@@ -203,7 +203,12 @@ html.store-theme body {
 .store-categories a:nth-child(5) span { background: linear-gradient(145deg, #e9faf4, #caeee1); }
 .store-categories strong { font-size: 14px; font-weight: 600; }
 
-.store-section { padding-top: 76px; scroll-margin-top: 56px; }
+.store-section {
+  padding-top: 76px;
+  scroll-margin-top: 56px;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
 .store-section-heading {
   display: flex;
   align-items: end;
@@ -243,7 +248,6 @@ html.store-theme body {
   gap: 20px;
   padding: 4px 24px 28px 0;
   overflow-x: auto;
-  scroll-snap-type: inline proximity;
   scrollbar-width: none;
 }
 .store-home .project-card,
@@ -253,7 +257,6 @@ html.store-theme body {
   border-radius: var(--store-radius);
   background: var(--store-card);
   box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
-  scroll-snap-align: start;
 }
 .store-home .project-card::before { display: none; }
 .store-home .project-card-link { display: flex; flex-direction: column; }
@@ -347,7 +350,6 @@ html.store-theme body {
   padding: 4px 4px 28px;
   margin-inline: -4px;
   overflow-x: auto;
-  scroll-snap-type: inline proximity;
   scrollbar-width: none;
 }
 .store-story-card {
@@ -358,7 +360,6 @@ html.store-theme body {
   border-radius: var(--store-radius);
   background: white;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
-  scroll-snap-align: start;
 }
 .store-story-card > p,
 .store-next > p:first-child,
@@ -754,9 +755,6 @@ html.store-theme body {
 .store-home a:active { transform: scale(.98); }
 
 @media (hover: hover) and (pointer: fine) {
-  .store-home .project-grid,
-  .store-project-rail,
-  .store-story-rail { scroll-snap-type: none; }
   .store-route-actions a:hover { transform: translateY(-2px); filter: brightness(.97); }
   .store-project-detail .button:hover { transform: translateY(-2px); filter: brightness(.94); }
   .store-contact .contact-action:hover { transform: translateY(-3px); background: white; box-shadow: 0 14px 34px rgba(0, 0, 0, .1); }
