@@ -107,6 +107,15 @@ const productionCss = (await Promise.all(css)).join('\n');
 if (productionCss.includes('fonts.googleapis.com') || productionCss.includes('fonts.gstatic.com')) {
   throw new Error('Production CSS must not request third-party fonts');
 }
+if (productionCss.includes('overscroll-behavior-inline:contain')) {
+  throw new Error('Horizontal rails must not trap trackpad scroll chaining');
+}
+if (!productionCss.includes('touch-action:pan-x pan-y pinch-zoom')) {
+  throw new Error('Horizontal rails must explicitly preserve both scroll axes');
+}
+if (!productionCss.includes('@media (hover:hover) and (pointer:fine)') || !productionCss.includes('scroll-snap-type:none')) {
+  throw new Error('Fine-pointer rails must not use scroll snapping');
+}
 
 async function htmlFiles(directory) {
   const files = [];
