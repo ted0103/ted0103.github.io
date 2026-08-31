@@ -74,6 +74,15 @@ for (const [contentFile, image] of projectThumbnails) {
   if ((await stat(file)).size > 500 * 1024) throw new Error(`${image} exceeds 500 KB`);
 }
 
+const callNeuronLogo = path.join(root, 'dist/projects/callneuron-logo.png');
+const callNeuronLogoMetadata = await sharp(callNeuronLogo).metadata();
+if (callNeuronLogoMetadata.width !== 512 || callNeuronLogoMetadata.height !== 512) {
+  throw new Error('CallNeuron logo must be 512×512 to avoid oversized viewport decoding');
+}
+if ((await stat(callNeuronLogo)).size > 300 * 1024) {
+  throw new Error('CallNeuron logo exceeds 300 KB');
+}
+
 const assetLinks = JSON.parse(await readFile(path.join(root, 'dist/.well-known/assetlinks.json'), 'utf8'));
 const association = assetLinks[0];
 if (
@@ -113,8 +122,11 @@ if (productionCss.includes('overscroll-behavior-inline:contain')) {
 if (!productionCss.includes('touch-action:pan-x pan-y pinch-zoom')) {
   throw new Error('Horizontal rails must explicitly preserve both scroll axes');
 }
-if (!productionCss.includes('@media (hover:hover) and (pointer:fine)') || !productionCss.includes('scroll-snap-type:none')) {
-  throw new Error('Fine-pointer rails must not use scroll snapping');
+if (productionCss.includes('scroll-snap-type')) {
+  throw new Error('Horizontal rails must not axis-lock page scrolling');
+}
+if (!productionCss.includes('content-visibility:auto') || !productionCss.includes('contain-intrinsic-size:auto 720px')) {
+  throw new Error('Below-fold portfolio sections must defer rendering work');
 }
 
 async function htmlFiles(directory) {
