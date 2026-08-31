@@ -171,6 +171,13 @@ html.store-theme body {
 .store-categories::-webkit-scrollbar,
 .store-project-rail::-webkit-scrollbar,
 .store-story-rail::-webkit-scrollbar { display: none; }
+.store-categories,
+.store-home .project-grid,
+.store-project-rail,
+.store-story-rail {
+  overscroll-behavior: auto;
+  touch-action: pan-x pan-y pinch-zoom;
+}
 .store-categories a {
   display: grid;
   justify-items: center;
@@ -236,7 +243,6 @@ html.store-theme body {
   gap: 20px;
   padding: 4px 24px 28px 0;
   overflow-x: auto;
-  overscroll-behavior-inline: contain;
   scroll-snap-type: inline proximity;
   scrollbar-width: none;
 }
@@ -748,6 +754,9 @@ html.store-theme body {
 .store-home a:active { transform: scale(.98); }
 
 @media (hover: hover) and (pointer: fine) {
+  .store-home .project-grid,
+  .store-project-rail,
+  .store-story-rail { scroll-snap-type: none; }
   .store-route-actions a:hover { transform: translateY(-2px); filter: brightness(.97); }
   .store-project-detail .button:hover { transform: translateY(-2px); filter: brightness(.94); }
   .store-contact .contact-action:hover { transform: translateY(-3px); background: white; box-shadow: 0 14px 34px rgba(0, 0, 0, .1); }
