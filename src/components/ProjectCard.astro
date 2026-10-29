@@ -9,6 +9,7 @@ interface Props {
     summary: string;
     year: number;
     status: string;
+    role: string;
     accent: 'cyan' | 'violet';
     media: {
       src: string;
@@ -29,7 +30,6 @@ interface Props {
 }
 
 const { project, featured = false } = Astro.props;
-const updated = new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' }).format(new Date(project.github.updatedAt));
 ---
 
 <article class:list={['project-card', { featured }]}>
@@ -42,10 +42,10 @@ const updated = new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' 
       </div>
       <h3>{project.title}</h3>
       <p>{project.summary}</p>
+      <span class="project-card-cta">Read case study <span aria-hidden="true">↗</span></span>
       <div class="project-card-foot">
         <span>{project.status}</span>
-        <span>{project.github.language || 'Multi-disciplinary'} · Repository activity {updated}</span>
-        <span class="arrow" aria-hidden="true">↗</span>
+        <span>{project.role}</span>
       </div>
     </div>
   </a>

@@ -1,3 +1,4 @@
+import './verify-hero.mjs';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
@@ -23,6 +24,10 @@ const expected = [
   'dist/projects/questmark-thumbnail-2026.webp',
   'dist/projects/questmark-poster.webp',
   'dist/projects/portfolio-thumbnail-2026.webp',
+  'dist/projects/celestial-gateway-screen-2026.webp',
+  'dist/projects/celestial-ritual-screen-2026.webp',
+  'dist/projects/celestial-settings-screen-2026.webp',
+  'dist/projects/questmark-screen-2026.webp',
   'dist/projects/ai-project-checkpoint-logo.png',
   'dist/projects/review-money-movement-logo.png',
   'dist/projects/find-my-files-logo.png',
@@ -119,14 +124,15 @@ if (productionCss.includes('fonts.googleapis.com') || productionCss.includes('fo
 if (productionCss.includes('overscroll-behavior-inline:contain')) {
   throw new Error('Horizontal rails must not trap trackpad scroll chaining');
 }
-if (!productionCss.includes('touch-action:pan-x pan-y pinch-zoom')) {
-  throw new Error('Horizontal rails must explicitly preserve both scroll axes');
-}
 if (productionCss.includes('scroll-snap-type')) {
-  throw new Error('Horizontal rails must not axis-lock page scrolling');
+  throw new Error('Project navigation must not axis-lock page scrolling');
 }
-if (!productionCss.includes('content-visibility:auto') || !productionCss.includes('contain-intrinsic-size:auto 720px')) {
-  throw new Error('Below-fold portfolio sections must defer rendering work');
+const homePage = await readFile(path.join(root, 'dist/index.html'), 'utf8');
+if (!/aria-label="Explore Ted(?:'|&#39;|&#x27;)s Portfolio"/.test(homePage) || homePage.includes('This portfolio')) {
+  throw new Error('Arc must expose the updated portfolio label');
+}
+if (!homePage.includes('id="selected-work"') || !homePage.includes('store-selected-grid')) {
+  throw new Error('Homepage must expose selected work in the visible project grid');
 }
 
 async function htmlFiles(directory) {
@@ -141,6 +147,14 @@ async function htmlFiles(directory) {
 
 for (const file of await htmlFiles(path.join(root, 'dist'))) {
   const html = await readFile(file, 'utf8');
+  const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => id);
+  if (new Set(ids).size !== ids.length) throw new Error(`Duplicate element IDs in ${path.relative(root, file)}`);
+  for (const [, asset] of html.matchAll(/(?:\bsrc|<image\b[^>]*?\bhref)="(\/[^"?#]+)"/g)) {
+    if (!(await stat(path.join(root, 'dist', asset.slice(1)))).isFile()) throw new Error(`Missing asset ${asset}`);
+  }
+  for (const [, anchor] of html.matchAll(/\bhref="#([^"]+)"/g)) {
+    if (!ids.includes(anchor)) throw new Error(`Broken anchor #${anchor} in ${path.relative(root, file)}`);
+  }
   for (const [, href] of html.matchAll(/href="(\/[^"#?]*)"/g)) {
     if (href.startsWith('/celestial-archive/')) continue;
     const relative = href === '/' ? 'index.html' : `${href.replace(/^\/|\/$/g, '')}/index.html`;

@@ -1,0 +1,165 @@
+---
+import ChromeMark from './ChromeMark.astro';
+const cards = [
+  { name: 'Project Checkpoint', src: '/projects/ai-project-checkpoint-logo.png', href: '#open-source', x: 7, y: 240, angle: -24 },
+  { name: 'QuestMark', src: '/projects/questmark-icon.png', cutoff: 1.5, href: '/projects/questmark/', x: 19, y: 110, angle: -18 },
+  { name: 'Celestial Archive', src: '/assets/icons/icon-512.png', crop: true, href: '/projects/celestial-archive/', x: 34, y: 30, angle: -10 },
+  { name: 'CallNeuron', src: '/projects/callneuron-logo.png', href: '#open-source', x: 50, y: 0, angle: 0 },
+  { name: 'Find My Files', src: '/projects/find-my-files-logo.png', href: '#open-source', x: 66, y: 30, angle: 10 },
+  { name: 'Review Money Movement', src: '/projects/review-money-movement-logo.png', href: '#open-source', x: 81, y: 110, angle: 18 },
+  { name: "Ted's Portfolio", src: '/favicon.svg', href: '/projects/teds-personal-portfolio/', x: 93, y: 240, angle: 24 },
+];
+---
+<div class="hero-scroll-story">
+<section class="portfolio-hero" aria-labelledby="portfolio-title">
+  <h1 class="sr-only">Just_Ted — Tan Ted Hang</h1>
+  <div class="hero-intro-name" aria-hidden="true"><strong class="intro-wordmark">Just_Ted</strong><span>A little curiosity goes a long way.</span></div>
+  <a class="hero-scroll-cue" href="#portfolio-reveal">Scroll to discover <span aria-hidden="true">↓</span></a>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-reveal-scene">
+  <div class="portfolio-hero-topline"><span>INDEPENDENT PORTFOLIO</span><span>BASED IN MALAYSIA</span></div>
+  <nav class="project-arc" aria-label="Explore Ted's projects">
+    {cards.map((card, i) => (
+      <a class="arc-card" href={card.href} style={`--x:${card.x}%;--y:${card.y}px;--angle:${card.angle}deg`} aria-label={`Explore ${card.name}`}>
+        <ChromeMark src={card.src} id={String(i)} crop={"crop" in card && card.crop} cutoff={"cutoff" in card ? card.cutoff : undefined} />
+        <span>{card.name}</span>
+      </a>
+    ))}
+  </nav>
+  <div class="portfolio-hero-copy">
+    <p class="portfolio-hero-eyebrow">TAN TED HANG</p>
+    <h2 id="portfolio-title">A little curiosity.<br /><span>A lot of possibility.</span></h2>
+    <p class="portfolio-hero-description">Information Systems + AI.<br />Building software that feels clear, useful, and human.</p>
+    <div class="portfolio-hero-actions"><a href="#selected-work">Explore selected work <span aria-hidden="true">↗</span></a><a href="/about/">Meet Ted <span aria-hidden="true">→</span></a></div>
+  </div>
+  </div>
+  <div class="portfolio-hero-bottomline"><span>EXPLORING SOFTWARE &amp; PRODUCT INTERNSHIPS</span><a href="#selected-work" aria-label="Scroll to selected work">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a><button class="orbit-toggle" type="button" aria-pressed="false">Pause motion</button></div>
+</section>
+<span id="portfolio-reveal" class="hero-reveal-target" aria-hidden="true"></span>
+</div>
+<style>
+  .portfolio-hero { position:relative; isolation:isolate; overflow:clip; min-height:760px; padding:30px max(24px,calc((100vw - 1120px)/2)); background:#08090d; color:#f5f5f7; border-radius:0 0 36px 36px; }
+  .portfolio-hero::before { content:''; position:absolute; z-index:-1; inset:10% 10% 0; background:radial-gradient(ellipse at 50% 40%,#343c7b45,transparent 62%); pointer-events:none; }
+  .portfolio-hero-topline,.portfolio-hero-bottomline { display:flex; align-items:center; justify-content:space-between; gap:16px; font-size:10px; font-weight:500; letter-spacing:.11em; color:#a4a6b5; }
+  .portfolio-hero-bottomline { position:absolute; bottom:30px; left:max(24px,calc((100vw - 1120px)/2)); right:max(24px,calc((100vw - 1120px)/2)); }
+  .portfolio-hero-bottomline a { color:#a4a6b5; text-decoration:none; }
+  .portfolio-hero-bottomline a span { margin-left:14px; color:#fff; }
+  .project-arc { position:absolute; top:90px; left:50%; width:min(1100px,92%); height:410px; transform:translateX(-50%); }
+  .arc-card { position:absolute; left:var(--x); top:var(--y); width:clamp(90px,10.6vw,134px); aspect-ratio:1; transform:translateX(-50%) rotate(var(--angle)); border:0; border-radius:24%; background:transparent; text-decoration:none; }
+  .arc-card span { position:absolute; inset:auto -20px -27px; text-align:center; font-size:10px; font-weight:450; color:#b4b8c8; letter-spacing:.025em; line-height:1.2; }
+  .arc-card:focus-visible { opacity:1 !important; outline:3px solid #aebfff; outline-offset:5px; }
+  .portfolio-hero-copy { position:relative; margin:270px auto 125px; max-width:730px; text-align:center; pointer-events:none; }
+  .portfolio-hero-copy a { pointer-events:auto; }
+  .portfolio-hero-eyebrow { margin:0 0 16px; color:#a6a9b7; font-size:10px; font-weight:500; letter-spacing:.24em; }
+  .portfolio-hero-copy h2 { max-width:none; margin:0; font-family:inherit; font-size:clamp(38px,5.1vw,72px); font-weight:450; line-height:1.1; letter-spacing:-.055em; color:#f5f5fa; }
+  .portfolio-hero-copy h2 span { background:linear-gradient(170deg,#878b98,#e5e8f2 62%,#c3d0f2); color:transparent; background-clip:text; -webkit-background-clip:text; }
+  .portfolio-hero-description { margin:22px auto 0; color:#b4b5c1; font-size:15px; line-height:1.6; letter-spacing:-.01em; }
+  .portfolio-hero-actions { display:flex; justify-content:center; align-items:center; gap:26px; margin-top:28px; }
+  .portfolio-hero-actions a { display:inline-flex; align-items:center; gap:22px; min-height:44px; padding:13px 21px; border-radius:999px; color:#141720; background:#f5f5f7; text-decoration:none; font-size:13px; font-weight:600; }
+  .portfolio-hero-actions a+a { background:transparent; color:#ebedfa; padding-inline:0; }
+  .portfolio-hero-actions a:active { transform:scale(.97); }
+  @media(hover:hover) and (pointer:fine) { .arc-card { transition:filter 180ms ease; } .arc-card:hover { filter:brightness(1.2); } }
+  @media(max-width:700px) { .portfolio-hero { min-height:700px; padding-top:24px; border-radius:0 0 24px 24px; } .portfolio-hero-topline { font-size:8px; letter-spacing:.06em; } .project-arc { top:90px; width:580px; transform:translateX(-50%) scale(.62); transform-origin:top center; } .portfolio-hero-copy { margin:240px auto 110px; } .portfolio-hero-copy h2 { font-size:clamp(34px,7.5vw,48px); } .portfolio-hero-description { font-size:13px; } .portfolio-hero-bottomline { font-size:8px; align-items:end; line-height:1.6; } .portfolio-hero-bottomline>span { max-width:160px; } .portfolio-hero-actions { gap:18px; } .portfolio-hero-actions a { font-size:12px; gap:12px; padding:12px 17px; } }
+  @media(max-width:380px) { .project-arc { transform:translateX(-50%) scale(.5); } }
+  @media(prefers-reduced-motion:reduce) { .arc-card { transition:none; } .arc-card:hover { transform:translateX(-50%) rotate(var(--angle)); } }
+
+  @media(prefers-contrast:more) { .intro-wordmark,.portfolio-hero-copy h2 span { background:none; color:#fff; -webkit-text-stroke:0; filter:none; } }
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
+  :global(body:has(.hero-enhanced)) { overflow-x:clip; }
+  .hero-scroll-story { position:relative; }
+  .hero-intro-name,.hero-scroll-cue,.orbit-toggle { display:none; }
+  .hero-glow { position:absolute; z-index:-1; inset:-30%; mask-image:radial-gradient(ellipse,#000 25%,transparent 70%); pointer-events:none; background:radial-gradient(ellipse at 25% 35%,#7690c626,transparent 44%),radial-gradient(ellipse at 75% 65%,#c3ad991c,transparent 42%); }
+  .hero-enhanced { height:calc(200svh - 48px); }
+  .hero-enhanced .portfolio-hero { position:sticky; top:48px; height:calc(100svh - 48px); min-height:660px; }
+  .hero-enhanced .hero-intro-name { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; font-size:clamp(64px,13vw,170px); font-weight:450; letter-spacing:-.07em; color:#eff1ff; pointer-events:none; }
+  .intro-wordmark { font-weight:450; line-height:1.15; padding:.08em .08em .15em; background:linear-gradient(172deg,#666c7b 8%,#92959f 33%,#eceff9 49%,#fbfcff 58%,#b0bddf 70%,#e6dbd4 92%); color:transparent; background-clip:text; -webkit-background-clip:text; -webkit-text-stroke:.4px #ffffff30; filter:drop-shadow(0 1px 0 #adbdff65) drop-shadow(0 10px 30px #b8c8ff18); }
+  .hero-intro-name span { margin-top:20px; font-size:13px; font-weight:400; letter-spacing:.02em; color:#b4b5c1; }
+  .hero-enhanced .hero-scroll-cue { position:absolute; display:flex; gap:22px; align-items:center; bottom:80px; left:50%; transform:translateX(-50%); color:#c4c9e3; font-size:12px; text-decoration:none; z-index:2; min-height:44px; }
+  .hero-enhanced .hero-reveal-scene { opacity:0; }
+  .hero-enhanced .portfolio-hero-bottomline { opacity:0; }
+  .hero-enhanced .hero-reveal-target { position:absolute; top:95svh; scroll-margin-top:48px; pointer-events:none; }
+  .hero-enhanced .arc-card { top:0; left:0; }
+  .orbit-toggle { color:inherit; background:transparent; border:1px solid #ffffff40; border-radius:30px; padding:8px 12px; font:inherit; font-size:10px; min-height:44px; cursor:pointer; }
+  .hero-enhanced .orbit-toggle { display:block; }
+  .orbit-toggle:active { scale:.97; }
+  .hero-enhanced .portfolio-hero-bottomline>span { max-width:240px; }
+  @media(max-width:700px) { .hero-enhanced .portfolio-hero-bottomline { gap:12px; } .hero-enhanced .portfolio-hero-bottomline>span { max-width:130px; } .hero-enhanced .portfolio-hero-bottomline>a { display:none; } }
+  @media(max-height:720px) { .hero-enhanced .portfolio-hero { min-height:600px; } .hero-enhanced .portfolio-hero-copy { margin-top:210px; } .hero-enhanced .project-arc { top:65px; } }
+  @media(prefers-reduced-motion:reduce) { .hero-enhanced .orbit-toggle { display:none; } .hero-enhanced { height:auto; } .hero-enhanced .portfolio-hero { position:relative; top:0; } .hero-enhanced .hero-intro-name,.hero-enhanced .hero-scroll-cue { display:none; } .hero-enhanced .hero-reveal-scene,.hero-enhanced .portfolio-hero-bottomline { opacity:1; } }
+</style>
+<script>
+  import { revealState, orbitPosition } from '../lib/hero-motion.mjs';
+  const story = document.querySelector<HTMLElement>('.hero-scroll-story');
+  const stage = story?.querySelector<HTMLElement>('.portfolio-hero');
+  if (story && stage) {
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const intro = story.querySelector<HTMLElement>('.hero-intro-name')!;
+    const cue = story.querySelector<HTMLElement>('.hero-scroll-cue')!;
+    const scene = story.querySelector<HTMLElement>('.hero-reveal-scene')!;
+    const bottom = story.querySelector<HTMLElement>('.portfolio-hero-bottomline')!;
+    const glow = story.querySelector<HTMLElement>('.hero-glow')!;
+    const arc = story.querySelector<HTMLElement>('.project-arc')!;
+    const cards = [...story.querySelectorAll<HTMLElement>('.arc-card')];
+    const toggle = story.querySelector<HTMLButtonElement>('.orbit-toggle')!;
+    let arcWidth = arc.clientWidth;
+    let elapsed = 0, previous = 0, frame = 0, visible = false, userPaused = false, interacting = false;
+    function renderOrbit() {
+      cards.forEach((card, index) => {
+        const position = orbitPosition(index, elapsed, cards.length);
+        card.style.transform = `translate(${arcWidth * position.x / 100}px, ${position.y}px) translate(-50%, -50%) rotate(${position.tilt}deg)`;
+        card.style.opacity = String(position.opacity);
+      });
+      glow.style.transform = `rotate(${-elapsed / 500}deg) scale(1.3)`;
+    }
+    function tick(time: number) {
+      frame = 0;
+      if (previous && !userPaused && !interacting) elapsed += Math.min(time - previous, 100);
+      previous = time;
+      renderOrbit();
+      if (visible && !document.hidden && !reduced.matches && !userPaused && !interacting) frame = requestAnimationFrame(tick);
+    }
+    function syncLoop() {
+      cancelAnimationFrame(frame); frame = 0; previous = 0;
+      if (visible && !document.hidden && !reduced.matches && !userPaused && !interacting) frame = requestAnimationFrame(tick);
+    }
+    function updateReveal() {
+      const enhanced = !reduced.matches;
+      story!.classList.toggle('hero-enhanced', enhanced);
+      arcWidth = arc.clientWidth;
+      const progress = enhanced ? Math.max(0, Math.min(1, (48 - story!.getBoundingClientRect().top) / Math.max(1, story!.offsetHeight - stage!.offsetHeight))) : 1;
+      const state = revealState(progress);
+      intro.style.transform = `translateY(${-state.departure * stage!.clientHeight * .85}px)`;
+      scene.style.transform = enhanced ? `translateY(${(1-state.arrival)*100}px)` : '';
+      scene.style.opacity = String(state.arrival);
+      bottom.style.opacity = String(state.arrival);
+      cue.style.opacity = String(1-state.departure);
+      cue.inert = state.departure > .9;
+      scene.inert = state.arrival < .85;
+      bottom.inert = state.arrival < .85;
+      glow.style.opacity = String(.25 + state.arrival * .75);
+      const rect = stage!.getBoundingClientRect();
+      const nextVisible = state.arrival > .1 && rect.bottom > 0 && rect.top < innerHeight;
+      if (visible !== nextVisible) { visible = nextVisible; syncLoop(); }
+      if (!enhanced) {
+        cancelAnimationFrame(frame);
+        cards.forEach(card => { card.style.left = ''; card.style.transform = ''; card.style.opacity = ''; });
+        glow.style.transform = '';
+      } else if (!frame) renderOrbit();
+    }
+    toggle.addEventListener('click', () => {
+      userPaused = !userPaused;
+      toggle.textContent = userPaused ? 'Resume motion' : 'Pause motion';
+      toggle.setAttribute('aria-pressed', String(userPaused));
+      syncLoop();
+    });
+    arc.addEventListener('pointerover', event => { if ((event.target as Element).closest('.arc-card')) { interacting = true; syncLoop(); } });
+    arc.addEventListener('pointerout', () => { interacting = arc.contains(document.activeElement); syncLoop(); });
+    arc.addEventListener('focusin', () => { interacting = true; syncLoop(); });
+    arc.addEventListener('focusout', () => { interacting = false; syncLoop(); });
+    addEventListener('scroll', updateReveal, { passive:true });
+    addEventListener('resize', updateReveal);
+    document.addEventListener('visibilitychange', syncLoop);
+    reduced.addEventListener('change', () => { updateReveal(); syncLoop(); });
+    updateReveal();
+  }
+</script>

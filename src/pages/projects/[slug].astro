@@ -14,10 +14,9 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project.entry);
-const updated = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' }).format(new Date(project.github.updatedAt));
 ---
 
-<BaseLayout title={project.title} description={project.summary} themeColor="#f5f5f7">
+<BaseLayout title={project.title} description={project.summary}>
   <div class:list={['store-project-detail', `project-${project.slug}`]}>
     <header class="store-project-hero" data-reveal>
       <div class="store-project-heading">
@@ -41,7 +40,7 @@ const updated = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' }
       <div><dt>Role</dt><dd>{project.role}</dd></div>
       <div><dt>Status</dt><dd>{project.status}</dd></div>
       <div><dt>Primary Language</dt><dd>{project.github.language || 'Multi-disciplinary'}</dd></div>
-      <div><dt>Repository Activity</dt><dd>{updated}{project.github.source === 'snapshot' ? ' · Snapshot' : ''}</dd></div>
+      <div><dt>Source</dt><dd>{project.showSource ? 'Public repository' : 'Portfolio case study'}</dd></div>
     </dl>
 
     <section class="store-project-highlights" aria-labelledby="project-highlights-title" data-reveal>
