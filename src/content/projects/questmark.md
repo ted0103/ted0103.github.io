@@ -39,6 +39,11 @@ The interface uses a luminous liquid-glass world as the centre of the daily ques
 
 ![QuestMark poster with a liquid-glass globe and three skill signals](/projects/questmark-poster.webp)
 
+<figure class="case-capture portrait">
+  <img src="/projects/questmark-screen-2026.webp" width="1066" height="1475" loading="lazy" alt="QuestMark interface inviting a student to pick a quest, with mission cards and a luminous globe" />
+  <figcaption>A featured mission gives students a starting point, with alternative quests visible below.</figcaption>
+</figure>
+
 ## The Technical System
 
 The installable PWA is built with Next.js, React, TypeScript, and CSS. Its local recommendation model ranks a small set of Kuala Lumpur quests on-device. Evidence photos stay in IndexedDB, progress metadata stays local, and the exported app works offline after the first visit.

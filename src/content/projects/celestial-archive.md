@@ -37,11 +37,26 @@ I wanted the interface to slow the moment down without making the system difficu
 
 The experience begins with a short opening sequence, then moves into clear rooms for choosing a reading, viewing cards, and keeping personal notes. English and Chinese are treated as one interface rather than separate versions. Motion and sound add atmosphere, but the core reading flow remains available when those enhancements are reduced.
 
+<figure class="case-capture">
+  <img src="/projects/celestial-gateway-screen-2026.webp" width="1280" height="720" loading="lazy" alt="Celestial Archive gateway with English and Chinese headings and four destinations: Ritual, Arcana, Reading Chamber, and Grimoire" />
+  <figcaption>01 / The bilingual gateway shows the four rooms before a visitor begins a reading.</figcaption>
+</figure>
+
+<figure class="case-capture">
+  <img src="/projects/celestial-ritual-screen-2026.webp" width="1280" height="720" loading="lazy" alt="Reading entry with an optional question field, bilingual guidance, and manual or gesture controls" />
+  <figcaption>02 / The reading entry makes the question optional and explains that nothing is saved without an explicit choice.</figcaption>
+</figure>
+
 ## The Technical System
 
 The project combines a complete 78-card system with bilingual interaction, responsive layouts, optional gesture input, and an offline package. Readings remain on the user’s device unless they deliberately save or export them.
 
 The web release is static and installable. The Android package uses a Trusted Web Activity, while the offline package preserves a direct browser route for people who prefer not to install anything.
+
+<figure class="case-capture">
+  <img src="/projects/celestial-settings-screen-2026.webp" width="1280" height="720" loading="lazy" alt="Settings showing optional hand motion, offline preparation, and a note that questions remain private unless saved or exported" />
+  <figcaption>03 / Settings expose optional controls, offline preparation, and the boundary for saving or exporting a question.</figcaption>
+</figure>
 
 ## The Challenge
 
