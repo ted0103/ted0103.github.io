@@ -1333,3 +1333,6 @@ main { display: block; }
 @keyframes hero-arrive {
   from { opacity: 0; transform: translateY(16px); }
 }
+
+/* Lenis controls smooth scrolling while its instance is active. */
+html.lenis { scroll-behavior: auto; }
