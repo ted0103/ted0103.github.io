@@ -1,3 +1,20 @@
+# UI and layout refinement — 2026-10-30
+
+Status: User approved the final prism preview on 2026-10-30 and authorized committing and merging into main. Complete release checks, PR CI, merge and deployment verification.
+
+Use the requested better-ui and better-layout skills while retaining the approved Just_Ted opening, 50-second counterclockwise arc, palette, content and route structure.
+
+- Replace the opening with reference-inspired silver serif Just_Ted lettering, a cobalt halo and prism glints. Animate its entrance and a reversible scroll-driven departure.
+- Keep only “A lot of possibility.” and remove the water reflection. Retain the brighter name and white action.
+- Reserve a separate band for a shallower project arc. Verify its full movement envelope stays above the name; use ordinary document flow below 700px viewport height.
+- Refine shared project surfaces with consistent framing, neutral inset image outlines, quieter shadows and tighter copy spacing.
+- Stabilize the pause/resume and copy/copied controls; use matching state icons and short, reversible feedback transitions.
+- Keep short viewports in ordinary reading flow, wrap long titles and actions, and anchor menus logically for RTL.
+- Offset anchors from sticky navigation and restore initial deep links after the hero establishes its height.
+- Verify the build, 320–1280px layouts, the short-screen fallback, RTL and controlled German-label growth. Keep unsupported checks explicitly unverified.
+
+---
+
 # Portfolio refinement — 2026-10-29
 
 Status: Preview approved on 2026-10-29. Local release checks passed; proceed with commit, CI, and merge to main.

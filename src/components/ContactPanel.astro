@@ -46,7 +46,7 @@ const { compact = false } = Astro.props;
   </div>
   <div class="copy-row">
     <span>Prefer to save it for later?</span>
-    <button type="button" data-copy-email={site.email}>Copy email</button>
+    <button type="button" data-copy-email={site.email}><span class="state-icon" aria-hidden="true"><svg class="state-off" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" /></svg><svg class="state-on" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6" /></svg></span><span data-copy-label>Copy email</span></button>
     <span class="copy-status" role="status" aria-live="polite"></span>
   </div>
 </section>
@@ -57,9 +57,12 @@ const { compact = false } = Astro.props;
       const status = button.parentElement?.querySelector<HTMLElement>('.copy-status');
       try {
         await navigator.clipboard.writeText(button.dataset.copyEmail || '');
-        button.textContent = 'Copied';
+        button.querySelector('[data-copy-label]')!.textContent = 'Copied';
+        button.dataset.copied = 'true';
         if (status) status.textContent = 'Email copied to clipboard.';
       } catch {
+        delete button.dataset.copied;
+        button.querySelector('[data-copy-label]')!.textContent = 'Copy email';
         if (status) status.textContent = 'Copy failed. Select the visible email address instead.';
       }
     });
