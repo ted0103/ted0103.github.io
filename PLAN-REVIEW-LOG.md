@@ -196,3 +196,81 @@ Ted approved testing, committing and merging the restored editorial design into 
 Final local checks: `GITHUB_OFFLINE=1 npm run check` passed with zero Astro errors/warnings/hints, nine routes, 26 required outputs, motion math and fallback checks. Production preview route matrix covered the homepage, project index, About, Contact, three case studies and 404 at 320px, 390px, 860px, 1024px and 1280px widths; no measured horizontal overflow or broken loaded images. Verified scroll reveal completion, seven arc labels, renamed link navigation, stable paused transforms, movement after resume, native pointer pause without page displacement, mobile menu open/Escape/focus return and contact navigation, and successful copy-email feedback. No captured browser console warnings/errors. The legacy download redirect points to the live app route, which returned HTTP 200; the app is hosted separately from the local preview.
 
 Reviewed the full pending source/assets diff. Local screenshot artifacts are excluded from Git. The separate main checkout's unrelated plan edits and profile deletion remain untouched. OS reduced-motion emulation, a physical phone, screen-reader software and quantitative performance benchmarks were not available in this browser session; preference handling and no-JavaScript content were inspected in source. GitHub CI and the main deployment will be checked after pushing.
+
+
+## 2026-10-30 — better-ui and better-layout local preview
+
+Scope: the homepage hero and selected-work cards, shared project archive surfaces, pause/copy feedback controls, mobile menu anchoring, and case-study metadata alignment. Retained the approved visual direction, project identities, 50-second counterclockwise motion and all existing links. This is a local preview on `codex/portfolio-ui-layout-refinement`, with no publication or new dependencies.
+
+### better-layout — Plan for growth and clipping; logical properties
+
+All rows describe findings repaired in this preview.
+
+| Severity | Location | Before | After | Why |
+| --- | --- | --- | --- | --- |
+| HIGH | src/styles/store-preview.css:739 | RTL phone menu extended 226px beyond the leading screen edge | Logical trailing anchoring; viewport-limited scrollable menu with contained scrolling | Keep controls reachable in the RTL mirror |
+| HIGH | src/styles/store-preview.css:242 | German growth fixture clipped project titles at 320px | Long title words wrap inside the card | Keep identifying content readable as labels grow |
+| MEDIUM | src/components/PortfolioHero.astro:86; src/lib/hero-motion.mjs:17 | Fixed-height scroll stage exceeded a 450px-high viewport | Short screens show Just_Ted, projects and actions in ordinary document flow | Keep controls outside clipped viewport staging |
+
+### better-layout — Content bleeds, controls float
+
+| Severity | Location | Before | After | Why |
+| --- | --- | --- | --- | --- |
+| MEDIUM | src/styles/store-preview.css:10; src/components/PortfolioHero.astro:168 | Sticky offset was not global; a fresh hash navigation could land before the hero had established its height | Shared scroll padding, adjusted target margin, and one initial anchor realignment | Keep direct links and focused content below navigation |
+
+### better-ui — State feedback; surfaces and press response
+
+| Severity | Location | Before | After | Why |
+| --- | --- | --- | --- | --- |
+| MEDIUM | src/components/ContactPanel.astro:49; src/components/PortfolioHero.astro:36; src/styles/store-preview.css:882 | Text replacement resized controls and copy feedback inherited a pale reading color | Stable 128px copy and 136px motion targets; copy/check and pause/play icon cross-fades, readable live status | Preserve control placement and leave an explicit static state cue |
+| MEDIUM | src/styles/store-preview.css:9; src/styles/store-preview.css:217 | Broad frame padding and separate image shadows created competing surface treatments | 12px image insets, matching corner geometry, pure-black inset outlines and shared quiet shadow | Make content and its enclosing surface read as one composition |
+| LOW | src/styles/store-preview.css:892 | Different 0.97/0.98 press scales, including blanket link transforms | Targeted 0.96 press scale over 150ms; motion and hover guards | Keep feedback consistent without changing the arc's positioning transform |
+
+Verification: final `GITHUB_OFFLINE=1 npm run check` passed with zero Astro errors/warnings/hints, all nine routes, 26 required outputs and existing asset/anchor/fallback checks. Added short-height and reduced-motion decision assertions beside the existing orbit/reveal math tests. Production browser checks covered 320, 390, 860 and 1280px widths on Home, Projects, Contact and the Celestial Archive case study, plus temporary build-only RTL and German-growth fixtures. The final matrix found no horizontal overflow or clipped tested headings. Open RTL menus stayed inside the viewport at 320, 390 and 860px. At 320×450 the hero used normal flow and exposed its scene immediately. A fresh selected-work deep link landed with the target at 56px, below the 48px navigation. Copy success preserved 128px width; native pointer pause preserved 136px width and exposed the correct pressed state. Reviewed the desktop project and arc views and phone copy feedback.
+
+Not verified: actual 200% browser zoom, physical safe-area hardware, OS reduced-motion preference emulation, screen-reader software, hover/pressed states at 10% speed in the browser Animations panel, and the clipboard failure path at runtime. Motion preference rules, disabled exclusions and clipboard error recovery were inspected in source. RTL checks concern structural mirroring, not an added translation feature.
+
+Temporary stress fixtures were generated only under ignored `dist` and removed after testing. Screenshots are local ignored preview artifacts. No commit, push or deployment.
+
+Verdict: Approve for the inspected preview scope; no HIGH remains in the tested cases. Unverified coverage above is excluded from this verdict.
+
+
+## 2026-10-30 — brighter hero and water-reflection typography
+
+Scope: the requested homepage hero refinement, retaining the existing scroll intro, chrome arc, palette and routes. No dependencies or new continuous animation. The reflection uses an SVG displacement filter on a compressed, mirrored decorative copy; primary text remains selectable and each reflection is hidden from accessibility APIs. Increased-contrast mode removes reflections and renders solid white type.
+
+| Severity | Location | Before | After | Why |
+| --- | --- | --- | --- | --- |
+| MEDIUM | src/components/PortfolioHero.astro — name | Dim 10px name | Responsive 16–18px semibold white name with cool white glow | Strengthen the requested identity hierarchy |
+| LOW | src/components/PortfolioHero.astro — headline | Plain silver headline | Crisp brighter words with faded, horizontally rippled reflections under each line | Follow the supplied water-reflection reference without distorting the readable text |
+| LOW | src/components/PortfolioHero.astro — primary action | Off-white fill | Pure white fill with dark label and a restrained halo | Increase the action's visual brightness |
+| MEDIUM | src/components/PortfolioHero.astro — short-height rules | Added reflection spacing crowded actions at the smallest sticky stage | Smaller short-window type and tighter copy placement, preserving the narrow-screen font scale | Keep actions clear of the motion control |
+
+Verification: final `GITHUB_OFFLINE=1 npm run check` exited 0; Astro reported zero errors/warnings/hints, nine routes built, and all 26 required-output, route, asset, anchor, fallback and existing motion checks passed. Browser layout checks at 320×620, 320×720, 390×844, 1280×620, 1280×720 and 320×450 found no horizontal overflow or clipped headline widths. At full reveal the action/footer clearance was at least 15px in those cases; the 450px-high screen retained normal document flow. The 1280×900 production preview showed both reflections, the 18px white name, and pure-white action at scene opacity 1. Computed opaque CTA colors #11141c on #ffffff measured 18.4103:1 with the WCAG sRGB luminance formula; this measurement applies only to that solid button pair, not all gradient/glow states. Verified two aria-hidden decorative reflections and one readable instance of each headline in the accessibility tree. Verified pause holds arc transforms and the primary action lands selected work at 56px below the 48px navigation. No captured production browser warnings/errors.
+
+Local screenshot: `portfolio-water-hero-preview.jpg` (ignored). No commit, push, merge or deployment. Physical devices, alternate browser engines, actual OS reduced-motion/increased-contrast settings and screen-reader software were not tested; relevant preference rules were inspected in source.
+
+Verdict: Approve for the inspected local preview scope; no HIGH remains in the tested cases.
+
+
+## 2026-10-30 — prism Just_Ted opening and separated arc
+
+Outcome: replace the previous opening with the user's supplied silver/blue serif reference, remove the water-reflection treatment and the curiosity headline, and keep the project orbit clear of TAN TED HANG. Implementation remains in the existing local preview branch; no publication requested.
+
+| Before | After | Why |
+| --- | --- | --- |
+| Sans-serif metallic Just_Ted with a translated scroll exit | Silver serif wordmark, cobalt halo, elliptical light trace and two prism glints; 1.2-second transform/opacity entrance and reversible scroll fade/lift | Follow the reference while preserving the Just_Ted identity and readable accessible heading |
+| Two headline lines with displaced mirrored copies | One crisp “A lot of possibility.” headline; reflection markup/filter/styles removed | Apply the user's correction and simplify the composition |
+| Absolute arc floating over fixed text margins | An arc band in document flow, shallower 40–160px orbit centers and smaller marks; matching static card centers | Keep the full moving-card envelope above the name rather than correcting only one sampled frame |
+| Fixed sticky stage retained down to 620px height | Ordinary document flow below 700px, with corresponding boundary assertions | Leave enough space for the revised composition on short screens |
+
+Verification: final `GITHUB_OFFLINE=1 npm run check` passed with zero Astro errors/warnings/hints, nine routes, 26 required outputs, existing asset/anchor/fallback checks and updated reveal/orbit/fallback assertions. `git diff --check` passed. Browser layout matrix covered 320×844, 390×844, 320×700, 700×720, 701×720, 860×720, 1280×700, 320×620 and 1280×450. No horizontal overflow or clipped wordmarks were observed. A conservative full-orbit envelope (maximum orbit depth plus rotated card/label corner radius, using measured rendered scale and card width) left at least 15.2px above the name in the tested enhanced layouts. Shorter viewports used ordinary document flow.
+
+The 1280×900 production preview showed initial intro opacity 1 / scene opacity 0; native scrolling to 405px produced intro opacity .25 / scene opacity .1, with the opening lifted and scaled to .955. Reverse scrolling to zero restored 1 / 0. Full reveal produced 0 / 1, and no water nodes remained. Verified the phone intro and fully revealed composition at 390×844, stable arc transforms after pause, resume control state, and selected-work navigation landing at 56px under the 48px header. No captured production browser warnings/errors. A temporary script-free build fixture showed the headline immediately, no overflow, and 53px actual card/label clearance above the name at 390×844; that fixture was removed after inspection.
+
+Preference safeguards: the entrance runs only with no reduced-motion preference; the existing reduced-motion path shows the content immediately, and the increased-contrast override follows the decorative wordmark styles. No new libraries, font downloads or image assets. Physical devices, alternative browser engines, actual OS preference toggles and slow-motion DevTools playback remain unverified. Screenshots `portfolio-prism-intro-preview.jpg` and `portfolio-prism-arc-preview.jpg` are ignored local artifacts. This is a local source/browser review, with no independent reviewer, commit, merge or deployment.
+
+
+## 2026-10-30 — approved release preparation
+
+User approved the final prism preview and explicitly requested commit and merge into main. Refreshed origin/main; the feature checkout was based on the current main with no incoming commits. Reviewed the complete seven-file diff, retaining the approved hero, project surfaces, feedback controls and responsive fixes. Final local `GITHUB_OFFLINE=1 npm run check` exited 0: zero errors/warnings/hints, nine routes and all 26 required outputs plus motion, route, asset, anchor and fallback checks passed. `git diff --check` passed. Prior recorded browser evidence applies to these unchanged source files. Screenshots and temporary fixtures are excluded. CI, merge and deployment verification follow this commit; no success is claimed for those pending stages here.
