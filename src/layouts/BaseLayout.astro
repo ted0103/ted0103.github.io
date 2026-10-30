@@ -4,6 +4,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 import { site } from '../config/site';
 import '../styles/global.css';
 import '../styles/store-preview.css';
+import 'lenis/dist/lenis.css';
 
 interface Props {
   title: string;
@@ -59,6 +60,17 @@ const socialImage = new URL(image, site.url);
       <SiteFooter />
     </div>
     <script>
+      import Lenis from 'lenis';
+
+      const scrollMotion = matchMedia('(prefers-reduced-motion: reduce)');
+      let lenis: Lenis | undefined;
+      function syncSmoothScroll() {
+        lenis?.destroy();
+        lenis = scrollMotion.matches ? undefined : new Lenis({ autoRaf: true, anchors: true, allowNestedScroll: true });
+      }
+      syncSmoothScroll();
+      scrollMotion.addEventListener('change', syncSmoothScroll);
+
       document.querySelectorAll('details.mobile-nav').forEach((menu) => {
         menu.addEventListener('toggle', () => menu.querySelector('summary')?.setAttribute('aria-label', menu.hasAttribute('open') ? 'Close Navigation' : 'Open Navigation'));
         addEventListener('pointerdown', (event) => {
