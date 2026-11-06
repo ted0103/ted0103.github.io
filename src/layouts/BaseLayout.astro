@@ -115,7 +115,7 @@ const socialImage = new URL(image, site.url);
             }
           }
         }, { threshold: .05 });
-        const revealTargets = document.querySelectorAll('[data-reveal]:not(.store-hero):not(.store-route-hero):not(#selected-work), .store-selected-grid .project-card');
+        const revealTargets = document.querySelectorAll('[data-reveal]:not(.store-hero):not(.store-route-hero):not(#selected-work):not(#open-source):not(#capabilities)');
         revealTargets.forEach((element) => {
           observer.observe(element);
           element.addEventListener('focusin', () => element.getAnimations().forEach(animation => animation.cancel()));
