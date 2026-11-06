@@ -921,6 +921,16 @@ html.store-theme body {
 .store-categories { border-block: 1px solid var(--refine-rule); }
 .store-categories span { border: 0; background: none; box-shadow: none; }
 .store-section-heading h2 { font-family: inherit; font-weight: 500; letter-spacing: -.045em; }
+.store-home :is(#selected-work, #open-source, #leadership, #capabilities) .store-section-heading > div { min-width: 0; }
+.store-home :is(#selected-work, #open-source, #leadership, #capabilities) .store-section-heading h2 {
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  color: var(--refine-ink);
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
 .store-home .project-card,
 .store-home .project-card:nth-child(n),
 .store-project-feature .project-card,
@@ -1006,6 +1016,7 @@ html.store-theme body {
       animation-timeline: view();
       animation-range: entry 0% entry 100%;
     }
+    .store-home .store-selected-grid .project-card { view-timeline-name: --project-card-entry; }
     .store-home .store-selected-grid .project-card-link {
       display: grid;
       grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
@@ -1061,20 +1072,12 @@ html.store-theme body {
     }
     .store-home .store-selected-grid .project-visual {
       animation: project-art-drift 1ms linear both;
-      animation-timeline: view();
-      animation-range: entry 0% exit 100%;
+      animation-timeline: --project-card-entry;
+      animation-range: entry 0% entry 100%;
     }
-    .store-home .store-selected-grid .project-card:focus-within,
-    .store-home .store-open-source-grid .store-open-source-card:focus-within,
-    .store-home #capabilities .store-capability-card:focus-within {
-      position: relative;
-      top: auto;
+    .store-home :is(.store-selected-grid, .store-open-source-grid, #capabilities .store-capability-grid) > :focus-within {
       z-index: 9;
-      animation: none;
-      transform: none;
     }
-    .store-home .store-selected-grid .project-card:focus-within h3 { animation: none; opacity: 1; transform: none; }
-    .store-home .store-selected-grid .project-card:focus-within .project-visual { animation: none; transform: none; }
     @media (max-width: 860px) {
       .store-home .store-selected-grid .project-card-link { display: flex; flex-direction: column; }
       .store-home .store-selected-grid .project-visual { min-height: 0; aspect-ratio: 16 / 9; }
@@ -1120,7 +1123,7 @@ html.store-theme body {
     }
     @keyframes project-art-drift {
       from { transform: translateY(8px) rotate(-.8deg); }
-      to { transform: translateY(-8px) rotate(.8deg); }
+      to { transform: translateY(0) rotate(0deg); }
     }
   }
 }

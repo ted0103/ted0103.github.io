@@ -1,3 +1,34 @@
+# Portfolio card interaction fixes — 2026-11-06
+
+Status: User reviewed the refinements and authorized commit and merge on 2026-11-06. Release verification passed; full browser coverage remains pending. Earlier plans below are retained as history.
+
+## Outcome and accepted decisions
+- Keep the approved overlapping card entrances, straight landscape finish, current palette, content, routes, and uppercase outlined skill labels.
+- Stabilize card interaction and align the artwork's final pose with the outer card. No broader redesign or colour-token migration in this fix.
+- The audit identified source-level concerns; their visual severity still needs browser confirmation. No consequential product decision remains open, so no additional interview is needed.
+
+## Approach and files
+1. Reproduce focus behavior in `src/styles/store-preview.css`: the current `:focus-within` rule changes sticky cards to relative positioning, clears their top offset, and cancels transforms. Inspect mouse activation and forward/backward keyboard navigation at several scroll positions before choosing the smallest correction.
+2. Preserve card positioning while exposing the focused card and its action. Start with stacking and focus-indicator changes; confirm that removing the position reset does not leave focused links covered by another card. Retain visible focus and avoid introducing a scroll jump or new JavaScript unless CSS cannot satisfy these checks.
+3. Change `project-art-drift` in the same stylesheet to finish at zero translation and rotation. Preserve the entrance movement and define the acceptance point as completion of the outer card's entrance: artwork should be flat then, rather than continuing to rotate through the exit. Align the artwork's animation range with that endpoint if needed.
+4. Record the actual before/after findings and verification limits in the existing `PLAN-REVIEW-LOG.md`. Change markup or scripts only if reproduction establishes that the CSS fix is insufficient.
+
+## Acceptance checks
+- Projects, open-source tools, and skills still overlap while entering and settle straight; the project artwork also finishes flat.
+- Clicking project/repository links activates the intended destination. Tab and Shift+Tab expose every link and its focus ring without position jumps or occlusion, including cards already pinned beneath another card.
+- Check 320px, 390px, 768px, 1280px, and 1920px widths, a short viewport, 200% zoom, RTL, and longer labels. Confirm no clipped actions or horizontal overflow; treat any reproduced blocked content as HIGH severity.
+- Confirm reduced-motion, no-JavaScript, and unsupported scroll-timeline fallbacks keep content and links usable. Inspect Chromium and Safari where available; report unavailable checks explicitly.
+- Run the existing `npm run verify` after the fix and `git diff --check`. Use browser evidence for layout; the verifier's route/build checks do not establish visual correctness.
+
+## Risks and verification gaps
+- Raising a focused card can obscure neighboring cards; keyboard progression and pointer use must both remain usable.
+- Scroll timelines on sticky elements may settle differently across engines; test both forward and reverse scrolling.
+- Hallmark's render tier currently cannot run because `puppeteer-core` is unavailable. Resolve the capture dependency or use an available browser workflow before claiming visual approval; do not add a production dependency solely for auditing.
+- Colour consolidation remains optional maintenance. Hallmark's automated uppercase-label objections conflict with the user's explicit approved design and are not fix requirements.
+- No independent review was requested or performed. Implementation was subsequently authorized; keep the fixes local and do not merge before user review.
+
+---
+
 # UI and layout refinement — 2026-10-30
 
 Status: User approved the final prism preview on 2026-10-30 and authorized committing and merging into main. Complete release checks, PR CI, merge and deployment verification.
