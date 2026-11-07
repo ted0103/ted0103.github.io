@@ -95,7 +95,7 @@ const cards = [
   .hero-enhanced .hero-reveal-scene { opacity:0; }
   .hero-enhanced .portfolio-hero-bottomline { opacity:0; }
   .hero-enhanced .hero-reveal-target { position:absolute; top:95svh; scroll-margin-top:0; pointer-events:none; }
-  .hero-enhanced .arc-card { top:0; left:0; }
+  .hero-enhanced .arc-card { top:0; left:0; will-change:transform, opacity; }
   .hero-enhanced .portfolio-hero-copy { margin-bottom:0; }
   .orbit-toggle { color:inherit; background:transparent; border:1px solid #ffffff40; border-radius:30px; padding:8px 12px; font:inherit; font-size:10px; min-height:44px; min-inline-size:136px; max-inline-size:100%; justify-content:center; align-items:center; gap:8px; letter-spacing:0; cursor:pointer; }
   .hero-enhanced .orbit-toggle { display:inline-flex; }
@@ -132,6 +132,7 @@ const cards = [
     const cards = [...story.querySelectorAll<HTMLElement>('.arc-card')];
     const toggle = story.querySelector<HTMLButtonElement>('.orbit-toggle')!;
     let arcWidth = arc.clientWidth;
+    let enhanced = false, storyTop = 0, storyHeight = 0, stageHeight = 0, viewportHeight = innerHeight, revealFrame = 0;
     let elapsed = 0, previous = 0, frame = 0, visible = false, userPaused = false, interacting = false;
     function renderOrbit() {
       cards.forEach((card, index) => {
@@ -152,14 +153,22 @@ const cards = [
       cancelAnimationFrame(frame); frame = 0; previous = 0;
       if (visible && story!.classList.contains('hero-enhanced') && !document.hidden && !reduced.matches && !userPaused && !interacting) frame = requestAnimationFrame(tick);
     }
-    function updateReveal() {
-      const enhanced = usesScrollIntro(innerHeight, reduced.matches);
+    function measureReveal() {
+      viewportHeight = innerHeight;
+      enhanced = usesScrollIntro(viewportHeight, reduced.matches);
       story!.classList.toggle('hero-compact', !reduced.matches && !enhanced);
       story!.classList.toggle('hero-enhanced', enhanced);
       arcWidth = arc.clientWidth;
-      const progress = enhanced ? Math.max(0, Math.min(1, (48 - story!.getBoundingClientRect().top) / Math.max(1, story!.offsetHeight - stage!.offsetHeight))) : 1;
+      storyTop = story!.getBoundingClientRect().top + scrollY;
+      storyHeight = story!.offsetHeight;
+      stageHeight = stage!.offsetHeight;
+      updateReveal();
+    }
+    function updateReveal() {
+      const storyViewportTop = storyTop - scrollY;
+      const progress = enhanced ? Math.max(0, Math.min(1, (48 - storyViewportTop) / Math.max(1, storyHeight - stageHeight))) : 1;
       const state = revealState(progress);
-      intro.style.transform = enhanced ? `translateY(${-state.departure * stage!.clientHeight * .35}px) scale(${1-state.departure*.06})` : '';
+      intro.style.transform = enhanced ? `translateY(${-state.departure * stageHeight * .35}px) scale(${1-state.departure*.06})` : '';
       intro.style.opacity = String(enhanced ? 1-state.departure : 1);
       scene.style.transform = enhanced ? `translateY(${(1-state.arrival)*100}px)` : '';
       scene.style.opacity = String(state.arrival);
@@ -169,8 +178,7 @@ const cards = [
       scene.inert = state.arrival < .85;
       bottom.inert = state.arrival < .85;
       glow.style.opacity = String(.25 + state.arrival * .75);
-      const rect = stage!.getBoundingClientRect();
-      const nextVisible = state.arrival > .1 && rect.bottom > 0 && rect.top < innerHeight;
+      const nextVisible = state.arrival > .1 && storyViewportTop + storyHeight > 0 && storyViewportTop < viewportHeight;
       if (visible !== nextVisible) { visible = nextVisible; syncLoop(); }
       if (!enhanced) {
         cancelAnimationFrame(frame); frame = 0; previous = 0;
@@ -188,11 +196,14 @@ const cards = [
     arc.addEventListener('pointerout', () => { interacting = arc.contains(document.activeElement); syncLoop(); });
     arc.addEventListener('focusin', () => { interacting = true; syncLoop(); });
     arc.addEventListener('focusout', () => { interacting = false; syncLoop(); });
-    addEventListener('scroll', updateReveal, { passive:true });
-    addEventListener('resize', () => { updateReveal(); syncLoop(); });
+    addEventListener('scroll', () => {
+      if (!revealFrame) revealFrame = requestAnimationFrame(() => { revealFrame = 0; updateReveal(); });
+    }, { passive:true });
+    addEventListener('resize', () => { measureReveal(); syncLoop(); });
     document.addEventListener('visibilitychange', syncLoop);
-    reduced.addEventListener('change', () => { updateReveal(); syncLoop(); });
-    updateReveal();
+    reduced.addEventListener('change', () => { measureReveal(); syncLoop(); });
+    measureReveal();
+    document.fonts.ready.then(measureReveal);
     const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
     const target = document.getElementById(location.hash.slice(1));
     if (navigation?.type === 'navigate' && target) {

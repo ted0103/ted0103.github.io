@@ -274,3 +274,23 @@ Preference safeguards: the entrance runs only with no reduced-motion preference;
 ## 2026-10-30 — approved release preparation
 
 User approved the final prism preview and explicitly requested commit and merge into main. Refreshed origin/main; the feature checkout was based on the current main with no incoming commits. Reviewed the complete seven-file diff, retaining the approved hero, project surfaces, feedback controls and responsive fixes. Final local `GITHUB_OFFLINE=1 npm run check` exited 0: zero errors/warnings/hints, nine routes and all 26 required outputs plus motion, route, asset, anchor and fallback checks passed. `git diff --check` passed. Prior recorded browser evidence applies to these unchanged source files. Screenshots and temporary fixtures are excluded. CI, merge and deployment verification follow this commit; no success is claimed for those pending stages here.
+
+## 2026-11-06 — local card interaction fixes
+
+Removed focus-triggered position and transform resets so focusing a card preserves its sticky placement and entrance pose. Matched the focus selector's specificity to the shared nth-child stacking selectors; their :is() contains an ID, which otherwise overrides the project/open-source focus z-index. Focused cards now receive the later z-index: 9 rule.
+
+Project artwork uses its containing card's named view timeline and entry range, ending at zero translation and rotation alongside the outer card.
+
+Verification: npm run verify passed (build, 26 required outputs, routes, fallback, fonts, and existing hero checks). git diff --check passed. In-app browser confirmed named timelines, sticky positioning, identity artwork transform at the sampled settled point, and no horizontal overflow at the current viewport. Keyboard navigation reached QuestMark. Focus stacking inspection prompted the specificity correction; final visual focus/occlusion confirmation remains pending, as do the full viewport matrix, zoom, RTL, Safari and preference-mode checks. Do not treat this as complete browser approval.
+
+No commit, push, merge or deployment. Awaiting user review.
+
+## 2026-11-06 — hero scroll performance correction
+
+Cached hero geometry during initialization, resize, font readiness, and motion-preference changes instead of reading layout on every scroll. Removed the post-style-write stage bounding-box read; visibility now uses cached document geometry. Coalesced scroll reveal updates into one animation-frame callback and promoted the seven enhanced orbit cards for transform/opacity compositing. Preserved the orbit timing, pause controls, short-screen and reduced-motion behavior.
+
+Verification: existing hero assertions and project verifier run after the change; see execution result for completion. No measured before/after frame-time capture or physical-device smoothness confirmation. Changes remain local for user review; no merge authorized.
+
+## 2026-11-06 — approved follow-up release
+
+User approved committing and merging the accumulated card-focus, flat-artwork, hero-scroll-performance, and heading refinements. Final headings use solid ink, balanced wrapping, a 36–64px responsive scale, 600 weight and 1.2 line height; discarded outline and underline treatments are absent. Final npm run verify passed, including the build and existing route/asset/fallback/hero checks. git diff --check passed. Full browser matrix and measured frame-time comparison remain unverified. Generated .hallmark audit artifacts are excluded from this release.
