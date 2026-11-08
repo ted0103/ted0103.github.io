@@ -12,10 +12,15 @@ const projects = await getProjects();
 const categories = [
   { label: 'Selected work', href: '#selected-work' },
   { label: 'Open source', href: '#open-source' },
-  { label: 'About Ted', href: '/about/' },
-  { label: 'Leadership', href: '#leadership' },
-  { label: 'Capabilities', href: '#capabilities' },
+  { label: 'Experience', href: '#leadership' },
+  { label: 'Awards & education', href: '#awards' },
+  { label: 'Tools & technologies', href: '#capabilities' },
   { label: 'Contact', href: '#contact' },
+];
+const toolGroups = [
+  { label: 'Programming & web', tools: profile.data.tools.languages },
+  { label: 'Development tools & workflows', tools: profile.data.tools.development },
+  { label: 'Creative & design tools', tools: profile.data.tools.creative },
 ];
 ---
 
@@ -132,42 +137,67 @@ const categories = [
     <section class="store-section" id="leadership" aria-labelledby="leadership-title" data-reveal>
       <header class="store-section-heading">
         <div>
-          <h2 id="leadership-title">Leadership</h2>
-          <p class="store-section-headline">Direction matters most when everyone can move together.</p>
+          <h2 id="leadership-title">Experience &amp; leadership</h2>
+          <p class="store-section-headline">Current responsibilities in publicity, public relations, and developer communities.</p>
         </div>
       </header>
       <div class="store-story-rail">
-        <article class="store-story-card store-story-featured">
-          <p>Leadership</p>
-          <h3>Make the next step visible.</h3>
-          <div>
-            <p>Chairing a society taught me to listen before choosing a direction, translate complexity, and keep the human goal present while details change.</p>
-            <a href="/about/">Read the longer story <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-        {profile.data.achievements.slice(0, 3).map((achievement, index) => (
+        {profile.data.leadership.map((position) => (
           <article class="store-story-card store-achievement">
-            <p>{String(index + 1).padStart(2, '0')} · Experience</p>
-            <h3>{achievement}</h3>
+            <img class="store-experience-logo" src={position.logo} alt={position.logoAlt} width="64" height="64" loading="lazy" />
+            <p>{position.period}</p>
+            <h3>{position.role}</h3>
+            <div>
+              <p>{position.organization}</p>
+              <p>{position.summary}</p>
+            </div>
           </article>
         ))}
+      </div>
+    </section>
+
+    <section class="store-section" id="awards" aria-labelledby="awards-title" data-reveal>
+      <header class="store-section-heading">
+        <div>
+          <h2 id="awards-title">Awards &amp; education</h2>
+          <p class="store-section-headline">Study, academic results, and recognition.</p>
+        </div>
+      </header>
+      <div class="store-story-rail">
+        {profile.data.awards.map((award) => (
+          <article class="store-story-card store-achievement">
+            <p>{award.year ? `Recognition · ${award.year}` : 'International recognition'}</p>
+            <h3>{award.title}</h3>
+            <div><p>{award.summary}</p></div>
+          </article>
+        ))}
+        <article class="store-story-card store-achievement">
+          <p>Academic achievements</p>
+          <h3>{profile.data.education.academicAchievements.join(' · ')}</h3>
+          <div><p>Matriculation and SPM.</p></div>
+        </article>
+        <article class="store-story-card store-achievement">
+          <p>{profile.data.education.level} · {profile.data.education.period}</p>
+          <h3>{profile.data.education.degree}</h3>
+          <div><p>{profile.data.education.institution}</p></div>
+        </article>
       </div>
     </section>
 
     <section class="store-section" id="capabilities" aria-labelledby="capabilities-title" data-reveal>
       <header class="store-section-heading">
         <div>
-          <h2 id="capabilities-title">Skills and tools</h2>
-          <p class="store-section-headline">Several ways to make one idea understandable.</p>
+          <h2 id="capabilities-title">Tools &amp; technologies</h2>
+          <p class="store-section-headline">Programming, development workflows, and creative tools I have worked with.</p>
         </div>
       </header>
       <div class="store-capability-grid">
-        {Object.entries(profile.data.tools).map(([label, tools], index) => (
+        {toolGroups.map(({ label, tools }, index) => (
           <article class:list={['store-capability-card', `tone-${index + 1}`]}>
             <span aria-hidden="true">{['⌘', '◌', '✦'][index]}</span>
             <div>
               <h3>{label}</h3>
-              <ul>{tools.slice(0, 5).map((tool) => <li>{tool}</li>)}</ul>
+              <ul>{tools.map((tool) => <li>{tool}</li>)}</ul>
             </div>
           </article>
         ))}
