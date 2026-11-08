@@ -1,4 +1,33 @@
-# Plan Review Log: Unified Portfolio Project Thumbnails
+# Portfolio Plan Review Log
+
+## 2026-11-09 — Portfoliofy Crayon preview
+
+- Applied the reference’s lined paper, tab navigation, pixel display text, colored notes, taped images, and collage project cards while retaining Ted’s verified copy, project assets, dates, roles, contact destinations, and existing routes.
+- Added `/playground/` from existing project imagery, tools, interests, and open-source tool content. Project entries use the reference’s two-column grid on desktop and one column on narrow screens.
+- `npm run build` passed: Astro reported zero diagnostics across 21 files and generated 10 static pages. `git diff --check` passed. GitHub metadata requests used the checked-in snapshot dated 2026-08-01 after network fetches failed.
+- Visual review covered desktop 1280×900 on Home, Projects, Celestial Archive, About, and Playground; mobile 390×844 on Home, Projects, About, Playground, and Celestial Archive; and narrow 320×700 on Home and Projects. The narrow review found and fixed a clipped two-column Projects layout and a wrapped hero name.
+- The mobile menu opened and closed with Escape. Reduced-motion and focus rules were inspected in source, but preference emulation, a complete keyboard audit, 200% zoom, and cross-browser checks were not performed. `/download/` still redirects to the separate Celestial Archive app page, outside this preview.
+- Local preview remains available at `http://127.0.0.1:4325/`. No commit, push, or deployment.
+
+## 2026-11-09 — Notebook-paper redesign
+
+- Kept Ted’s real copy, routes, contact actions, and project images while applying the screenshot’s ruled-paper background, compact tab bar, oversized condensed headings, colored notes, and framed work grid.
+- Added brief reveal, hover, image, and navigation transitions with reduced-motion rules; used local/system font fallbacks and added no dependency.
+- Fixed the hero statement’s contrast, prevented the Celestial Archive title from splitting mid-word, and removed overlapping doodles at 320px. Reduced mobile display headings so “Featured Works” fits narrow screens.
+- `npm run check` passed: 20 Astro files, zero diagnostics, nine static routes, and 26 verifier assertions. GitHub metadata fetches used the existing dated snapshot because network access was unavailable.
+- Browser review: Home, About, Projects, Celestial Archive, Contact, and 404 at desktop size; Home, Projects, and Celestial Archive at 390×844; all main routes checked for overflow at 320×700. No horizontal page overflow, mobile menu opened and closed with Escape, and the browser console had no errors.
+- Reduced-motion behavior and focus styling were inspected in source; system preference emulation and a full keyboard focus audit were not performed. No commit, push, or deployment.
+
+## 2026-11-09 — Follow-up templates and pixel typography
+
+- Added dark/yellow alternating project panels to the Projects index, retained real project copy and images, converted the skill lists to colored pixel-label tags, and styled leadership content as paper cards.
+- Bundled Pixelify Sans for headings and Silkscreen for short labels; long paragraphs remain in the readable system sans-serif. Added the font OFL notices and preloaded the display face.
+- `npm run check` passed after the final narrow-screen heading adjustment: Astro reported zero diagnostics across 20 files, nine routes built, and 26 verifier assertions passed. `git diff --check` passed. Network metadata requests used the checked-in 2026-08-01 snapshot.
+- Visual review covered desktop Home, Projects, and About; 390×844 Home, Projects, Celestial Archive case study, About leadership, and Contact; and 320×700 Home, Projects, skills, About leadership, Contact, and 404. The mobile menu opened and closed with Escape. The Experience & Leadership heading was reduced only for narrow screens after the ampersand wrapped alone.
+- Reduced-motion and focus styles were read in source, but preference emulation, a full keyboard audit, 200% zoom, and cross-browser review were not run. `/download/` redirects to the separate Celestial Archive download page, which is outside this local preview.
+- No commit, push, or deployment.
+
+## Historical: Unified Portfolio Project Thumbnails
 Act 1 (grill) complete — plan locked with the user. MAX_ROUNDS=5.
 
 ## Round 1 — Codex

@@ -30,18 +30,17 @@ const { Content } = await render(project.entry);
           )}
         </div>
       </div>
-
-      <div class="store-project-visual">
-        <ProjectVisual accent={project.accent} media={project.media} priority />
-      </div>
+      <dl class="store-project-meta" data-reveal>
+        <div><dt>Role</dt><dd>{project.role}</dd></div>
+        <div><dt>Status</dt><dd>{project.status}</dd></div>
+        <div><dt>Primary Language</dt><dd>{project.github.language || 'Multi-disciplinary'}</dd></div>
+        <div><dt>Source</dt><dd>{project.showSource ? 'Public repository' : 'Portfolio case study'}</dd></div>
+      </dl>
     </header>
 
-    <dl class="store-project-meta" data-reveal>
-      <div><dt>Role</dt><dd>{project.role}</dd></div>
-      <div><dt>Status</dt><dd>{project.status}</dd></div>
-      <div><dt>Primary Language</dt><dd>{project.github.language || 'Multi-disciplinary'}</dd></div>
-      <div><dt>Source</dt><dd>{project.showSource ? 'Public repository' : 'Portfolio case study'}</dd></div>
-    </dl>
+    <div class="store-project-visual" data-reveal>
+      <ProjectVisual accent={project.accent} media={project.media} priority />
+    </div>
 
     <section class="store-project-highlights" aria-labelledby="project-highlights-title" data-reveal>
       <header>

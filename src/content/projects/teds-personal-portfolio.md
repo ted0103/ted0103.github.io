@@ -2,7 +2,7 @@
 slug: teds-personal-portfolio
 title: Ted's Personal Portfolio
 eyebrow: Digital Identity
-summary: A fast, accessible multi-page portfolio with a restrained liquid-glass system and a curated GitHub-powered project architecture.
+summary: A fast, accessible portfolio for software projects, university experience, and visual storytelling, presented through a playful paper-and-sticker interface.
 year: 2026
 role: Design, content, and development
 status: Current
@@ -17,10 +17,10 @@ highlights:
   - Static, resilient deployment
 media:
   src: /projects/portfolio-thumbnail-2026.webp
-  alt: TED’S WORK editorial wordmark beside a floating presentation of Ted’s portfolio interface
+  alt: TED’S WORK wordmark beside an earlier editorial layout of Tan Ted Hang’s portfolio
   width: 1600
   height: 900
-  caption: The editorial identity and interface appear together as one clear presentation of the work.
+  caption: An earlier portfolio layout; the current design uses ruled paper, condensed display type, and colorful project labels.
   position: center
 ---
 
@@ -34,7 +34,7 @@ My GitHub profile is designed to be scanned quickly. This website has a differen
 
 ## Design Decisions
 
-The identity stays dark, blue, and luminous, but the layout moves away from a dashboard of cards. Large statements create rhythm, real project imagery carries evidence, and JetBrains Mono is reserved for technical labels instead of long paragraphs.
+The redesign uses ruled paper, compact tab navigation, condensed display headings, and small colored labels to give the work a more personal rhythm. Project imagery remains evidence, while concise mono labels carry navigation and metadata.
 
 ## The Technical System
 
@@ -42,7 +42,7 @@ Astro generates every page as static HTML. Biography and case studies live in Ma
 
 ## The Challenge
 
-Liquid-glass effects and moving light can quickly reduce readability or performance. The solution is restraint: a few large ambient layers, independently tinted reading surfaces, CSS-first motion, and a static foundation that works before JavaScript runs.
+Paper texture and playful motion can quickly reduce readability. The solution is restraint: keep the background quiet, make every label and image secondary to the work, and use short transitions that respect reduced-motion settings.
 
 ## What I Learned
 

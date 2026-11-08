@@ -5,10 +5,7 @@ const current = Astro.url.pathname;
 ---
 
 <header class="site-header" data-site-header>
-  <a class="brand" href="/">
-    <span class="brand-mark" aria-hidden="true">TH</span>
-    <span class="brand-name">Tan Ted Hang</span>
-  </a>
+  <a class="site-mark" href="/" aria-label="Tan Ted Hang home"><span aria-hidden="true">T</span></a>
 
   <nav class="desktop-nav" aria-label="Primary navigation">
     {
@@ -17,13 +14,18 @@ const current = Astro.url.pathname;
           href={item.href}
           aria-current={current === item.href || (item.href !== '/' && current.startsWith(item.href)) ? 'page' : undefined}
         >
+          <span class="nav-icon" aria-hidden="true">{item.icon}</span>
           {item.label}
         </a>
       ))
     }
   </nav>
 
-  <a class="header-action" href={`mailto:${site.email}`}>Start a Conversation</a>
+  <div class="header-socials" aria-label="Social profiles">
+    <a class="social-chip github-chip" href={site.github} aria-label="GitHub profile"><span aria-hidden="true">GH</span></a>
+    <a class="social-chip instagram-chip" href={site.instagram} aria-label="Instagram profile"><span aria-hidden="true">◎</span></a>
+  </div>
+  <a class="header-action" href="/contact/"><span aria-hidden="true">♡</span> Contact</a>
 
   <details class="mobile-nav">
     <summary aria-label="Open Navigation">
@@ -36,10 +38,11 @@ const current = Astro.url.pathname;
             href={item.href}
             aria-current={current === item.href || (item.href !== '/' && current.startsWith(item.href)) ? 'page' : undefined}
           >
-            {item.label}<span aria-hidden="true">↗</span>
+            <span class="nav-icon" aria-hidden="true">{item.icon}</span>{item.label}<span aria-hidden="true">↗</span>
           </a>
         ))
       }
+      <a href="/contact/" aria-current={current === '/contact/' ? 'page' : undefined}>Contact<span aria-hidden="true">↗</span></a>
     </nav>
   </details>
 </header>
