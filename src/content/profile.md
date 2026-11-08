@@ -1,32 +1,76 @@
 ---
 name: Tan Ted Hang
-title: Information Systems & AI Student · Independent Developer · Creative Technologist
-intro: I build where technology, design, and people meet—turning complex ideas into systems that feel clear, useful, and human.
-forecast: I’m exploring AI-assisted tools that make difficult ideas easier to understand. The next build starts with a human problem, not a feature list.
+forecast: I’m developing my full-stack practice and exploring practical AI applications, human-centred product design, and visual storytelling.
 location: Malaysia
-capabilities:
-  - Product-minded development
-  - Human-centered systems
-  - Visual storytelling
-  - Team leadership
-achievements:
-  - Gold Medal for an AI video project
-  - Society Chairperson
-  - School and state event coordination
-  - Debate and chess
+education:
+  degree: Bachelor of Computer Science (Information Systems)
+  institution: Universiti Malaya
+  period: 2026 – Present
+  level: Year 1 undergraduate
+  interests:
+    - Software and full-stack development
+    - Artificial intelligence and practical applications
+    - Human-centred product design
+    - Photography and filmmaking
+    - Leadership and community building
+  academicAchievements:
+    - 'Matriculation CGPA: 4.00'
+    - 'SPM: 10A'
+leadership:
+  - role: Publicity Director
+    organization: PEKOM, Universiti Malaya
+    logo: /experience-logos/pekom.webp
+    logoAlt: PEKOM logo
+    period: November 2026 – Present
+    summary: Coordinating publicity direction, content planning, and communication workflows.
+    responsibilities:
+      - Coordinate the department’s publicity direction, content planning, and communication workflows.
+      - Develop department onboarding and ways to understand team members’ strengths, interests, and working preferences.
+      - Work on clearer internal coordination and publicity procedures.
+  - role: Full Stack Developer Core Member
+    organization: Google Developer Groups On Campus, Universiti Malaya
+    logo: /experience-logos/google-developers.webp
+    logoAlt: Google Developers logo
+    period: 2026/2027
+    summary: Contributing to developer-community activities and collaborative projects; workshop material is in preparation.
+    responsibilities:
+      - Take part in developer-community activities, technical workshops, and collaborative projects.
+      - Prepare workshop material on Google Stitch, UI/UX design, AI-assisted development, and frontend/backend fundamentals; these workshops have not yet been delivered.
+      - Explore practical application development and ways to make technical concepts accessible to beginners.
+  - role: Director of Public Relations
+    organization: Rotaract Club of Universiti Malaya
+    logo: /experience-logos/universiti-malaya.webp
+    logoAlt: Universiti Malaya crest
+    period: 2026 – Present
+    summary: Supporting the club’s publicity direction, visual identity, promotional material, and member engagement.
+    responsibilities:
+      - Lead public relations and publicity direction.
+      - Work on visual identity, promotional material, and communication planning.
+      - Support the club’s renewed publicity and member-engagement efforts.
+awards:
+  - title: GXBank Scholarship
+    year: 2026
+    summary: Selected as a GXBank Scholarship recipient.
+  - title: International AI Video Competition Recognition
+    summary: Recognition for an AI video project at an international competition.
 tools:
   languages:
+    - Java
     - Python
     - JavaScript
+    - TypeScript
     - HTML
     - CSS
     - SQL
   development:
+    - Astro
     - React
     - Node.js
     - Git
     - GitHub
+    - GitHub Actions
     - VS Code
+    - AI-assisted development workflows
   creative:
     - Figma
     - Photoshop
@@ -35,7 +79,9 @@ tools:
     - Fujifeed
 ---
 
-I’m Ted, an Information Systems and AI student in Malaysia. I’m drawn to the point where technical thinking meets a story people can actually follow—not because every idea needs to be simplified, but because people deserve a clear way into it.
+I’m Ted, a first-year Bachelor of Computer Science (Information Systems) student at Universiti Malaya. I’m interested in software development and full-stack work, practical AI applications, and human-centred product design.
+
+I also work with photography, filmmaking, and video editing. Visual storytelling gives me another way to think about rhythm, attention, and how an idea reaches people.
 
 ## How I Think
 
@@ -43,14 +89,12 @@ I usually begin with questions. What is making this difficult? What does someone
 
 That way of thinking keeps me from treating technology as the answer before I understand the problem. Code, motion, typography, video, and structure are all tools. The useful choice depends on the person on the other side.
 
-## Leading With People in View
+## Current Roles
 
-Chairing a society taught me that direction matters, but people matter more. A plan only becomes useful when a team can see where it is going, understand their place in it, and speak honestly when something needs to change.
-
-I bring that same approach into projects: listen closely, make the goal visible, and keep the work moving without losing the people doing it.
+In my current university roles, I’m taking on responsibilities in publicity, public relations, and developer-community work. I’ve also used AI-assisted development tools and prototyping workflows while learning how to move from an idea to working software.
 
 ## A Creative Practice
 
-My creative work moves between interface design, photography, editing, and visual storytelling. Those disciplines teach me to notice rhythm—what deserves attention, what should stay quiet, and how separate details can become one coherent experience.
+My creative interests include photography, filmmaking, video editing, graphic design, event publicity, and visual storytelling. Those practices teach me to notice rhythm—what deserves attention, what should stay quiet, and how separate details can become one coherent experience.
 
 I’m still learning, and I want the portfolio to show that honestly. The work here is not a finished identity. It is a record of how I am becoming more deliberate about what I build and why.

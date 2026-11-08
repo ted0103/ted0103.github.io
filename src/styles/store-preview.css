@@ -331,15 +331,7 @@ html.store-theme body {
 .store-story-card h3 { margin: 0; font-size: 2rem; line-height: 1.06; letter-spacing: -.04em; }
 .store-story-card > div { margin-top: auto; }
 .store-story-card > div p { color: var(--store-muted); line-height: 1.55; }
-.store-story-featured {
-  grid-column: span 2;
-  width: 640px;
-  color: white;
-  background: radial-gradient(ellipse at top right, #59616e, #23262d 60%, #14171b);
-}
-.store-story-featured > p,
-.store-story-featured > div p { color: rgba(255, 255, 255, .72); }
-.store-story-featured a { color: #e7e9f2; }
+.store-experience-logo { display: block; width: 56px; height: 56px; margin-bottom: 18px; padding: 4px; object-fit: contain; border: 1px solid #e7e5df; border-radius: 10px; background: white; }
 .store-achievement:nth-child(2) { background: #ece7dc; }
 .store-achievement:nth-child(3) { background: #e7e8e7; }
 .store-achievement:nth-child(4) { background: #eae7e4; }
@@ -677,6 +669,15 @@ html.store-theme body {
 .store-about-story { max-width: min(980px, calc(100% - 48px)); padding: clamp(34px, 6vw, 72px); border: 1px solid #e4e4e7; border-radius: 34px; background: white; box-shadow: 0 14px 46px rgba(0, 0, 0, .07); }
 .store-about-story h2 { color: var(--store-text); }
 .store-about-story p { color: #515154; }
+.store-about-awards { padding-top: 72px; }
+.store-about-awards .store-section-heading h2 { max-width: 700px; margin: 0; font-size: clamp(2rem, 3.6vw, 3.25rem); line-height: 1.06; letter-spacing: -.05em; }
+.store-about-experience { padding-top: 72px; }
+.store-experience-list { margin: 28px 0 0; padding: 0; border-top: 1px solid var(--refine-rule); list-style: none; }
+.store-experience-list > li { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(0, 1.2fr); gap: 30px; padding: 26px 0; border-bottom: 1px solid var(--refine-rule); }
+.store-experience-list h3 { margin: 8px 0; font-size: 1.3rem; line-height: 1.2; letter-spacing: -.03em; }
+.store-experience-list p { margin: 0 0 8px; color: var(--store-muted); line-height: 1.55; }
+.store-experience-list ul { display: grid; gap: 8px; margin: 12px 0 0; padding-left: 1.2em; color: var(--store-muted); line-height: 1.6; }
+.store-experience-list li li { padding: 0; border: 0; }
 .store-capability-shelf { padding-top: 80px; }
 .store-capability-shelf header { display: flex; align-items: end; justify-content: space-between; gap: 30px; }
 .store-capability-shelf h2 { max-width: 620px; margin: 0; font-size: clamp(2rem, 3.6vw, 3.25rem); line-height: 1.06; letter-spacing: -.05em; }
@@ -746,7 +747,6 @@ html.store-theme body {
   .store-capability-grid { grid-template-columns: 1fr; }
   .store-capability-card { min-height: 230px; }
   .store-open-source-grid { grid-template-columns: 1fr; }
-  .store-story-featured { width: min(640px, calc(100vw - 48px)); }
   .store-project-detail { padding-top: 72px; }
   .store-project-heading h1 { font-size: clamp(4rem, 15vw, 7rem); }
   .store-project-meta { grid-template-columns: 1fr 1fr; }
@@ -781,7 +781,6 @@ html.store-theme body {
   .store-home .store-selected-grid { grid-template-columns: 1fr; }
   .store-home .project-card { min-height: 0; }
   .store-story-rail { grid-auto-columns: min(290px, calc(100vw - 42px)); }
-  .store-story-featured { grid-column: auto; width: auto; }
   .store-open-source-card { min-height: 0; grid-template-columns: 92px minmax(0, 1fr); gap: 20px; padding: 22px; }
   .store-open-source-card img { width: 92px; height: 92px; border-radius: 22px; }
   .store-next { min-height: 380px; margin-top: 70px; border-radius: 28px; }
@@ -821,6 +820,7 @@ html.store-theme body {
   .store-project-supporting { grid-template-columns: 1fr; }
   .store-summary-tiles { grid-template-columns: 1fr; padding-bottom: 58px; }
   .store-summary-tiles article { min-height: 112px; }
+  .store-experience-list > li { grid-template-columns: 1fr; gap: 10px; }
   .store-about-story { padding: 34px 22px; border-radius: 26px; }
   .store-capability-shelf { padding-top: 62px; }
   .store-capability-shelf header { display: block; }
@@ -921,8 +921,8 @@ html.store-theme body {
 .store-categories { border-block: 1px solid var(--refine-rule); }
 .store-categories span { border: 0; background: none; box-shadow: none; }
 .store-section-heading h2 { font-family: inherit; font-weight: 500; letter-spacing: -.045em; }
-.store-home :is(#selected-work, #open-source, #leadership, #capabilities) .store-section-heading > div { min-width: 0; }
-.store-home :is(#selected-work, #open-source, #leadership, #capabilities) .store-section-heading h2 {
+.store-home :is(#selected-work, #open-source, #leadership, #awards, #capabilities) .store-section-heading > div { min-width: 0; }
+.store-home :is(#selected-work, #open-source, #leadership, #awards, #capabilities) .store-section-heading h2 {
   font-size: clamp(2.25rem, 4.5vw, 4rem);
   font-weight: 600;
   line-height: 1.2;
@@ -962,12 +962,7 @@ html.store-theme body {
 .store-open-source-card h3 { font-size: clamp(1.5rem, 2.2vw, 2rem); }
 .store-story-rail { grid-auto-columns: minmax(240px, 1fr); gap: 0; padding: 0 0 16px; margin: 0; border-top: 1px solid var(--refine-rule); }
 .store-story-card,
-.store-story-featured,
 .store-achievement:nth-child(n) { min-height: 220px; width: auto; padding: 24px; border-radius: 0; border-right: 1px solid var(--refine-rule); background: transparent; color: var(--refine-ink); box-shadow: none; }
-.store-story-featured { padding-left: 0; }
-.store-story-featured > p,
-.store-story-featured > div p { color: var(--store-muted); }
-.store-story-featured a { color: var(--store-blue); }
 .store-capability-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0; border-top: 1px solid var(--refine-rule); }
 .store-capability-card,
 .store-capability-card.tone-1,

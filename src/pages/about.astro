@@ -17,9 +17,56 @@ const { Content } = await render(profile);
 
     <section class="store-summary-tiles" aria-label="At a glance" data-reveal>
       <article><p>Based in</p><strong>{profile.data.location}</strong></article>
-      <article><p>Studying</p><strong>Information Systems + AI</strong></article>
-      <article><p>Leadership</p><strong>Society Chairperson</strong></article>
-      <article><p>Practice</p><strong>Development + Creative Technology</strong></article>
+      <article><p>Degree</p><strong>{profile.data.education.degree}</strong></article>
+      <article><p>University</p><strong>{profile.data.education.institution}</strong></article>
+      <article><p>Study</p><strong>{profile.data.education.level} · {profile.data.education.period}</strong></article>
+    </section>
+
+    <section class="store-section store-about-awards" id="education" aria-labelledby="education-title" data-reveal>
+      <header class="store-section-heading">
+        <div>
+          <p class="store-kicker">Education &amp; recognition</p>
+          <h2 id="education-title">A record of study and achievement.</h2>
+        </div>
+      </header>
+      <div class="store-story-rail">
+        {profile.data.awards.map((award) => (
+          <article class="store-story-card store-achievement">
+            <p>{award.year ?? 'International'}</p>
+            <h3>{award.title}</h3>
+            <div><p>{award.summary}</p></div>
+          </article>
+        ))}
+        {profile.data.education.academicAchievements.map((achievement) => (
+          <article class="store-story-card store-achievement">
+            <p>Academic achievement</p>
+            <h3>{achievement}</h3>
+            <div><p>{profile.data.education.degree} · {profile.data.education.institution}</p></div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="store-section store-about-experience" aria-labelledby="experience-title" data-reveal>
+      <header class="store-section-heading">
+        <div><p class="store-kicker">Current roles</p><h2 id="experience-title">Experience &amp; leadership.</h2></div>
+      </header>
+      <ul class="store-experience-list">
+        {profile.data.leadership.map((position) => (
+          <li>
+            <div>
+              <img class="store-experience-logo" src={position.logo} alt={position.logoAlt} width="64" height="64" loading="lazy" />
+              <p>{position.period}</p>
+              <h3>{position.role}</h3>
+              <p>{position.organization}</p>
+            </div>
+            <div>
+              <p>{position.summary}</p>
+              <ul>{position.responsibilities.map((responsibility) => <li>{responsibility}</li>)}</ul>
+            </div>
+          </li>
+        ))}
+      </ul>
     </section>
 
     <article class="content-prose store-about-story" data-reveal>
@@ -29,8 +76,8 @@ const { Content } = await render(profile);
     </article>
 
     <section class="store-capability-shelf" aria-labelledby="capabilities-title" data-reveal>
-      <header><p class="store-kicker">What I bring</p><h2 id="capabilities-title">Capabilities that keep the work human.</h2></header>
-      <ul>{profile.data.capabilities.map((capability, index) => <li><span>{String(index + 1).padStart(2, '0')}</span>{capability}</li>)}</ul>
+      <header><p class="store-kicker">Areas of interest</p><h2 id="capabilities-title">What I’m exploring in and beyond my degree.</h2></header>
+      <ul>{profile.data.education.interests.map((interest, index) => <li><span>{String(index + 1).padStart(2, '0')}</span>{interest}</li>)}</ul>
     </section>
   </div>
 </BaseLayout>

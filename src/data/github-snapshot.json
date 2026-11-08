@@ -2,25 +2,13 @@
   "generatedAt": "2026-08-01T09:41:03Z",
   "projects": {
     "questmark": {
-      "description": "Evidence-backed real-world skill quests for students",
-      "language": "TypeScript",
-      "updatedAt": "2026-07-29T08:41:18Z",
-      "homepage": "https://ted0103.github.io/questmark/",
-      "repository": "https://github.com/ted0103/questmark"
+      "language": "TypeScript"
     },
     "celestial-archive": {
-      "description": "Local-first bilingual 78-card tarot reflection app",
-      "language": "HTML",
-      "updatedAt": "2026-07-30T14:06:02Z",
-      "homepage": "https://ted0103.github.io/celestial-archive/",
-      "repository": "https://github.com/ted0103/celestial-archive"
+      "language": "HTML"
     },
     "teds-personal-portfolio": {
-      "description": "portfolio",
-      "language": "CSS",
-      "updatedAt": "2026-07-30T03:40:05Z",
-      "homepage": "",
-      "repository": "https://github.com/ted0103/ted0103.github.io"
+      "language": "CSS"
     }
   }
 }

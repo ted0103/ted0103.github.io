@@ -1035,80 +1035,6 @@ main { display: block; }
 .footer-meta { margin: 18px 0 0; color: var(--soft); font-family: var(--mono); font-size: 9px; }
 .footer-place { justify-self: end; }
 
-.js [data-reveal] > * {
-  opacity: 0;
-  transform: translateY(44px) scale(.975);
-  transform-origin: 50% 100%;
-  transition: opacity 920ms var(--ease-reveal), transform 920ms var(--ease-reveal);
-}
-.js [data-reveal][data-visible="true"] > * {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-.js [data-reveal] > :nth-child(2) { transition-delay: 110ms; }
-.js [data-reveal] > :nth-child(3) { transition-delay: 220ms; }
-.js [data-reveal] > :nth-child(4) { transition-delay: 330ms; }
-.js [data-reveal] .project-card,
-.js [data-reveal] .signal-list li,
-.js [data-reveal] .stack-group,
-.js [data-reveal] .contact-action,
-.js [data-reveal] .highlight,
-.js [data-reveal] .store-summary-tiles article,
-.js [data-reveal] .store-capability-shelf li,
-.js [data-reveal] .store-open-source-card,
-.js [data-reveal] .store-project-supporting .project-card,
-.js [data-reveal] .store-404-tile {
-  opacity: 0;
-  transform: translateY(34px) scale(.982);
-  transform-origin: 50% 100%;
-  transition: opacity 860ms var(--ease-reveal), transform 860ms var(--ease-reveal);
-}
-.js [data-reveal][data-visible="true"] .project-card,
-.js [data-reveal][data-visible="true"] .signal-list li,
-.js [data-reveal][data-visible="true"] .stack-group,
-.js [data-reveal][data-visible="true"] .contact-action,
-.js [data-reveal][data-visible="true"] .highlight,
-.js [data-reveal][data-visible="true"] .store-summary-tiles article,
-.js [data-reveal][data-visible="true"] .store-capability-shelf li,
-.js [data-reveal][data-visible="true"] .store-open-source-card,
-.js [data-reveal][data-visible="true"] .store-project-supporting .project-card,
-.js [data-reveal][data-visible="true"] .store-404-tile {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-.js [data-reveal] .project-card:nth-child(2),
-.js [data-reveal] .signal-list li:nth-child(2),
-.js [data-reveal] .stack-group:nth-child(2),
-.js [data-reveal] .contact-action:nth-child(2),
-.js [data-reveal] .highlight:nth-child(2),
-.js [data-reveal] .store-summary-tiles article:nth-child(2),
-.js [data-reveal] .store-capability-shelf li:nth-child(2),
-.js [data-reveal] .store-open-source-card:nth-child(2),
-.js [data-reveal] .store-project-supporting .project-card:nth-child(2) { transition-delay: 110ms; }
-.js [data-reveal] .signal-list li:nth-child(3),
-.js [data-reveal] .stack-group:nth-child(3),
-.js [data-reveal] .contact-action:nth-child(3),
-.js [data-reveal] .highlight:nth-child(3),
-.js [data-reveal] .store-summary-tiles article:nth-child(3),
-.js [data-reveal] .store-capability-shelf li:nth-child(3),
-.js [data-reveal] .store-open-source-card:nth-child(3) { transition-delay: 220ms; }
-.js [data-reveal] .signal-list li:nth-child(4),
-.js [data-reveal] .highlight:nth-child(4),
-.js [data-reveal] .store-summary-tiles article:nth-child(4),
-.js [data-reveal] .store-capability-shelf li:nth-child(4) { transition-delay: 330ms; }
-
-.js .project-story-section > * {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);
-  transition-delay: 0ms;
-}
-.js .project-story-section > :not(h2) { transition-delay: 60ms; }
-.js .project-story-section[data-visible="true"] > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .js .hero-heading > *,
 .js .hero-context > *,
 .js .hero-foot > * {
@@ -1251,7 +1177,6 @@ main { display: block; }
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
-  .js .project-story-section > * { opacity: 1; transform: none; transition: none; }
   .lava,
   .site-header::before,
   .header-action::before,
@@ -1262,22 +1187,6 @@ main { display: block; }
   .hero-prelude { display: none; }
   .js.page-entry-pending .site-shell { opacity: 0; transform: none; }
   .js.page-entry-ready .site-shell { opacity: 1; transform: none; transition: opacity 160ms ease; }
-  .js .hero-copy,
-  .js [data-reveal] > *,
-  .js [data-reveal] .project-card,
-  .js [data-reveal] .signal-list li,
-  .js [data-reveal] .stack-group,
-  .js [data-reveal] .contact-action,
-  .js [data-reveal] .highlight,
-  .js [data-reveal] .store-summary-tiles article,
-  .js [data-reveal] .store-capability-shelf li,
-  .js [data-reveal] .store-open-source-card,
-  .js [data-reveal] .store-project-supporting .project-card,
-  .js [data-reveal] .store-404-tile {
-    opacity: 1;
-    transform: none;
-    transition: opacity 160ms ease;
-  }
 }
 
 @media (prefers-contrast: more) {

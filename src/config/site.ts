@@ -1,7 +1,7 @@
 export const site = {
   name: 'Tan Ted Hang',
   shortName: 'Ted',
-  description: 'Information Systems & AI student, independent developer, and creative technologist building clear, human-centered systems.',
+  description: 'First-year Computer Science (Information Systems) student at Universiti Malaya, building software and exploring human-centred product design.',
   url: 'https://ted0103.github.io',
   email: 'tedhangtan@gmail.com',
   instagram: 'https://www.instagram.com/_hwalker_1/',
