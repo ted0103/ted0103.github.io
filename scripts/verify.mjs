@@ -1,4 +1,3 @@
-import './verify-hero.mjs';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
@@ -128,8 +127,8 @@ if (productionCss.includes('scroll-snap-type')) {
   throw new Error('Project navigation must not axis-lock page scrolling');
 }
 const homePage = await readFile(path.join(root, 'dist/index.html'), 'utf8');
-if (!/aria-label="Explore Ted(?:'|&#39;|&#x27;)s Portfolio"/.test(homePage) || homePage.includes('This portfolio')) {
-  throw new Error('Arc must expose the updated portfolio label');
+if (!homePage.includes('id="portfolio-title"') || !homePage.includes('Building software that feels clear, useful, and human.')) {
+  throw new Error('Homepage must show the paper-style identity and current portfolio statement');
 }
 if (!homePage.includes('id="selected-work"') || !homePage.includes('store-selected-grid')) {
   throw new Error('Homepage must expose selected work in the visible project grid');

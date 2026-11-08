@@ -8,10 +8,10 @@ export const site = {
   github: 'https://github.com/ted0103',
   availability: 'Open to meaningful collaborations',
   navigation: [
-    { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects/' },
-    { label: 'About', href: '/about/' },
-    { label: 'Contact', href: '/contact/' },
+    { label: 'Home', href: '/', icon: '★' },
+    { label: 'About', href: '/about/', icon: '●' },
+    { label: 'Case Study', href: '/projects/', icon: '▦' },
+    { label: 'Playground', href: '/playground/', icon: '◆' },
   ],
   featuredRepositories: [
     {

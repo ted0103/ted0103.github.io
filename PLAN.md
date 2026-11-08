@@ -1,3 +1,71 @@
+# Portfolio redesign — Portfoliofy Crayon reference — 2026-11-09
+
+Status: Implemented locally; preview ready to review. No commit, push, or deployment.
+
+## Confirmed direction
+- Follow the layout and visual language of https://portfoliofy.io/preview/creative-artsy while preserving Ted’s actual copy, project evidence, dates, roles, and contact destinations. Never copy Robin Vale’s identity, sample project content, or unsupported metrics.
+- Keep the existing Home, About, Projects, case-study detail, Contact, Download, and 404 routes, and add a Playground route. Ted chose to add Playground using his existing creative and skills content.
+- Match the reference’s top tab navigation, paper rules, pixel display lettering, handwritten short labels, saturated sticker colors, taped photo frames, and collage-style cards. Keep long paragraphs readable in the current sans-serif.
+- Use the template’s light two-column case-study card grid and taped-detail-page pattern; this supersedes the previous solid dark/yellow project-panel alternation.
+- Map existing content to the template: Home hero/about/project/open-source/contact sections; About bio/story/leadership/education; Playground existing project imagery, tools, and creative interests; case-study list and detail pages remain evidence-led.
+- Keep the existing static Astro stack, local font assets, reduced-motion behavior, mobile navigation, contact actions, and `/download/` redirect. Do not add a message form or invented photography.
+
+## Acceptance checks
+- All current routes remain available; Playground is added to primary navigation and generated statically.
+- Home, project index, all three case studies, About, Playground, Contact, and 404 retain Ted’s original content and adopt the shared Crayon visual language. `/download/` keeps its redirect to the separate app page.
+- Inspect desktop and mobile layouts, navigation, project imagery, keyboard access, focus, and reduced-motion behavior. Preserve the current 320px layout guard.
+- Build the static preview, inspect desktop and mobile layouts, and run `git diff --check`; update `PLAN-REVIEW-LOG.md` with actual evidence and remaining limits.
+- Keep the work local and uncommitted.
+
+## Results and limits — 2026-11-09
+- `npm run build` passed: Astro reported zero diagnostics across 21 files, and 10 static pages built, including `/playground/`. `git diff --check` passed.
+- Browser review: desktop at 1280×900 on Home, Projects, Celestial Archive, About, and Playground; mobile at 390×844 on Home, Projects, About, Playground, and the Celestial Archive case study; narrow 320×700 on Home and Projects. The 320px review led to a single-column project grid and a single-line name treatment.
+- The mobile navigation opened, showed the existing routes including Playground, and closed with Escape. Reduced-motion and focus behavior were checked in source; preference emulation, a complete keyboard audit, 200% zoom, and cross-browser review were not performed.
+- GitHub metadata requests could not reach the network and used the checked-in snapshot dated 2026-08-01. `/download/` remains a redirect to the separate Celestial Archive app page, which is not included in this preview.
+- Local preview: `http://127.0.0.1:4325/`. No commit, push, or deployment.
+
+## Implementation touchpoints
+- Shared shell, navigation, footer, home hero, project cards, project listing/detail, About, Contact, and the existing theme stylesheet.
+- New `src/pages/playground.astro`, sourced only from profile fields and shipped project media.
+- Existing content collections and project routes remain the source of factual text and imagery.
+
+---
+
+# Previous notebook-paper portfolio redesign — 2026-11-08
+
+Status: Implemented locally; review pending. No commit, push, or deployment authorized.
+
+## Outcome and decisions
+- Carry the supplied paper-and-sticker reference across Home, Projects, project details, About, Contact, and 404; retain the existing routes and factual portfolio content.
+- Keep Tan Ted Hang, the real project images, current navigation destinations, and the static portfolio architecture. Match the reference’s ruled paper, tabbed header, oversized pixel-style headings, readable body copy, colorful paper labels, and compact editorial grids.
+- Use the closest installed pixel fonts for headings and interface labels, with a readable sans-serif for long copy. The screenshot does not identify exact font names.
+- Replace the current sticky overlapping project deck with the reference’s distinct grid layout. Add short, restrained reveals, image motion, and control feedback that respect reduced motion.
+- Apply the follow-up reference’s dark/yellow alternation between project entries on the Projects page, colored skill tags, and paper-style leadership cards; keep Ted’s project-specific detail pages and factual copy intact.
+- Use Pixelify Sans for headings and Silkscreen for compact labels; keep long paragraphs in the existing readable sans-serif body face.
+
+## Approach and touchpoints
+- Rework `PortfolioHero.astro` and the shared header/config for the screenshot’s centered name treatment and browser-tab navigation.
+- Restyle the existing `store-theme` selectors in `store-preview.css` so every route shares the paper, ink, sticker, image-frame, and typography rules; adjust shared route markup only where the reference hierarchy needs it.
+- Retain content collections, project evidence/images, contact behavior, mobile navigation, Lenis, download redirect, Android association, and route structure.
+- Remove obsolete hero/orbit logic and update the existing verification assertions that depend on it.
+
+## Acceptance checks
+- Home, About, Projects, all three case studies, Contact, 404, and Download retain their content/routes and use the new visual system.
+- Check desktop and mobile layouts, navigation, keyboard focus, image loading, and reduced-motion behavior in a local browser.
+- Run the existing `npm run check` and `git diff --check`; fix regressions in the requested scope.
+
+## Results and limits — 2026-11-09
+- `npm run check` passed after the final typography adjustment: 20 Astro files, zero diagnostics, nine static routes, and all 26 verifier assertions. GitHub metadata fetches fell back to the checked-in 2026-08-01 snapshot.
+- Pixelify Sans headings and Silkscreen labels are bundled locally with their OFL notices; long paragraphs retain the readable system sans-serif. The original screenshot does not identify exact font files.
+- Desktop browser review covered Home, Projects, and About. Mobile review covered Home, Projects, a Celestial Archive case study, About leadership, and Contact at 390×844; narrow 320×700 review covered Home, Projects, skills, About leadership, Contact, and 404. The small-screen Experience & Leadership heading was adjusted after the first review.
+- The mobile menu opened and closed with Escape. Reduced-motion and focus behavior were reviewed in source; motion-preference emulation, a complete keyboard audit, cross-browser checks, and 200% zoom were not performed.
+- `/download/` still redirects to `/celestial-archive/download.html`; that separate app is not included in this local preview, so its destination was not reviewed here.
+
+## Risks
+- Exact reference typeface names are unverified; the bundled pixel faces are visual matches, not confirmed originals.
+- The reference’s example person, copy, imagery, and outcome metrics are not portfolio facts; retain Ted’s verified content and do not invent substitute claims.
+- Existing .hallmark artifacts and other untracked work remain untouched.
+
 # Portfolio card interaction fixes — 2026-11-06
 
 Status: User reviewed the refinements and authorized commit and merge on 2026-11-06. Release verification passed; full browser coverage remains pending. Earlier plans below are retained as history.
