@@ -1,0 +1,6 @@
+---
+interface Props { text: string; class?: string; delay?: number; stagger?: number; }
+const { text, class: className = '', delay = 0, stagger = .05 } = Astro.props;
+let index = 0;
+---
+<span class:list={['letters', className]} data-letters aria-label={text}><span aria-hidden="true">{text.split(' ').map((word) => <><span class="word">{Array.from(word).map(letter => <span class="letter" style={`--delay:${delay + index++ * stagger}s`}>{letter}</span>)}</span>{' '}</>)}</span></span>

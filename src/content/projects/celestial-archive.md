@@ -17,11 +17,11 @@ highlights:
   - Local-first privacy
   - Web, Android, and offline access
 media:
-  src: /projects/celestial-archive-thumbnail-2026.webp
-  alt: Celestial Archive title beside three ceremonial cards, an eclipse, a paper fan, and a gold compass star
-  width: 1600
-  height: 900
-  caption: A tactile ceremonial still life introduces the archive as a quiet space for reflection.
+  src: /projects/celestial-archive-named-cover.png
+  alt: Celestial Archive wordmark above a laptop showing its bilingual gateway
+  width: 1254
+  height: 1254
+  caption: A branded device mockup featuring the project interface.
   position: center
 ---
 

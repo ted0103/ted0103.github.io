@@ -16,11 +16,11 @@ highlights:
   - Accessible liquid-glass system
   - Static, resilient deployment
 media:
-  src: /projects/portfolio-thumbnail-2026.webp
-  alt: TED’S WORK wordmark beside an earlier editorial layout of Tan Ted Hang’s portfolio
-  width: 1600
-  height: 900
-  caption: An earlier portfolio layout; the current design uses ruled paper, condensed display type, and colorful project labels.
+  src: /projects/just-ted-named-cover.png
+  alt: Just_Ted wordmark above a laptop showing the paper-and-sticker portfolio homepage
+  width: 1254
+  height: 1254
+  caption: A branded device mockup featuring the project interface.
   position: center
 ---
 

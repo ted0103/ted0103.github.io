@@ -1,72 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ContactPanel from '../components/ContactPanel.astro';
-import PortfolioHero from '../components/PortfolioHero.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import { site } from '../config/site';
+import Letters from '../components/Letters.astro';
+import Photo from '../components/Photo.astro';
 import { getProjects } from '../lib/projects';
-
-const [profile] = await getCollection('profile');
-const projects = await getProjects();
+import { getCollection } from 'astro:content';
+const projects=await getProjects();
+const [profile]=await getCollection('profile');
 ---
-
-<BaseLayout title={site.name} themeColor="#faf9f6">
-  <div class="store-home">
-    <PortfolioHero />
-
-    <section class="store-section store-about-preview" aria-labelledby="about-preview-title" data-reveal>
-      <div class="about-preview-note">
-        <p class="store-handnote">What’s up?</p>
-        <div class="about-preview-copy">
-          <h2 id="about-preview-title">A little about me</h2>
-          <p>{site.description}</p>
-          <div class="about-preview-tags" aria-label="Areas of interest">
-            <span>Software development</span><span>Human-centred design</span><span>Visual storytelling</span>
-          </div>
-          <a href="/about/">Read my story <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-      <p class="about-preview-annotation" aria-hidden="true">ideas, built with care ↗</p>
-    </section>
-
-    <section class="store-section" id="selected-work" aria-labelledby="projects-title" data-reveal>
-      <header class="store-section-heading">
-        <div>
-          <p class="store-handnote">Explore my work!</p>
-          <h2 id="projects-title">Featured works</h2>
-        </div>
-        <a href="/projects/">View all projects <span aria-hidden="true">↗</span></a>
-      </header>
-      <div class="project-grid store-selected-grid">
-        {projects.slice(0, 2).map((project, index) => <ProjectCard project={project} projectIndex={index + 1} />)}
-      </div>
-    </section>
-
-    <section class="store-section store-roles-strip" aria-labelledby="roles-strip-title" data-reveal>
-      <header class="store-section-heading">
-        <div><p class="store-handnote">Current roles</p><h2 id="roles-strip-title">Communities I’m part of</h2></div>
-        <a href="/about/#experience-title">See roles <span aria-hidden="true">↗</span></a>
-      </header>
-      <div class="roles-logo-row">
-        {profile.data.leadership.map((position) => (
-          <article class="role-logo-card">
-            <img src={position.logo} alt={position.logoAlt} width="64" height="64" loading="lazy" />
-            <div><h3>{position.role}</h3><p>{position.organization}</p></div>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="store-section store-next" aria-labelledby="next-title" data-reveal>
-      <p>Next experiment</p>
-      <h2 id="next-title">Start with the human problem.</h2>
-      <p>{profile.data.forecast}</p>
-      <a href="mailto:tedhangtan@gmail.com">Build something meaningful together <span aria-hidden="true">↗</span></a>
-    </section>
-
-    <div class="store-section" id="contact">
-      <ContactPanel />
-    </div>
-  </div>
-</BaseLayout>
+<BaseLayout><div class="splash" aria-hidden="true"><span class="splash-first"><i style="animation-delay:0.15s">O</i><i style="animation-delay:0.195s">h</i><i style="animation-delay:0.24s">,</i><i style="animation-delay:0.28500000000000003s">&nbsp;</i><i style="animation-delay:0.32999999999999996s">h</i><i style="animation-delay:0.375s">e</i><i style="animation-delay:0.42000000000000004s">l</i><i style="animation-delay:0.46499999999999997s">l</i><i style="animation-delay:0.51s">o</i><i style="animation-delay:0.5549999999999999s">!</i></span><span class="splash-second"><i style="animation-delay:0.95s">Y</i><i style="animation-delay:0.995s">o</i><i style="animation-delay:1.04s">u</i><i style="animation-delay:1.085s">&nbsp;</i><i style="animation-delay:1.13s">f</i><i style="animation-delay:1.1749999999999998s">o</i><i style="animation-delay:1.22s">u</i><i style="animation-delay:1.265s">n</i><i style="animation-delay:1.31s">d</i><i style="animation-delay:1.355s">&nbsp;</i><i style="animation-delay:1.4s">m</i><i style="animation-delay:1.4449999999999998s">e</i><i style="animation-delay:1.49s">!</i></span></div><section class="hero"><div class="hero-composition"><p class="hand hero-label" data-drop>MY NAME IS<svg viewBox="0 0 100 18" aria-hidden="true"><path d="M8 7Q50 0 92 7M18 15Q50 8 85 15"/></svg></p><div class="name-frame"><div class="name"><Letters text="Just_Ted" delay={1.95} stagger={.06}/></div><svg class="sketch-box" viewBox="0 0 430 210" preserveAspectRatio="none" aria-hidden="true"><path d="M5 13Q130 -1 421 5Q432 99 426 201Q260 214 13 209Q5 125 5 13Z"/></svg><span class="sticker note-left" data-drop style="--tilt:-8deg;--delay:1.7s">Made things</span><span class="sticker note-right" data-drop style="--tilt:7deg;--delay:1.85s">Just being me</span><span class="sticky role" data-drop data-drop-y="-140" data-damping="8" style="--tilt:-4deg;--delay:2s">CS Student<span aria-hidden="true">↗</span></span><span class="sticky location" data-drop data-drop-y="-140" data-damping="8" style="--tilt:3deg;--delay:2.1s">Malaysia<span aria-hidden="true">↖</span></span></div><p class="status mono" data-reveal style="--delay:2.2s"><i></i>Open to meaningful collaborations</p></div><div class="floating-photo left"><Photo caption=""/></div><div class="floating-photo right"><Photo caption=""/></div><h1 data-reveal style="--delay:2.3s">An ambitious, creative student <svg class="eye" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#16b06a" stroke="#191510" stroke-width="2"/><circle cx="20" cy="20" r="11" fill="#fdfdfb"/><circle cx="20" cy="20" r="5" fill="#16b06a"/><circle cx="14" cy="9" r="2.4" fill="#191510"/></svg><br class="desktop-break"/> driven to learn, lead, and grow. <svg class="flower" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="8" rx="4.6" ry="8" fill="#ff4d8d" transform="rotate(0 20 20)"/><ellipse cx="20" cy="8" rx="4.6" ry="8" fill="#ff4d8d" transform="rotate(45 20 20)"/><ellipse cx="20" cy="8" rx="4.6" ry="8" fill="#ff4d8d" transform="rotate(90 20 20)"/><ellipse cx="20" cy="8" rx="4.6" ry="8" fill="#ff4d8d" transform="rotate(135 20 20)"/><ellipse cx="20" cy="8" rx="4.6" ry="8" fill="#ff4d8d" transform="rotate(180 20 20)"/><ellipse cx="20" cy="8" rx="4.6" ry="8" fill="#ff4d8d" transform="rotate(225 20 20)"/><ellipse cx="20" cy="8" rx="4.6" ry="8" fill="#ff4d8d" transform="rotate(270 20 20)"/><ellipse cx="20" cy="8" rx="4.6" ry="8" fill="#ff4d8d" transform="rotate(315 20 20)"/><circle cx="20" cy="20" r="5" fill="#191510"/></svg></h1><a class="primary-button mono" href="#contact" data-reveal style="--delay:2.45s"><span>↗</span> Contact me</a><span class="invert-lens" aria-hidden="true"></span></section><section class="home-about wrap"><p class="hand section-note" data-reveal>about me!</p><div class="about-collage"><div class="photo-stack" data-drop><Photo caption="2026"/><Photo caption="my workspace"/></div><div class="about-copy" data-reveal><span class="tape">what’s up</span><p class="hand">I’m Ted, a first-year Computer Science (Information Systems) student at Universiti Malaya. I’m interested in software development and full-stack work, practical AI applications, and human-centred product design.</p><div class="tag-list">{['Software Development','Practical AI','Product Design','Visual Storytelling'].map(t=><span>{t}</span>)}</div></div></div></section><section class="featured wrap"><div class="featured-heading"><p class="hand" data-reveal>explore my work!</p><h2><Letters text="FEATURED WORKS"/></h2><p class="hand description-sticker" data-drop>A few things I’m building through software, design, and visual storytelling.</p></div><div class="folder-stack">{projects.map((project,index)=><article class:list={['project-folder',`folder-${index}`]} data-reveal><div class="folder-tab mono">✦ PROJECT {String(index+1).padStart(2,'0')}</div><div class="folder-inner"><div class="folder-copy"><p class="mono">● {project.year}</p><h3>{project.title}</h3><p>{project.summary}</p><a class="project-link mono" href={`/case-studies/${project.slug}/`}>View project ↗</a><div class="project-tags">{project.highlights.slice(0,2).map(t=><span>{t}</span>)}</div></div><a class="taped-image" href={`/case-studies/${project.slug}/`} aria-label={`View ${project.title}`}><img src={project.media.src} alt={project.media.alt} width={project.media.width} height={project.media.height} loading="lazy"/></a></div></article>)}</div></section><section class="community wrap"><p class="hand">part of the community</p><div>{profile.data.leadership.map(role=><figure><img src={role.logo} alt={role.logoAlt} width="80" height="80" loading="lazy"/><figcaption>{role.organization}</figcaption></figure>)}</div></section></BaseLayout>

@@ -1,0 +1,5 @@
+---
+interface Props { caption?: string; class?: string; }
+const { caption = '2026', class: className = '' } = Astro.props;
+---
+<figure class:list={['polaroid', className]}><div class="photo-space" role="img" aria-label="Space reserved for Ted’s personal photo"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="9" width="34" height="30" rx="2"/><circle cx="17" cy="18" r="3"/><path d="m8 33 10-10 8 8 5-5 10 10"/></svg><span>your photo here</span></div><figcaption>{caption}</figcaption></figure>

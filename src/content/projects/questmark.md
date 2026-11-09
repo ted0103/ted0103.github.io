@@ -17,11 +17,11 @@ highlights:
   - Interactive skill growth map
   - Private-by-default sharing
 media:
-  src: /projects/questmark-thumbnail-2026.webp
-  alt: QuestMark liquid-glass globe launching from an orbital portal with communication, leadership, and growth signals
-  width: 1600
-  height: 900
-  caption: The orbital world turns real-life missions into visible movement, evidence, and skill growth.
+  src: /projects/questmark-named-cover.png
+  alt: QuestMark wordmark above a tablet showing its real-world quest interface
+  width: 1254
+  height: 1254
+  caption: A branded device mockup featuring the project interface.
   position: center
 ---
 

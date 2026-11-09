@@ -1,0 +1,9 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getProjects } from '../../lib/projects';
+export async function getStaticPaths(){return (await getProjects()).map(project=>({params:{slug:project.slug},props:{project}}));}
+const { project }=Astro.props;
+const { Content }=await render(project.entry);
+---
+<BaseLayout title={project.title}><article class="case-detail wrap"><a class="mono" href="/case-studies/">← All case studies</a><p class="hand">{project.eyebrow}</p><h1>{project.title}</h1><p class="case-summary">{project.summary}</p><div class="case-meta mono"><span>{project.year}</span><span>{project.role}</span><span>{project.status}</span></div><img class="case-hero-image" src={project.media.src} alt={project.media.alt} width={project.media.width} height={project.media.height}/><div class="case-actions"><a class="primary-button mono" href={project.liveUrl}>Open live ↗</a>{project.showSource&&<a class="project-link mono" href={project.sourceUrl}>View source ↗</a>}</div><div class="prose"><Content/></div></article></BaseLayout>

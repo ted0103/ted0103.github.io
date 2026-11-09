@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Letters from '../../components/Letters.astro';
+import { getProjects } from '../../lib/projects';
+const projects=await getProjects();
+---
+<BaseLayout title="Case Study"><section class="case-index wrap"><header><p class="hand" data-reveal>explore my work!</p><h1 class="route-title"><Letters text="FEATURED WORKS" stagger={.04}/></h1></header><div class="case-grid">{projects.map((project,index)=><a class="case-card" href={`/case-studies/${project.slug}/`} data-reveal style={`--delay:${index%2*.1}s`}><div class="case-folder"><span class="mono">● {project.year}</span><div class="case-image"><img src={project.media.src} alt={project.media.alt} width={project.media.width} height={project.media.height} loading={index<2?'eager':'lazy'}/></div></div><h2>{project.title}<span aria-hidden="true">↗</span></h2><p>{project.summary}</p></a>)}</div></section></BaseLayout>
