@@ -28,3 +28,5 @@ body,.splash{background-image:linear-gradient(to bottom,transparent 33px,#191510
 .hero-label{font-size:40px}.bio-box aside .sticker{margin-left:0;font-size:14px;padding-inline:10px}@media(max-width:800px){.hero-label{font-size:34px}}
 
 .hero .invert-lens{opacity:0;scale:.35;transition:opacity .22s ease,scale .28s cubic-bezier(.2,.8,.2,1)}.hero .invert-lens.is-visible{opacity:1;scale:1}
+
+html.lenis,html.lenis body{scroll-behavior:auto}

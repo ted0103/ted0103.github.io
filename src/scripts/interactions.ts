@@ -1,7 +1,18 @@
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 import { zoomScale, dragPosition } from './gallery-state.mjs';
 import { springFrames } from './spring.mjs';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let lenis: Lenis | undefined;
+function syncSmoothScroll() {
+  lenis?.destroy();
+  lenis = reducedMotion.matches || document.body.classList.contains('is-playground')
+    ? undefined
+    : new Lenis({ autoRaf: true, anchors: true, allowNestedScroll: true });
+}
+syncSmoothScroll();
+reducedMotion.addEventListener('change', syncSmoothScroll);
 if (!reducedMotion.matches) {
   document.documentElement.classList.add('motion-ready');
   const observer = new IntersectionObserver(entries => {
