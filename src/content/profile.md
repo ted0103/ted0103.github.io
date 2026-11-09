@@ -51,8 +51,6 @@ awards:
   - title: GXBank Scholarship
     year: 2026
     summary: Selected as a GXBank Scholarship recipient.
-  - title: International AI Video Competition Recognition
-    summary: Recognition for an AI video project at an international competition.
 tools:
   languages:
     - Java

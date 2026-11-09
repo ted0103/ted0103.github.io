@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { springFrames } from '../src/scripts/spring.mjs';
-import { zoomScale, dragPosition } from '../src/scripts/gallery-state.mjs';
+import { zoomScale, dragPosition, bounceAxis } from '../src/scripts/gallery-state.mjs';
 assert.equal(zoomScale(1, 1), 1.2);
 assert.equal(zoomScale(.5, -1), .5);
 assert.equal(zoomScale(2.5, 1), 2.5);
@@ -29,3 +29,8 @@ for (const file of pages) {
   }
 }
 console.log(`Verified ${pages.length} pages, local links/assets, identity content, zoom limits and scaled dragging.`);
+
+assert.deepEqual(bounceAxis(-5,-100,0,200),{position:0,velocity:72});
+assert.deepEqual(bounceAxis(205,100,0,200),{position:200,velocity:-72});
+assert.deepEqual(bounceAxis(50,20,0,200),{position:50,velocity:20});
+assert.deepEqual(bounceAxis(50,20,100,0),{position:50,velocity:0});

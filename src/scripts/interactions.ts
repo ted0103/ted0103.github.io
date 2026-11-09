@@ -1,6 +1,6 @@
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
-import { zoomScale, dragPosition } from './gallery-state.mjs';
+import { zoomScale, dragPosition, bounceAxis } from './gallery-state.mjs';
 import { springFrames } from './spring.mjs';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -77,6 +77,47 @@ if (viewport && canvas) {
   let pan = { x: 0, y: 0 };
   const offsets = new WeakMap<HTMLElement, {x: number; y: number}>();
   let drag: {id: number; target: HTMLElement; start: {x: number; y: number}; origin: {x: number; y: number}} | null = null;
+  const photos = [...canvas.querySelectorAll<HTMLElement>('.gallery-photo, .playground-heading')];
+  const velocities = new Map(photos.map((photo, i) => [photo, {x: i % 2 ? 12 : -12, y: i % 3 ? 8 : -8}]));
+  let paused = false;
+  let lastTime = 0;
+  let frame = 0;
+  let sample = {x:0, y:0, time:0};
+  const floatToggle = document.querySelector<HTMLButtonElement>('.float-toggle')!;
+  function syncFloating() {
+    cancelAnimationFrame(frame);
+    const stopped = paused || reducedMotion.matches;
+    floatToggle.textContent = stopped ? 'Resume floating' : 'Pause floating';
+    floatToggle.disabled = reducedMotion.matches;
+    floatToggle.setAttribute('aria-pressed', String(stopped));
+    lastTime = 0;
+    if (!stopped && !document.hidden) frame = requestAnimationFrame(floatFrame);
+  }
+  function floatFrame(time: number) {
+    const dt = lastTime ? Math.min((time - lastTime) / 1000, .032) : 0;
+    lastTime = time;
+    const bounds = viewport!.getBoundingClientRect();
+    photos.forEach((photo, i) => {
+      if (drag?.target === photo || photo.matches(':focus-visible')) return;
+      const position = offsets.get(photo) ?? {x:0,y:0};
+      const velocity = velocities.get(photo)!;
+      const rect = photo.getBoundingClientRect();
+      const damping = Math.exp(-1.5 * dt);
+      velocity.x = velocity.x * damping + Math.sin(time / 2600 + i * 2) * 12 * (1 - damping);
+      velocity.y = velocity.y * damping + Math.cos(time / 3100 + i * 2) * 9 * (1 - damping);
+      const x = bounceAxis(position.x + velocity.x * dt, velocity.x, position.x + (bounds.left + 18 - rect.left) / scale, position.x + (bounds.right - 18 - rect.right) / scale);
+      const y = bounceAxis(position.y + velocity.y * dt, velocity.y, position.y + (bounds.top + 30 - rect.top) / scale, position.y + (bounds.bottom - 18 - rect.bottom) / scale);
+      position.x = x.position; position.y = y.position;
+      velocity.x = x.velocity; velocity.y = y.velocity;
+      offsets.set(photo, position);
+      photo.style.translate = `${position.x}px ${position.y}px`;
+    });
+    frame = requestAnimationFrame(floatFrame);
+  }
+  floatToggle.addEventListener('click', () => { paused = !paused; syncFloating(); });
+  reducedMotion.addEventListener('change', syncFloating);
+  document.addEventListener('visibilitychange', syncFloating);
+
   const zoomIn = document.querySelector<HTMLButtonElement>('[aria-label="Zoom in"]')!;
   const zoomOut = document.querySelector<HTMLButtonElement>('[aria-label="Zoom out"]')!;
   const status = document.querySelector<HTMLElement>('#zoom-status')!;
@@ -95,10 +136,12 @@ if (viewport && canvas) {
   zoomOut.addEventListener('click', () => zoom(-1));
   viewport.addEventListener('pointerdown', event => {
     if (event.button !== 0 || drag) return;
-    const photo = (event.target as Element).closest<HTMLElement>('.gallery-photo');
+    const photo = (event.target as Element).closest<HTMLElement>('.gallery-photo, .playground-heading');
     const target = photo ?? viewport;
     target.focus({preventScroll:true});
     drag = { id:event.pointerId, target, start:{x:event.clientX,y:event.clientY}, origin:photo ? (offsets.get(photo) ?? {x:0,y:0}) : {...pan} };
+    sample = {x:event.clientX,y:event.clientY,time:event.timeStamp};
+    if (photo) velocities.set(photo, {x:0,y:0});
     target.setPointerCapture(event.pointerId);
     if (photo) photo.style.zIndex = '20';
   });
@@ -109,12 +152,16 @@ if (viewport && canvas) {
       pan = position;
       updateCanvas();
     } else {
+      const elapsed = Math.max(8, event.timeStamp - sample.time) / 1000;
+      velocities.set(drag.target, {x:Math.max(-600,Math.min(600,(event.clientX-sample.x)/scale/elapsed)),y:Math.max(-600,Math.min(600,(event.clientY-sample.y)/scale/elapsed))});
+      sample = {x:event.clientX,y:event.clientY,time:event.timeStamp};
       offsets.set(drag.target, position);
       drag.target.style.translate = `${position.x}px ${position.y}px`;
     }
   });
   function endDrag(event: PointerEvent) {
     if (!drag || event.pointerId !== drag.id) return;
+    if (drag.target !== viewport && (event.type === 'pointercancel' || event.timeStamp - sample.time > 100)) velocities.set(drag.target, {x:0,y:0});
     if (drag.target.hasPointerCapture(event.pointerId)) drag.target.releasePointerCapture(event.pointerId);
     drag = null;
   }
@@ -126,14 +173,14 @@ if (viewport && canvas) {
     if (event.key === '-') { event.preventDefault(); zoom(-1); return; }
     if (event.key === 'Home') {
       event.preventDefault(); scale = 1; pan = {x:0,y:0};
-      canvas.querySelectorAll<HTMLElement>('.gallery-photo').forEach(photo => { offsets.delete(photo); photo.style.translate = ''; });
+      canvas.querySelectorAll<HTMLElement>('.gallery-photo, .playground-heading').forEach(photo => { offsets.delete(photo); velocities.set(photo,{x:0,y:0}); photo.style.translate = ''; });
       updateCanvas(); return;
     }
     const vectors: Record<string, [number,number]> = {ArrowLeft:[-20,0], ArrowRight:[20,0], ArrowUp:[0,-20], ArrowDown:[0,20]};
     const delta = vectors[event.key];
     if (!delta) return;
     event.preventDefault();
-    const photo = (event.target as Element).closest<HTMLElement>('.gallery-photo');
+    const photo = (event.target as Element).closest<HTMLElement>('.gallery-photo, .playground-heading');
     if (photo) {
       const position = offsets.get(photo) ?? {x:0,y:0};
       position.x += delta[0] / scale; position.y += delta[1] / scale;
@@ -141,6 +188,7 @@ if (viewport && canvas) {
     } else { pan.x += delta[0]; pan.y += delta[1]; updateCanvas(); }
   });
   updateCanvas();
+  syncFloating();
 }
 
 document.querySelectorAll<HTMLElement>('.contact-intro, .case-image, .hero').forEach(area => {

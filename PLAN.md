@@ -1,3 +1,9 @@
+# Playground antigravity — 2026-11-09
+
+User chose gentle floating with drag momentum and screen-edge bounces. Preserve drag, pan, zoom and keyboard controls; add pause and reduced-motion handling. Use existing gallery code, no dependency. Clamp overlarge cards to the viewport centre instead of jittering between edges. Validate bounce math, build, and desktop/mobile interaction locally. No independent review requested. Personal images remain placeholders.
+
+---
+
 # Portfolio redesign — Portfoliofy Crayon reference — 2026-11-09
 
 Status: Implemented locally; preview ready to review. No commit, push, or deployment.
