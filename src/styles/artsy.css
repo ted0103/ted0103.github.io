@@ -78,3 +78,13 @@ html.lenis,html.lenis body{scroll-behavior:auto}
 .case-detail h1{font-size:clamp(54px,8vw,100px);line-height:1.1;letter-spacing:0}.case-summary{font-size:32px;line-height:1.45}
 .case-meta,.case-actions .mono,.case-detail>a.mono{font-size:22px;letter-spacing:.03em}.case-detail .prose{font-size:28px;line-height:1.5}.case-detail .prose h2{font-size:38px;font-weight:400}.case-detail .prose figcaption{font-size:22px}
 @media(max-width:600px){.case-card h2{font-size:32px}.case-card>p{font-size:24px}.case-summary{font-size:28px}.case-detail .prose{font-size:25px}.case-meta{font-size:20px}}
+
+.compact-decks .folder-stack{gap:72px;padding-bottom:60px;isolation:isolate}
+.compact-decks .project-folder[data-reveal]{position:sticky;top:var(--stack-top,76px);opacity:1;transform:none;transition:none;z-index:1}
+.compact-decks .project-folder:nth-child(2){z-index:2;--deck-side:-1}
+.compact-decks .project-folder:nth-child(3){z-index:3}
+.compact-decks .project-folder:focus-within{z-index:4}
+.compact-decks .project-folder .folder-inner,.compact-decks .project-folder .folder-tab,.compact-decks .project-folder .folder-copy,.compact-decks .project-folder .taped-image,.compact-decks .project-folder .project-tags{animation:none;opacity:1;transform:none}
+.compact-decks .project-folder .folder-inner{transform:translateY(calc(var(--assemble)*65px)) rotate(calc(var(--assemble)*var(--deck-side,1)*4deg));box-shadow:0 16px 30px -18px #19151088}
+.compact-decks .project-folder .folder-tab{transform:translateY(calc(var(--assemble)*-35px))}
+.compact-decks .project-folder .taped-image{transform:translateY(calc(var(--assemble)*70px)) rotate(calc(var(--assemble)*8deg));opacity:calc(1 - var(--assemble)*.35)}

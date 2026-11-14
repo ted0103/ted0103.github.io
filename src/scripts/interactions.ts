@@ -1,3 +1,4 @@
+import { deckMotion } from './deck-motion.mjs';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import { zoomScale, dragPosition, bounceAxis } from './gallery-state.mjs';
@@ -223,3 +224,30 @@ document.querySelectorAll<HTMLElement>('.contact-intro, .case-image, .hero').for
     area.addEventListener('pointerleave', () => heroLens.classList.remove('is-visible'));
   }
 });
+
+// Mobile cards finish scrolling into view before they join the stack.
+const decks = [...document.querySelectorAll<HTMLElement>('.project-folder')];
+if (decks.length) {
+  const compactDecks = matchMedia('(max-width:999px), (max-height:749px)');
+  let pending = 0;
+  function updateDecks() {
+    pending = 0;
+    const enabled = compactDecks.matches && !reducedMotion.matches;
+    document.documentElement.classList.toggle('compact-decks', enabled);
+    if (!enabled) return;
+    const measurements = decks.map(deck => ({top:deck.getBoundingClientRect().top,height:deck.offsetHeight}));
+    decks.forEach((deck, index) => {
+      const motion = deckMotion(measurements[index].top, measurements[index].height, innerHeight, index);
+      deck.style.setProperty('--stack-top', `${motion.stickyTop}px`);
+      deck.style.setProperty('--assemble', String(motion.remaining));
+    });
+  }
+  function scheduleDecks() { if (!pending) pending = requestAnimationFrame(updateDecks); }
+  addEventListener('scroll', scheduleDecks, {passive:true});
+  addEventListener('resize', scheduleDecks);
+  compactDecks.addEventListener('change', scheduleDecks);
+  reducedMotion.addEventListener('change', scheduleDecks);
+  const deckSizes = new ResizeObserver(scheduleDecks);
+  decks.forEach(deck => deckSizes.observe(deck));
+  updateDecks();
+}

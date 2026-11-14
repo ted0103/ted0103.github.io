@@ -1,3 +1,4 @@
+import { deckMotion } from '../src/scripts/deck-motion.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -34,3 +35,6 @@ assert.deepEqual(bounceAxis(-5,-100,0,200),{position:0,velocity:72});
 assert.deepEqual(bounceAxis(205,100,0,200),{position:200,velocity:-72});
 assert.deepEqual(bounceAxis(50,20,0,200),{position:50,velocity:20});
 assert.deepEqual(bounceAxis(50,20,100,0),{position:50,velocity:0});
+
+assert.deepEqual(deckMotion(800,1100,800,0),{stickyTop:-324,remaining:1});
+assert.deepEqual(deckMotion(0,600,800,1),{stickyTop:92,remaining:0});
