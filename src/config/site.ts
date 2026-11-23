@@ -11,7 +11,6 @@ export const site = {
     { label: 'Home', href: '/', icon: '★' },
     { label: 'About', href: '/about/', icon: '●' },
     { label: 'Case Study', href: '/projects/', icon: '▦' },
-    { label: 'Playground', href: '/playground/', icon: '◆' },
   ],
   featuredRepositories: [
     {
